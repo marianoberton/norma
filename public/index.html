@@ -280,7 +280,7 @@ document.getElementById("tema").onclick = () => {
 };
 
 function refreshStatus() {
-  fetch("/health").then(r => r.json()).then(d => {
+  fetch("health").then(r => r.json()).then(d => {
     const chip = document.getElementById("statusChip");
     if (d.ok && d.chunks > 0) {
       chip.classList.add("ok");
@@ -304,7 +304,7 @@ function refreshStatus() {
 refreshStatus();
 
 let MUESTRA = {
-  figura: "/api/figura/CET-p0179-1.png", articulo: "3.5.2.1", documento: "Código de Edificación · pág. 179",
+  figura: "api/figura/CET-p0179-1.png", articulo: "3.5.2.1", documento: "Código de Edificación · pág. 179",
   pie: "Las 5 filas de este cuadro entraron al índice porque dos lecturas independientes coincidieron celda por celda. Un cuadro que no se confirma se muestra así, como imagen.",
   pregunta: "¿Qué lado y superficie mínimos tiene un baño tipo I?",
 };
@@ -378,7 +378,8 @@ function renderExcerpt(text) {
 }
 
 function figura(f, pie) {
-  return `<figure class="fig${f.tipo === "cuadro" ? " cuadro" : ""}"><a href="${esc(f.url)}" target="_blank" rel="noopener"><img src="${esc(f.url)}" alt="${esc(f.descripcion || "Figura")}" loading="lazy"></a><figcaption>${pie}</figcaption></figure>`;
+  const url = String(f.url || "").replace(/^\//, "");   // relativa: funciona también bajo un prefijo (/norma/)
+  return `<figure class="fig${f.tipo === "cuadro" ? " cuadro" : ""}"><a href="${esc(url)}" target="_blank" rel="noopener"><img src="${esc(url)}" alt="${esc(f.descripcion || "Figura")}" loading="lazy"></a><figcaption>${pie}</figcaption></figure>`;
 }
 function renderFiguras(figs) {
   if (!figs || !figs.length) return "";
@@ -470,7 +471,7 @@ function renderEval(question, answer, sources, container) {
   el.querySelector(".submit").onclick = () => {
     const comment = el.querySelector("textarea").value.trim();
     if (!rating && !stars && !comment) { el.querySelector(".submit").textContent = "Elegí sí o no, o una estrella"; return; }
-    fetch("/api/feedback", { method: "POST", headers: { "Content-Type": "application/json" },
+    fetch("api/feedback", { method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ rating: rating || (stars>=3?"up":"down"), stars, comment, question, answer, sources }) })
       .then(r => r.json()).then(() => {
         el.innerHTML = `<div class="done">${IC.ok}Gracias. Tu evaluación quedó registrada.</div>`;
@@ -503,7 +504,7 @@ async function submit() {
 
   let full = "", sources = null;
   try {
-    const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" },
+    const res = await fetch("api/chat", { method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: q, history }) });
     const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = "";
     while (true) {
