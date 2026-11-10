@@ -126,7 +126,7 @@ The answer comes first, in one to three sentences. Then the detail, where every 
 
 - `/panel` is the creator's panel, with five tabs:
   - **Documents:** chunk explorer per source file.
-  - **Tables:** each of the 454 tables with its status, the reading that won, the confirmed rows and the cropped original, plus the exact text that went into the index.
+  - **Tables:** each of the 454 tables with its status, the reading that won, the confirmed rows and the cropped original, plus the exact text that went into the index. Tables that two readings could not confirm form a **review queue**: the reviewer sees the original next to an editable grid, starts from whichever reading agrees best, and every row that no other reading matches is flagged. A confirmed review is appended to a log with the reviewer, the base reading and how many cells were changed, enters the index at the next re-index as a third category (*reviewed by hand*, never counted as confirmed by two readings), and is ignored if the table's geometry changes later.
   - **Tester:** what retrieval returns for a question, without generating.
   - **Exam:** every run, and the latest one question by question.
   - **Queries:** the log of real questions.
@@ -143,7 +143,7 @@ The answer comes first, in one to three sentences. Then the detail, where every 
 ## Honest limits
 
 - The exam questions were written from the articles but not yet reviewed by an architect. The numbers guide decisions; they are not a certification.
-- 98 tables could not be confirmed by two readings and are served as images only. This is deliberate: a wrong value is worse than no value.
+- 98 tables could not be confirmed by two readings and are served as images only, plus 27 partly confirmed. This is deliberate: a wrong value is worse than no value. They wait in the review queue for a person who knows the law; none has been reviewed yet.
 - The answer-model comparison used one judge and 44 questions.
 - The vector store is in memory (about 8,500 records, so cosine search is instant). Moving to pgvector only touches [`src/lib/vector-store.ts`](src/lib/vector-store.ts).
 
@@ -171,7 +171,7 @@ npm install
 npm run demo                      # chat at http://localhost:8787, creator panel at /panel
 ```
 
-Without keys, the creator panel works in full: documents, the 15 tables with their readings, the exam runs and the query log. To ask the chat, put an OpenAI key (to embed the question) and an OpenRouter key (for the answer) in `.env.local` (copy `.env.example`), then ask *«¿Qué lado y superficie mínimos tiene un baño tipo I?»* and open the Tables tab. A question costs well under one cent. The sample is rebuilt from a full index with `python -I scripts/muestra.py <index>`.
+Without keys the creator panel works: documents, the 15 tables with their readings and the 3 that wait for review, the exam runs and the query log. The Tester answers the sample's 10 exam questions offline, since their vectors are cached; any other question needs an OpenAI key. Reviews made in the demo go to `demo/.local/`, outside the versioned sample. To ask the chat, put an OpenAI key (to embed the question) and an OpenRouter key (for the answer) in `.env.local` (copy `.env.example`), then ask *«¿Qué lado y superficie mínimos tiene un baño tipo I?»* and open the Tables tab. A question costs well under one cent. The sample is rebuilt from a full index with `python -I scripts/muestra.py <index>`.
 
 ## Run it on the full corpus
 

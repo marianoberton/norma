@@ -126,5 +126,51 @@ class Renderizado(unittest.TestCase):
         self.assertNotIn("1,50", texto)
 
 
+class RevisionAMano(unittest.TestCase):
+    """Lo que una persona confirmó en el panel contra el original entra al índice como «revisado», no como verificado."""
+
+    PEND = {"id": "CET-p0179-1", "bbox": [56.7, 120.2, 540.9, 300.5], "encabezados_grilla": ["Tipo de Local", "Lado mínimo (m)"],
+            "modo": "solo_imagen", "lectura": None, "encabezados": ["Tipo de Local", "Lado mínimo (m)"], "filas": [],
+            "sin_verificar": 3, "rotulos_sin_verificar": ["Baño tipo I"], "titulo": None}
+
+    def rev(self, huella):
+        return {"id": "CET-p0179-1", "huella": huella, "accion": "confirmar", "base": "vision",
+                "encabezados": ["Tipo de Local", "Lado mínimo (m)"], "filas": [["Baño tipo I", "1,50"]]}
+
+    def test_huella_igual_que_el_servidor(self):
+        # El mismo caso está en tests/revision.test.ts.
+        self.assertEqual(tp.huella(self.PEND), "890ff1b9cde9")
+
+    def test_sin_revision_el_cuadro_no_cambia(self):
+        self.assertIs(tp.aplicar_revision(self.PEND, None), self.PEND)
+
+    def test_revision_vigente_se_aplica_y_se_dice(self):
+        c = tp.aplicar_revision(self.PEND, self.rev(tp.huella(self.PEND)))
+        self.assertEqual((c["modo"], c["lectura"], c["sin_verificar"]), ("revisado", "humano", 0))
+        texto = tp.renderizar(c)
+        self.assertIn("Lado mínimo (m): 1,50", texto)
+        self.assertIn("revisado a mano", texto)
+        self.assertNotIn("sin verificar", texto)
+
+    def test_revision_de_otro_cuadro_se_ignora(self):
+        avisos = []
+        c = tp.aplicar_revision(self.PEND, self.rev("000000000000"), avisar=avisos.append)
+        self.assertEqual(c["modo"], "solo_imagen")
+        self.assertEqual(len(avisos), 1)
+
+    def test_la_ultima_revision_manda_y_deshacer_la_saca(self):
+        import json
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            ruta = Path(d) / "revisiones.jsonl"
+            h = tp.huella(self.PEND)
+            lineas = [self.rev(h), dict(self.rev(h), filas=[["Baño tipo I", "1,60"]])]
+            ruta.write_text("\n".join(json.dumps(x) for x in lineas) + "\n", encoding="utf-8")
+            self.assertEqual(tp.cargar_revisiones(ruta)["CET-p0179-1"]["filas"], [["Baño tipo I", "1,60"]])
+            with ruta.open("a", encoding="utf-8") as f:
+                f.write(json.dumps({"id": "CET-p0179-1", "huella": h, "accion": "deshacer"}) + "\n")
+            self.assertEqual(tp.cargar_revisiones(ruta), {})
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -331,7 +331,7 @@ Quiet, compact and ink-colored.
 - **Pill:** a 999px-radius inline flag for a row-level fact ("figura", "por revisar", "sin artículo", "no está", a query type, an exam rank). Neutral by default (`sunk` with hairline), or colored ok / warn / bad with no border.
 
 ### Status
-- **Record state:** a 7px dot in `currentColor` followed by the state word, 12px/500 ("Verificado", "Recuadro de texto", "Parcial", "Solo imagen"). No capsule.
+- **Record state:** a 7px dot in `currentColor` followed by the state word, 12px/500 ("Verificado", "Recuadro de texto", "Revisado a mano", "Parcial", "Solo imagen"). No capsule. "Revisado a mano" is the one state in accent: a person, not a reading, vouches for it.
 - **Service state:** a 7px dot that gains a 3px `ok-weak` ring when the index is healthy, with the record count beside it.
 
 ### Cards / Containers
@@ -362,6 +362,9 @@ Quiet, compact and ink-colored.
 
 ### The Evidence Pair (signature)
 The table detail places **Original del PDF** (the crop on a White Plate, max 440px tall) beside **Filas confirmadas por dos lecturas** (a bordered table) and **Así entra al índice** (the exact indexed text in a mono well). Each part is introduced by a 12px label with a 16px icon. When no row was confirmed, the right side carries no transcription, only the explanation, and the original stands alone.
+
+### The Review Desk
+Opened from "Revisar a mano" on a table that two readings did not confirm. The crop sits on a White Plate at full width (scrolling, never shrunk below 560px), then a segmented control picks the starting reading (each segment shows its row count and how many rows another reading matches), then the editable grid: sticky `sunk` header, 6px/8px contenteditable cells capped at 30ch, a mono row-number column whose dot is green when another reading reads the row the same and amber, on an amber wash, when none does. Enter moves down a column; paste is plain text. Below: add row, add column, remove last column, a live count of matching rows, the reviewer and note fields, then the ink "Confirmar contra el original" and a secondary Cancel. Saving shows a green notice with "Siguiente por revisar"; a reviewed table says who, when, from which reading and how many cells changed, and offers undo. Copy always says a review enters the index at the next re-index.
 
 ### The Three-Reading Flow (signature)
 An ordered list of four steps separated by 22px hairline arrows: three readings, then the rule. Each step is a 14px heading with its order inside it and a 12px muted explanation; the closing step is set off by a 1px left divider, its heading in accent and its text in Graphite. Below 860px it stacks and the arrows point down.

@@ -129,7 +129,7 @@ td .lect{display:block;margin-top:2px;font-size:12px;color:var(--muted)}
 /* Etiquetas de estado: punto + texto, nada de cápsulas gritonas */
 .est{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;white-space:nowrap}
 .est::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-.est.ok{color:var(--ok)} .est.ok2{color:color-mix(in srgb,var(--ok) 70%,var(--muted))} .est.warn{color:var(--warn)} .est.bad{color:var(--bad)} .est.neutro{color:var(--muted)}
+.est.ok{color:var(--ok)} .est.ok2{color:color-mix(in srgb,var(--ok) 70%,var(--muted))} .est.rev{color:var(--accent)} .est.warn{color:var(--warn)} .est.bad{color:var(--bad)} .est.neutro{color:var(--muted)}
 .art{display:inline-block;font:500 11.5px var(--mono);color:var(--accent);background:var(--accent-weak);border-radius:4px;padding:1px 6px;white-space:nowrap}
 .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text-2);background:var(--sunk);border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap}
 .pill.ok{color:var(--ok);background:var(--ok-weak);border-color:transparent}
@@ -145,7 +145,7 @@ td .lect{display:block;margin-top:2px;font-size:12px;color:var(--muted)}
 /* Composición de cuadros */
 .mezcla{display:flex;height:10px;border-radius:5px;overflow:hidden;gap:2px}
 .mezcla span{display:block;height:100%}
-.c-verificado{background:var(--ok)} .c-recuadro{background:color-mix(in srgb,var(--ok) 45%,var(--surface))} .c-parcial{background:var(--warn)} .c-solo_imagen{background:color-mix(in srgb,var(--muted) 55%,var(--surface))}
+.c-verificado{background:var(--ok)} .c-recuadro{background:color-mix(in srgb,var(--ok) 45%,var(--surface))} .c-revisado{background:var(--accent)} .c-parcial{background:var(--warn)} .c-solo_imagen{background:color-mix(in srgb,var(--muted) 55%,var(--surface))}
 .leyenda{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--muted);margin-top:10px}
 .leyenda i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}
 .leyenda b{color:var(--text);font-weight:500;font-variant-numeric:tabular-nums}
@@ -190,6 +190,43 @@ td .lect{display:block;margin-top:2px;font-size:12px;color:var(--muted)}
 .nota.neutro svg{color:var(--muted)}
 .nota.err{background:var(--bad-weak);color:color-mix(in srgb,var(--bad) 80%,var(--text))}
 .nota.err svg{color:var(--bad)}
+
+/* Revisión a mano: la persona compara las lecturas con el original y confirma las filas */
+.revisar{padding:14px 18px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.revisar .ayuda{margin:0;font-size:13px;color:var(--text-2);max-width:78ch}
+.revisar .lamina{overflow:auto;max-height:52vh}
+.revisar .lamina img{max-height:none;max-width:none;width:100%;min-width:560px}
+.acciones{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.acciones .muted{font-size:12px}
+.bases{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden}
+.bases button{all:unset;cursor:pointer;padding:5px 11px;font-size:12px;color:var(--text-2);border-right:1px solid var(--line)}
+.bases button:last-child{border-right:0}
+.bases button:hover{background:var(--sunk)}
+.bases button[aria-pressed="true"]{background:var(--accent-weak);color:var(--accent);font-weight:500}
+.bases button span{color:var(--muted);font-variant-numeric:tabular-nums;margin-left:5px}
+.bases button:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.editor{overflow:auto;max-height:60vh;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
+.editor table{font-size:13px;border-collapse:separate;border-spacing:0;width:max-content;min-width:100%}
+.editor th,.editor td{padding:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.editor thead th{position:sticky;top:0;background:var(--sunk);z-index:1}
+.editor [contenteditable]{display:block;min-width:6ch;max-width:30ch;min-height:1.5em;padding:6px 8px;outline:none;white-space:pre-wrap;overflow-wrap:anywhere}
+.editor thead [contenteditable]{font-weight:600;color:var(--text)}
+.editor [contenteditable]:focus{box-shadow:inset 0 0 0 2px var(--accent);background:var(--surface)}
+.editor .nfila{min-width:44px;padding:6px 8px;font:12px var(--mono);color:var(--muted);white-space:nowrap;background:var(--sunk)}
+.editor .nfila::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--line-2)}
+.editor tr.coincide .nfila::before{background:var(--ok)}
+.editor tr.duda .nfila{background:var(--warn-weak);color:var(--warn)}
+.editor tr.duda .nfila::before{background:var(--warn)}
+.editor .quitar{all:unset;cursor:pointer;display:block;padding:6px 9px;color:var(--muted);line-height:1}
+.editor .quitar:hover,.editor .quitar:focus-visible{color:var(--bad)}
+.campos-rev{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:10px}
+.campos-rev label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:500;color:var(--muted)}
+.campos-rev input{box-sizing:border-box;width:100%;min-height:34px;padding:0 10px;border:1px solid var(--line-2);border-radius:var(--r-sm);background:var(--surface);color:var(--text);font:inherit;font-weight:400}
+.campos-rev input:focus{outline:none;box-shadow:0 0 0 2px var(--accent-weak);border-color:var(--accent)}
+.nota.ok{background:var(--ok-weak);color:color-mix(in srgb,var(--ok) 80%,var(--text))}
+.nota.ok svg{color:var(--ok)}
+.nota .acciones{margin-top:8px}
+@media (max-width:600px){.campos-rev{grid-template-columns:minmax(0,1fr)}}
 
 /* Vacíos y carga */
 .vacio{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:48px 24px;color:var(--muted)}
@@ -282,7 +319,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   </section>
 
   <section id="v-cuadros" hidden>
-    <div class="cab"><div><h1>Cuadros</h1><p>El texto del PDF aplana los cuadros y el modelo termina adivinando qué número va en cada columna. Por eso cada cuadro se lee tres veces, y una fila entra al índice solo si dos lecturas coinciden celda por celda. Lo que no se confirma no se transcribe: se muestra el original.</p></div></div>
+    <div class="cab"><div><h1>Cuadros</h1><p>El texto del PDF aplana los cuadros y el modelo termina adivinando qué número va en cada columna. Por eso cada cuadro se lee tres veces, y una fila entra al índice solo si dos lecturas coinciden celda por celda. Lo que no se confirma no se transcribe: se muestra el original, y el cuadro queda en la cola para revisarlo a mano.</p></div></div>
     <ol class="flujo" aria-label="Cómo se confirma cada fila">
       <li class="paso"><h3>1 · Grilla del PDF</h3><p>Celdas armadas con las líneas del propio PDF. Sin modelos: el texto exacto.</p></li><li class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h17M14 6l6 6-6 6"/></svg></li>
       <li class="paso"><h3>2 · Visión</h3><p>Claude Haiku 5.5 transcribe la imagen de la página.</p></li><li class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h17M14 6l6 6-6 6"/></svg></li>
@@ -294,7 +331,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       <div class="bloque">
         <form class="barra-filtros" id="cu-form" style="padding:12px 14px;border-bottom:1px solid var(--line)">
           <div class="campo"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="cu-q" type="search" placeholder="Artículo, título o columna: 3.5.2.1, salubridad…" aria-label="Buscar cuadros"></div>
-          <select id="cu-modo" aria-label="Estado"><option value="">Todos los estados</option><option value="verificado">Verificados</option><option value="parcial">Parciales</option><option value="solo_imagen">Solo imagen</option><option value="recuadro">Recuadros de texto</option></select>
+          <select id="cu-modo" aria-label="Estado"><option value="">Todos los estados</option><option value="por_revisar">Por revisar a mano</option><option value="revisado">Revisados a mano</option><option value="verificado">Verificados</option><option value="parcial">Parciales</option><option value="solo_imagen">Solo imagen</option><option value="recuadro">Recuadros de texto</option></select>
           <select id="cu-doc" aria-label="Documento"></select>
           <button class="btn" type="submit">Filtrar</button>
         </form>
@@ -339,11 +376,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     actividad: '<svg class="i" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>',
     examen: '<svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.2 1.2L7 5M3.5 12l1.2 1.2L7 11"/></svg>',
   };
-  const ESTADO = { verificado: ["ok", "Verificado"], recuadro: ["ok2", "Recuadro de texto"], parcial: ["warn", "Parcial"], solo_imagen: ["neutro", "Solo imagen"] };
-  const LECTURA = { grilla: "Grilla del PDF", vision: "Visión (Haiku)", arbitro: "Árbitro (Gemini)" };
+  const ESTADO = { verificado: ["ok", "Verificado"], recuadro: ["ok2", "Recuadro de texto"], revisado: ["rev", "Revisado a mano"], parcial: ["warn", "Parcial"], solo_imagen: ["neutro", "Solo imagen"] };
+  const LECTURA = { grilla: "Grilla del PDF", vision: "Visión (Haiku)", arbitro: "Árbitro (Gemini)", humano: "Revisión a mano", vacia: "cuadro vacío" };
+  const POR_REVISAR = ["parcial", "solo_imagen"];
   let DOCNOM = { CE: "Código de Edificación", RT: "Reglamentos Técnicos" };
   const VISTAS = ["documentos", "cuadros", "probador", "examen", "consultas"];
-  let actual = "documentos", cuDesde = 0, cuItems = [], cuSel = null;
+  let actual = "documentos", cuDesde = 0, cuItems = [], cuSel = null, cuAbrirPrimero = false, cuMantener = false;
 
   // Detrás de un prefijo (producción: /norma/panel) las rutas se arman desde la base.
   const BASE = location.pathname.replace(/\/panel\/?$/, "");
@@ -351,9 +389,12 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   function api(path, body){
     const h = { "Content-Type": "application/json" };
     if ($("clave").value) h["X-API-Key"] = $("clave").value;
-    return fetch(abs(path), body ? { method: "POST", headers: h, body: JSON.stringify(body) } : { headers: h }).then((r) => {
+    return fetch(abs(path), body ? { method: "POST", headers: h, body: JSON.stringify(body) } : { headers: h }).then(async (r) => {
       if (r.status === 401) throw new Error("El servicio pide clave. Cargala abajo a la izquierda, en «Clave del servicio».");
-      if (!r.ok) throw new Error("El servicio respondió " + r.status + ". Revisá el registro del servidor y volvé a intentar.");
+      if (!r.ok) {
+        let m = ""; try { m = (await r.json()).error || ""; } catch (e) {}
+        throw new Error(m || "El servicio respondió " + r.status + ". Revisá el registro del servidor y volvé a intentar.");
+      }
       return r.json();
     });
   }
@@ -441,24 +482,32 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     if (!cuSel) $("cu-detalle").innerHTML = vacio(ICO.tabla, "Elegí un cuadro", "Vas a ver el original junto a las filas que confirmaron dos lecturas y la línea exacta que entra al índice.");
     const q = "/api/cuadros?modo=" + encodeURIComponent($("cu-modo").value) + "&doc=" + encodeURIComponent($("cu-doc").value) + "&q=" + encodeURIComponent($("cu-q").value) + "&desde=" + cuDesde;
     api(q).then((d) => {
-      const r = d.resumen, pm = r.por_modo, filas = r.filas_confirmadas + r.filas_sin_verificar;
+      const r = d.resumen, pm = r.por_modo, revisadas = r.filas_revisadas || 0, filas = r.filas_confirmadas + revisadas + r.filas_sin_verificar;
       if (!r.total) { $("cu-resumen").hidden = true; $("cu-lista").innerHTML = vacio(ICO.tabla, "Este índice no tiene cuadros", "Se generan con <code>ingest_v2/tablas_pdf.py</code> y se publican en <code>data/v2/tablas/cuadros.json</code>."); $("cu-detalle").innerHTML = ""; return; }
       $("n-cuadros").textContent = r.total;
-      const orden = ["verificado", "recuadro", "parcial", "solo_imagen"];
+      const orden = ["verificado", "recuadro", "revisado", "parcial", "solo_imagen"].filter((m) => m !== "revisado" || pm.revisado);
       $("cu-resumen").hidden = false;
       $("cu-resumen").innerHTML = '<div style="padding:14px 16px"><p class="cifras" style="margin-bottom:12px">' +
         "<span><b>" + fmt(r.total) + "</b>cuadros encontrados</span>" +
         "<span><b>" + fmt(pm.verificado + pm.recuadro) + "</b>verificados enteros (" + pm.verificado + " cuadros + " + pm.recuadro + " recuadros)</span>" +
-        "<span><b>" + fmt(r.filas_confirmadas) + "</b>filas confirmadas, " + pct(r.filas_confirmadas, filas) + " % de " + fmt(filas) + "</span></p>" +
+        "<span><b>" + fmt(r.filas_confirmadas) + "</b>filas confirmadas por dos lecturas, " + pct(r.filas_confirmadas, filas) + " % de " + fmt(filas) + "</span>" +
+        (revisadas ? "<span><b>" + fmt(revisadas) + "</b>filas revisadas a mano</span>" : "") + "</p>" +
         '<div class="mezcla" role="img" aria-label="Cuadros por estado">' + orden.map((m) => '<span class="c-' + m + '" style="flex:' + pm[m] + '" title="' + esc(ESTADO[m][1]) + ": " + pm[m] + '"></span>').join("") + "</div>" +
         '<div class="leyenda">' + orden.map((m) => '<span><i class="c-' + m + '"></i>' + esc(ESTADO[m][1]) + " <b>" + pm[m] + "</b></span>").join("") +
-        '<span style="margin-left:auto">Filas tomadas de: ' + Object.keys(r.por_lectura).map((k) => esc(LECTURA[k] || k) + " <b>" + r.por_lectura[k] + "</b>").join(" · ") + "</span></div></div>";
+        '<span style="margin-left:auto">Filas tomadas de: ' + Object.keys(r.por_lectura).map((k) => esc(LECTURA[k] || k) + " <b>" + r.por_lectura[k] + "</b>").join(" · ") + "</span></div>" +
+        '<div class="acciones" style="margin-top:12px">' +
+        (r.por_revisar ? '<button class="btn chico" type="button" id="cu-cola">Revisar a mano · ' + fmt(r.por_revisar) + (r.por_revisar === 1 ? " cuadro" : " cuadros") + "</button>" : '<span class="muted">No queda ningún cuadro por revisar.</span>') +
+        (pm.revisado || r.revisiones_viejas ? '<button class="btn sec chico" type="button" id="cu-bajar">Bajar revisiones (.jsonl)</button>' : "") +
+        '<span class="muted">Lo revisado a mano entra al índice en la próxima reindexación.</span></div>' +
+        (r.revisiones_viejas ? nota(r.revisiones_viejas + (r.revisiones_viejas === 1 ? " revisión ya no se aplica" : " revisiones ya no se aplican") + ": el cuadro cambió desde que se revisó (se volvió a leer el PDF). Hay que revisarlo de nuevo.") : "") + "</div>";
+      if ($("cu-cola")) $("cu-cola").addEventListener("click", () => { $("cu-modo").value = "por_revisar"; cuDesde = 0; cuSel = null; cuAbrirPrimero = true; cuadros(); });
+      if ($("cu-bajar")) $("cu-bajar").addEventListener("click", bajarRevisiones);
       cuItems = d.cuadros;
       if (!d.total) { $("cu-lista").innerHTML = vacio(ICO.tabla, "Ningún cuadro coincide", "Probá con el número de artículo (3.5.2.1) o con una palabra de su título o de sus columnas."); return; }
       const pag = '<div class="paginado"><span class="num">' + fmt(d.total) + " cuadros" + (d.total > 30 ? " · " + (d.desde + 1) + "–" + Math.min(d.desde + 30, d.total) : "") + "</span>" +
         (d.desde > 0 ? '<button class="btn sec chico" data-d="' + (d.desde - 30) + '">Anteriores</button>' : "") + (d.desde + 30 < d.total ? '<button class="btn sec chico" data-d="' + (d.desde + 30) + '">Siguientes</button>' : "") + "</div>";
       $("cu-lista").innerHTML = '<div class="tabla"><table><thead><tr><th>Cuadro</th><th>Estado</th><th class="n">Filas</th></tr></thead><tbody>' +
-        d.cuadros.map((c, i) => '<tr class="fila" tabindex="0" data-i="' + i + '"' + (cuSel === c.id ? ' aria-selected="true"' : "") + '><td><span class="titulo-celda">' + esc(nombreCuadro(c)) + '</span><span class="id">' + esc(c.doc) + " · pág. " + c.pagina + (c.articulo ? " · art. " + esc(c.articulo) : "") + "</span></td><td>" + est(c.modo) + '<span class="lect">' + esc(LECTURA[c.lectura] || "sin lectura confirmada") + '</span></td><td class="n">' + c.filas.length + (c.sin_verificar ? ' <span class="muted">/ ' + c.sin_verificar + "</span>" : "") + "</td></tr>").join("") +
+        d.cuadros.map((c, i) => '<tr class="fila" tabindex="0" data-i="' + i + '"' + (cuSel === c.id ? ' aria-selected="true"' : "") + '><td><span class="titulo-celda">' + esc(nombreCuadro(c)) + '</span><span class="id">' + esc(c.doc) + " · pág. " + c.pagina + (c.articulo ? " · art. " + esc(c.articulo) : "") + "</span></td><td>" + est(c.modo) + '<span class="lect">' + esc(LECTURA[c.lectura] || "sin lectura confirmada") + (c.revision_vieja ? " · revisión vieja" : "") + '</span></td><td class="n">' + c.filas.length + (c.sin_verificar ? ' <span class="muted">/ ' + c.sin_verificar + "</span>" : "") + "</td></tr>").join("") +
         "</tbody></table></div>" + pag;
       $("cu-lista").querySelectorAll("button[data-d]").forEach((b) => b.addEventListener("click", () => { cuDesde = Number(b.dataset.d); cuadros(); }));
       $("cu-lista").querySelectorAll("tr[data-i]").forEach((tr) => {
@@ -468,29 +517,156 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
       });
       // Con un solo resultado, o sin nada abierto en pantalla ancha, el detalle se abre solo.
       const unico = d.cuadros.length === 1, ancho = matchMedia("(min-width:1280px)").matches;
-      if (unico || (!cuSel && ancho)) {
+      if (cuMantener) {
+        cuMantener = false; // se acaba de guardar: el detalle ya muestra el cuadro actualizado
+      } else if (cuAbrirPrimero) {
+        cuAbrirPrimero = false;
+        $("cu-lista").querySelector('tr[data-i="0"]').click();
+      } else if (unico || (!cuSel && ancho)) {
         const i = Math.max(0, d.cuadros.findIndex((c) => c.modo === "verificado"));
         $("cu-lista").querySelector('tr[data-i="' + i + '"]').click();
       }
     }).catch((e) => error("cu-lista", e));
   }
-  function verCuadro(c){
+  // Después de guardar o deshacer: el detalle muestra el cuadro que devolvió el servidor y la lista se refresca sin pisarlo.
+  function tras(c, aviso){ verCuadro(c, aviso); cuMantener = true; cuadros(); }
+  function verCuadro(c, aviso0){
     cuSel = c.id;
+    const revisado = c.modo === "revisado", pendiente = POR_REVISAR.includes(c.modo);
     const enc = c.encabezados.map((h, j) => h || "columna " + (j + 1));
     const tabla = c.filas.length && c.modo !== "recuadro" ? '<div class="tabla"><table><thead><tr>' + enc.map((h) => "<th>" + esc(h) + "</th>").join("") + "</tr></thead><tbody>" + c.filas.map((f) => "<tr>" + f.map((v) => "<td>" + esc(v) + "</td>").join("") + "</tr>").join("") + "</tbody></table></div>" : "";
-    const indice = c.modo === "recuadro" ? c.filas.map((f) => f[0]).join("\n") : c.filas.slice(0, 3).map((f) => "Cuadro · " + f.map((v, j) => (v ? enc[j] + ": " + v : "")).filter(Boolean).join(" · ")).join("\n") + (c.filas.length > 3 ? "\n…" : "");
+    const indice = c.modo === "recuadro" ? c.filas.map((f) => f[0]).join("\n") : c.filas.slice(0, 3).map((f) => "Cuadro · " + f.map((v, j) => (v ? enc[j] + ": " + v : "")).filter(Boolean).join(" · ")).join("\n") + (c.filas.length > 3 ? "\n…" : "") + (revisado ? "\nCuadro revisado a mano contra la imagen del original." : "");
     const rot = (n) => esc(c.rotulos_sin_verificar.slice(0, n).join("; ")) + (c.rotulos_sin_verificar.length > n ? "…" : "");
-    const aviso = c.modo === "solo_imagen" ? nota("Ninguna fila coincidió en dos lecturas. El índice no transcribe valores de este cuadro y la respuesta remite al original." + (c.rotulos_sin_verificar.length ? " Filas: " + rot(8) + "." : ""), "neutro") :
+    const rv = c.revision;
+    const aviso = revisado ? nota("Revisado a mano" + (rv.revisor ? " por " + esc(rv.revisor) : "") + " el " + esc(new Date(rv.ts).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" })) +
+        ", partiendo de " + esc((LECTURA[rv.base] || rv.base).toLowerCase()) + ": " + rv.editadas + (rv.editadas === 1 ? " celda cambiada" : " celdas cambiadas") + "." + (rv.nota ? " Nota: «" + esc(rv.nota) + "»." : "") +
+        " Entra al índice en la próxima reindexación; hasta entonces el agente responde con el cuadro como estaba." +
+        '<div class="acciones"><button class="btn sec chico" type="button" id="rev-deshacer">Deshacer la revisión</button></div>', "neutro") :
+      c.modo === "solo_imagen" ? nota("Ninguna fila coincidió en dos lecturas. El índice no transcribe valores de este cuadro y la respuesta remite al original." + (c.rotulos_sin_verificar.length ? " Filas: " + rot(8) + "." : ""), "neutro") :
       c.sin_verificar ? nota(c.sin_verificar + (c.sin_verificar === 1 ? " fila sin confirmar quedó" : " filas sin confirmar quedaron") + " fuera del texto: " + rot(6) + ".") : "";
+    const vieja = c.revision_vieja ? nota("Había una revisión a mano de este cuadro, pero el cuadro cambió desde entonces (se volvió a leer el PDF) y no se aplica. Revisalo de nuevo.") : "";
+    const cola = pendiente ? '<div class="acciones"><button class="btn" type="button" id="rev-abrir">Revisar a mano</button><span class="muted">Compará las tres lecturas con el original y confirmá las filas.</span></div>' : "";
     const ruta = c.ubicacion ? '<div class="ruta">' + c.ubicacion.split(" › ").map((p) => "<span>" + esc(p) + "</span>").join("") + "</div>" : "";
     $("cu-detalle").innerHTML =
       '<div class="det-cab"><h2>' + esc(nombreCuadro(c)) + '</h2><div class="meta">' + est(c.modo) + "<span>" + esc(DOCNOM[c.doc] || c.doc) + " · pág. " + c.pagina + "</span>" + art(c.articulo) + (c.lectura ? "<span>Filas tomadas de: " + esc(LECTURA[c.lectura] || c.lectura) + "</span>" : "") + '<span class="mono">' + esc(c.id) + "</span></div>" + ruta + "</div>" +
       '<div class="evidencia"><div class="original"><span class="etiqueta">' + ICO.imagen + "Original del PDF</span>" +
       (c.imagen ? '<a class="lamina" href="' + esc(abs(c.imagen)) + '" target="_blank" rel="noopener"><img src="' + esc(abs(c.imagen)) + '" alt="Cuadro original, ' + esc(DOCNOM[c.doc] || c.doc) + " página " + c.pagina + '"></a>' : vacio(ICO.imagen, "Sin imagen", "")) + "</div>" +
-      '<div class="confirmado">' + (tabla ? '<span class="etiqueta">' + ICO.tabla + "Filas confirmadas por dos lecturas</span>" + tabla : "") + aviso +
+      '<div class="confirmado">' + (aviso0 || "") + vieja + (tabla ? '<span class="etiqueta">' + ICO.tabla + (revisado ? "Filas revisadas a mano contra el original" : "Filas confirmadas por dos lecturas") + "</span>" + tabla : "") + aviso + cola +
       (indice.trim() ? '<span class="etiqueta">' + ICO.indice + 'Así entra al índice</span><pre class="indice">' + esc(indice) + "</pre>" : "") + "</div></div>";
-    if ($("cu-detalle").getBoundingClientRect().top < 0 || !matchMedia("(min-width:1280px)").matches) $("cu-detalle").scrollIntoView({ behavior: "smooth", block: "start" });
+    if ($("rev-abrir")) $("rev-abrir").addEventListener("click", () => revisar(c));
+    if ($("rev-deshacer")) $("rev-deshacer").addEventListener("click", (e) => {
+      e.target.disabled = true;
+      api("/api/cuadros/revision", { id: c.id, huella: c.huella, accion: "deshacer", revisor: revisorGuardado() }).then((r) => {
+        tras(r.cuadro, nota("Revisión deshecha. El cuadro vuelve a la cola.", "neutro"));
+      }).catch((err) => { e.target.disabled = false; error("cu-detalle", err); });
+    });
+    if (!aviso0 && ($("cu-detalle").getBoundingClientRect().top < 0 || !matchMedia("(min-width:1280px)").matches)) $("cu-detalle").scrollIntoView({ behavior: "smooth", block: "start" });
   }
+
+  // ---------- Revisión a mano ----------
+  // Misma normalización que ingest_v2/tablas_pdf.py (_norm): una fila «coincide» si otra lectura la lee igual.
+  const normCelda = (v) => String(v || "").toLowerCase().replace(/([a-záéíóúñ])- ([a-záéíóúñ])/g, "$1$2").replace(/,/g, ".").replace(/²/g, "2").replace(/³/g, "3").replace(/[^0-9a-záéíóúñü.%+\-\/<>=≥≤]/g, "").replace(/\.+$/, "");
+  function mismaFila(a, b){
+    if (a.length !== b.length) return false;
+    const na = a.map(normCelda), nb = b.map(normCelda);
+    if (!na.some(Boolean)) return false;
+    return na.every((x, j) => x === nb[j] || (!x && j && nb[j] === na[j - 1]) || (!nb[j] && j && x === nb[j - 1]));
+  }
+  const revisorGuardado = () => { try { return localStorage.getItem("norma-revisor") || ""; } catch (e) { return ""; } };
+  function bajarRevisiones(){
+    const h = {}; if ($("clave").value) h["X-API-Key"] = $("clave").value;
+    fetch(abs("/api/cuadros/revisiones"), { headers: h }).then((r) => { if (!r.ok) throw new Error("No se pudo bajar el registro (" + r.status + ")."); return r.blob(); }).then((b) => {
+      const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "revisiones.jsonl"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }).catch((e) => error("cu-detalle", e));
+  }
+  function revisar(c0){
+    $("cu-detalle").querySelector(".evidencia").innerHTML = '<div class="revisar">' + esqFilas(6, 4) + "</div>";
+    api("/api/cuadros/lecturas?id=" + encodeURIComponent(c0.id)).then((d) => {
+      const c = d.cuadro, L = d.lecturas || {};
+      const nombres = ["grilla", "vision", "arbitro"].filter((k) => L[k] && L[k].filas && L[k].filas.length);
+      // Cuántas filas de cada lectura lee igual alguna otra: así se elige de qué lectura partir.
+      const coinciden = (k) => L[k].filas.filter((f) => nombres.some((o) => o !== k && L[o].filas.some((g) => mismaFila(f, g)))).length;
+      const puntos = Object.fromEntries(nombres.map((k) => [k, coinciden(k)]));
+      let base = nombres.slice().sort((a, b) => puntos[b] - puntos[a])[0] || "vacia";
+      let enc = [], filas = [];
+      const cargar = (k) => {
+        base = k;
+        const src = k === "vacia" ? { encabezados: c.encabezados_grilla.length ? c.encabezados_grilla : ["", ""], filas: [] } : L[k];
+        enc = src.encabezados.slice();
+        filas = src.filas.map((f) => enc.map((_, j) => f[j] || ""));
+        if (!filas.length) filas = [enc.map(() => "")];
+        pintar();
+      };
+      const leer = () => {
+        const ed = $("rev-ed");
+        enc = [...ed.querySelectorAll("thead [contenteditable]")].map((x) => x.textContent.trim());
+        filas = [...ed.querySelectorAll("tbody tr")].map((tr) => [...tr.querySelectorAll("[contenteditable]")].map((x) => x.textContent.trim()));
+      };
+      const estadoFilas = () => {
+        let n = 0;
+        $("rev-ed").querySelectorAll("tbody tr").forEach((tr, i) => {
+          const f = [...tr.querySelectorAll("[contenteditable]")].map((x) => x.textContent.trim());
+          const otras = nombres.filter((o) => L[o].filas.some((g) => mismaFila(f, g)));
+          const ok = otras.length >= (nombres.includes(base) ? 2 : 1);
+          if (ok) n++;
+          tr.className = ok ? "coincide" : "duda";
+          tr.querySelector(".nfila").title = ok ? "Así la leen: " + otras.map((o) => LECTURA[o]).join(", ") : "Ninguna otra lectura la lee igual: comparala con el original.";
+        });
+        $("rev-cuenta").textContent = n + " de " + filas.length + (filas.length === 1 ? " fila coincide" : " filas coinciden") + " con otra lectura; las marcadas en ámbar hay que mirarlas en el original.";
+      };
+      const celda = (v) => '<div contenteditable="true" spellcheck="false">' + esc(v) + "</div>";
+      function pintar(){
+        $("rev-bases").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.b === base)));
+        $("rev-ed").innerHTML = "<table><thead><tr><th class=\"nfila\" aria-label=\"Fila\"></th>" + enc.map((h) => "<th>" + celda(h) + "</th>").join("") + "<th></th></tr></thead><tbody>" +
+          filas.map((f, i) => '<tr><td class="nfila">' + (i + 1) + "</td>" + f.map((v) => "<td>" + celda(v) + "</td>").join("") + '<td><button class="quitar" type="button" data-q="' + i + '" aria-label="Quitar la fila ' + (i + 1) + '">×</button></td></tr>').join("") + "</tbody></table>";
+        $("rev-ed").querySelectorAll("button[data-q]").forEach((b) => b.addEventListener("click", () => { leer(); filas.splice(Number(b.dataset.q), 1); if (!filas.length) filas = [enc.map(() => "")]; pintar(); }));
+        estadoFilas();
+      }
+      $("cu-detalle").querySelector(".evidencia").outerHTML =
+        '<div class="revisar">' +
+        '<p class="ayuda">Compará cada fila con el original y corregí lo que haga falta. Lo que confirmes entra al índice como <b>revisado a mano</b>, aparte de lo confirmado por dos lecturas, en la próxima reindexación.</p>' +
+        (c.imagen ? '<span class="etiqueta">' + ICO.imagen + 'Original del PDF</span><a class="lamina" href="' + esc(abs(c.imagen)) + '" target="_blank" rel="noopener"><img src="' + esc(abs(c.imagen)) + '" alt="Cuadro original, página ' + c.pagina + '"></a>' : nota("Este cuadro no tiene recorte del original: abrí el PDF en la página " + c.pagina + " para compararlo.")) +
+        '<div class="acciones"><span class="etiqueta">Partir de</span><div class="bases" id="rev-bases" role="group" aria-label="Lectura de partida">' +
+        nombres.map((k) => '<button type="button" data-b="' + k + '">' + esc(LECTURA[k]) + "<span>" + L[k].filas.length + " filas · " + puntos[k] + " coinciden</span></button>").join("") +
+        '<button type="button" data-b="vacia">Cuadro vacío</button></div></div>' +
+        '<div class="editor" id="rev-ed"></div>' +
+        '<div class="acciones"><button class="btn sec chico" type="button" id="rev-fila">Agregar fila</button><button class="btn sec chico" type="button" id="rev-col">Agregar columna</button><button class="btn sec chico" type="button" id="rev-sincol">Quitar la última columna</button><span class="muted" id="rev-cuenta"></span></div>' +
+        '<div class="campos-rev"><label>Quién revisa<input id="rev-quien" autocomplete="name" maxlength="200"></label><label>Nota (opcional)<input id="rev-nota" maxlength="200" placeholder="Por ejemplo: la columna Dº viene combinada en el original"></label></div>' +
+        '<div id="rev-msg"></div>' +
+        '<div class="acciones"><button class="btn" type="button" id="rev-ok">Confirmar contra el original</button><button class="btn sec" type="button" id="rev-cancelar">Cancelar</button></div></div>';
+      $("rev-quien").value = revisorGuardado();
+      $("rev-bases").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => cargar(b.dataset.b)));
+      $("rev-fila").addEventListener("click", () => { leer(); filas.push(enc.map(() => "")); pintar(); $("rev-ed").querySelector("tbody tr:last-child [contenteditable]").focus(); });
+      $("rev-col").addEventListener("click", () => { leer(); enc.push(""); filas.forEach((f) => f.push("")); pintar(); });
+      $("rev-sincol").addEventListener("click", () => { leer(); if (enc.length > 1) { enc.pop(); filas.forEach((f) => f.pop()); } pintar(); });
+      const ed = $("rev-ed");
+      ed.addEventListener("focusout", () => { leer(); estadoFilas(); });
+      ed.addEventListener("paste", (e) => { e.preventDefault(); document.execCommand("insertText", false, (e.clipboardData || window.clipboardData).getData("text/plain").replace(/\s+/g, " ")); });
+      ed.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" || !e.target.isContentEditable) return;
+        e.preventDefault();
+        const td = e.target.parentElement, tr = td.parentElement, j = [...tr.children].indexOf(td);
+        const sig = (tr.parentElement.tagName === "THEAD" ? ed.querySelector("tbody tr") : tr.nextElementSibling);
+        if (sig && sig.children[j]) sig.children[j].querySelector("[contenteditable]").focus();
+      });
+      $("rev-cancelar").addEventListener("click", () => verCuadro(c0));
+      $("rev-ok").addEventListener("click", () => {
+        leer();
+        const quien = $("rev-quien").value.trim();
+        if (!quien) { $("rev-msg").innerHTML = nota("Poné quién revisa: queda en el registro junto a cada cambio."); $("rev-quien").focus(); return; }
+        try { localStorage.setItem("norma-revisor", quien); } catch (e) {}
+        $("rev-ok").disabled = true;
+        api("/api/cuadros/revision", { id: c.id, huella: c.huella, accion: "confirmar", base, encabezados: enc, filas, revisor: quien, nota: $("rev-nota").value }).then((r) => {
+          tras(r.cuadro, nota("Guardado. Entra al índice en la próxima reindexación." + '<div class="acciones"><button class="btn chico" type="button" id="rev-siguiente">Siguiente por revisar</button></div>', "ok"));
+        }).catch((e) => { $("rev-ok").disabled = false; $("rev-msg").innerHTML = nota(esc(e.message), "err"); });
+      });
+      cargar(base);
+    }).catch((e) => error("cu-detalle", e));
+  }
+  $("cu-detalle").addEventListener("click", (e) => {
+    if (e.target.id !== "rev-siguiente") return;
+    $("cu-modo").value = "por_revisar"; cuDesde = 0; cuSel = null; cuAbrirPrimero = true; cuadros();
+  });
   $("cu-form").addEventListener("submit", (e) => { e.preventDefault(); cuDesde = 0; cuSel = null; cuadros(); });
 
   // ---------- Probador ----------

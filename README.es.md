@@ -126,7 +126,7 @@ Primero la respuesta, en una a tres oraciones. Después el detalle, donde cada a
 
 - `/panel` es el panel de trabajo, con cinco pestañas:
   - **Documentos:** explorador de fragmentos por archivo de origen.
-  - **Cuadros:** cada uno de los 454 cuadros con su estado, la lectura que ganó, las filas confirmadas y el recorte original, más el texto exacto que entró al índice.
+  - **Cuadros:** cada uno de los 454 cuadros con su estado, la lectura que ganó, las filas confirmadas y el recorte original, más el texto exacto que entró al índice. Los cuadros que dos lecturas no pudieron confirmar forman una **cola de revisión**: quien revisa ve el original junto a una grilla editable, parte de la lectura que mejor coincide y cada fila que ninguna otra lectura lee igual queda marcada. Una revisión confirmada se agrega a un registro con quién revisó, de qué lectura partió y cuántas celdas cambió; entra al índice en la próxima reindexación como tercera categoría (*revisado a mano*, nunca contado como confirmado por dos lecturas), y se ignora si después cambia la geometría del cuadro.
   - **Probador:** qué devuelve la búsqueda para una pregunta, sin generar.
   - **Examen:** cada corrida, y la última pregunta por pregunta.
   - **Consultas:** el registro de preguntas reales.
@@ -143,7 +143,7 @@ Primero la respuesta, en una a tres oraciones. Después el detalle, donde cada a
 ## Límites, sin maquillaje
 
 - Las preguntas del examen se escribieron a partir de los artículos, pero todavía no las revisó un arquitecto. Los números orientan decisiones; no son una certificación.
-- 98 cuadros no pudieron confirmarse con dos lecturas y se sirven solo como imagen. Es deliberado: un valor equivocado es peor que ningún valor.
+- 98 cuadros no pudieron confirmarse con dos lecturas y se sirven solo como imagen, y 27 quedaron confirmados en parte. Es deliberado: un valor equivocado es peor que ningún valor. Esperan en la cola de revisión a alguien que conozca la norma; todavía no se revisó ninguno.
 - La comparación de modelos de respuesta usó un solo juez y 44 preguntas.
 - El índice vive en memoria (unos 8.500 registros, así que la búsqueda por coseno es instantánea). Pasar a pgvector solo toca [`src/lib/vector-store.ts`](src/lib/vector-store.ts).
 
@@ -171,7 +171,7 @@ npm install
 npm run demo                      # chat en http://localhost:8787, panel en /panel
 ```
 
-Sin claves, el panel funciona entero: documentos, los 15 cuadros con sus lecturas, las corridas del examen y el registro de consultas. Para preguntarle al chat, poné una clave de OpenAI (para el embedding de la pregunta) y una de OpenRouter (para la respuesta) en `.env.local` (copiá `.env.example`) y preguntá *«¿Qué lado y superficie mínimos tiene un baño tipo I?»*; después abrí la pestaña Cuadros. Una pregunta cuesta bastante menos de un centavo de dólar. La muestra se rearma desde un índice completo con `python -I scripts/muestra.py <índice>`.
+Sin claves funciona el panel: documentos, los 15 cuadros con sus lecturas y los 3 que esperan revisión, las corridas del examen y el registro de consultas. El Probador responde sin conexión las 10 preguntas del examen de la muestra, porque sus vectores ya están calculados; cualquier otra pregunta necesita una clave de OpenAI. Las revisiones que se hagan en la demo van a `demo/.local/`, fuera de la muestra versionada. Para preguntarle al chat, poné una clave de OpenAI (para el embedding de la pregunta) y una de OpenRouter (para la respuesta) en `.env.local` (copiá `.env.example`) y preguntá *«¿Qué lado y superficie mínimos tiene un baño tipo I?»*; después abrí la pestaña Cuadros. Una pregunta cuesta bastante menos de un centavo de dólar. La muestra se rearma desde un índice completo con `python -I scripts/muestra.py <índice>`.
 
 ## Correrlo sobre el corpus completo
 

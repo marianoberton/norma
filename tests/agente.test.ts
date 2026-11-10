@@ -88,7 +88,8 @@ test("la pestaña Cuadros resume la verificación y filtra sin perder el total",
 
     const r = listarCuadros(todos, new URLSearchParams("modo=solo_imagen"));
     assert.equal(r.total, 1);
-    assert.deepEqual(r.resumen.por_modo, { verificado: 1, recuadro: 0, parcial: 1, solo_imagen: 1 });
+    assert.deepEqual(r.resumen.por_modo, { verificado: 1, recuadro: 0, parcial: 1, solo_imagen: 1, revisado: 0 });
+    assert.equal(r.resumen.por_revisar, 2);
     assert.equal(r.resumen.filas_confirmadas, 2);
     assert.equal(r.resumen.filas_sin_verificar, 7);
     assert.equal(listarCuadros(todos, new URLSearchParams("q=riesgo 4")).cuadros[0].id, "RTT-p0506-2");

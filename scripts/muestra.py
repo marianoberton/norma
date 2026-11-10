@@ -55,6 +55,12 @@ def main():
         if cuadros:
             paginas.append({**p, "cuadros": cuadros})
     (DESTINO / "v2" / "tablas" / "cuadros.json").write_text(json.dumps(paginas, ensure_ascii=False), encoding="utf-8")
+    # Lo que leyó cada fuente en los cuadros que quedan por revisar a mano (cola de revisión del panel).
+    origen_lect = ORIGEN / "v2" / "tablas" / "lecturas.json"
+    if origen_lect.exists():
+        lect = json.loads(origen_lect.read_text(encoding="utf-8"))
+        (DESTINO / "v2" / "tablas" / "lecturas.json").write_text(
+            json.dumps({k: v for k, v in lect.items() if k in ids}, ensure_ascii=False), encoding="utf-8")
     for i in sorted(ids):
         png = ORIGEN / "v2" / "figuras" / f"{i}.png"
         if png.exists():

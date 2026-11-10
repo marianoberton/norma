@@ -27,9 +27,13 @@ Pasos (cada uno guarda su resultado en data/v2/tablas/ y retoma lo hecho):
   python -I ingest_v2/tablas_pdf.py vision     <carpeta PDF> <tope_usd>   # Haiku, todas las páginas con cuadros
   python -I ingest_v2/tablas_pdf.py arbitro    <carpeta PDF> <tope_usd>   # Gemini, solo las dudosas
   python -I ingest_v2/tablas_pdf.py decidir    <carpeta PDF>              # sin API: cuadros.json + revisar.json
-Después, extraer_pdf.py usa data/v2/tablas/cuadros.json.
+  python -I ingest_v2/tablas_pdf.py lecturas   <carpeta PDF>              # sin API: lecturas.json para la cola de revisión del panel
+Después, extraer_pdf.py usa data/v2/tablas/cuadros.json, con las revisiones a mano de revisiones.jsonl aplicadas.
 """
+import hashlib
 import json
+import math
+import os
 import re
 import sys
 from pathlib import Path
@@ -402,6 +406,71 @@ def decidir(base, informar=True):
     return revisar
 
 
+def lecturas(base):
+    """Las lecturas de cada cuadro que no quedó verificado entero, para revisarlo a mano en el panel.
+
+    Sin API: reúne lo que ya leyeron la grilla, la visión y el árbitro, con la misma correspondencia
+    entre cuadros que usa decidir. Escribe lecturas.json: {id: {grilla|vision|arbitro: {encabezados, filas}}}."""
+    final = {(d["pdf"], d["pagina"]): {c["id"]: c for c in d["cuadros"]}
+             for d in json.loads((OUT / "cuadros.json").read_text(encoding="utf-8"))}
+    out = {}
+    for pag in paginas():
+        V = _leer("vision", pag["pdf"], pag["pagina"])
+        A = _leer("arbitro", pag["pdf"], pag["pagina"])
+        decididos = final.get((pag["pdf"], pag["pagina"]), {})
+        for k, c in enumerate(pag["cuadros"]):
+            cid = f"{sigla(pag['pdf'])}T-p{pag['pagina']:04d}-{k + 1}"
+            if decididos.get(cid, {}).get("modo") not in ("parcial", "solo_imagen"):
+                continue
+            G = {"encabezados": c["encabezados"], "filas": [f for f in c["filas"] if _rnorm(f)]}
+            leidas = {"grilla": G}
+            for nombre, tablas in (("vision", V), ("arbitro", A)):
+                t = _la_que_corresponde(tablas, G, k, len(pag["cuadros"])) if tablas else None
+                if t:
+                    leidas[nombre] = {"encabezados": t["encabezados"], "filas": t["filas"]}
+            out[cid] = leidas
+    (OUT / "lecturas.json").write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
+    print(f"lecturas de {len(out)} cuadros para revisar a mano -> {OUT / 'lecturas.json'}")
+    return out
+
+
+# ------------------------------------------------------------------ revisiones a mano (panel, pestaña Cuadros)
+def huella(c):
+    """Identifica el cuadro sobre el que se hizo una revisión. El id es posicional (página y orden), así que
+    si se vuelve a correr la geometría y el cuadro cambia, la revisión vieja no se aplica a otro cuadro.
+    Misma cuenta que src/cuadros.ts (huellaCuadro)."""
+    caja = ",".join(str(math.floor(x)) for x in c.get("bbox") or [])
+    texto = f"{c['id']}|{caja}|" + "\u00a6".join(c.get("encabezados_grilla") or [])
+    return hashlib.sha1(texto.encode("utf-8")).hexdigest()[:12]
+
+
+def ruta_revisiones():
+    return Path(os.environ.get("REVISIONES_PATH") or OUT / "revisiones.jsonl")
+
+
+def cargar_revisiones(ruta=None):
+    """La última revisión de cada cuadro (el archivo es solo agregar; deshacer es otra línea)."""
+    ruta = Path(ruta) if ruta else ruta_revisiones()
+    ultima = {}
+    if ruta.exists():
+        for linea in ruta.read_text(encoding="utf-8").splitlines():
+            if linea.strip():
+                r = json.loads(linea)
+                ultima[r["id"]] = r
+    return {k: r for k, r in ultima.items() if r.get("accion") == "confirmar"}
+
+
+def aplicar_revision(c, rev, avisar=print):
+    """El cuadro con las filas que confirmó una persona contra el original, o el mismo si no corresponde."""
+    if not rev:
+        return c
+    if rev.get("huella") != huella(c):
+        avisar(f"revisión de {c['id']} ignorada: el cuadro cambió desde que se revisó (volver a revisarlo)")
+        return c
+    return dict(c, modo="revisado", lectura="humano", encabezados=rev["encabezados"], filas=rev["filas"],
+                sin_verificar=0, rotulos_sin_verificar=[])
+
+
 # ------------------------------------------------------------------ uso desde extraer_pdf
 _FINAL = None
 
@@ -410,7 +479,12 @@ def cuadros_de(pdf, pagina):
     global _FINAL
     if _FINAL is None:
         f = OUT / "cuadros.json"
-        _FINAL = {(d["pdf"], d["pagina"]): d["cuadros"] for d in json.loads(f.read_text(encoding="utf-8"))} if f.exists() else {}
+        revs = cargar_revisiones()
+        _FINAL = {(d["pdf"], d["pagina"]): [aplicar_revision(c, revs.get(c["id"])) for c in d["cuadros"]]
+                  for d in json.loads(f.read_text(encoding="utf-8"))} if f.exists() else {}
+        if revs:
+            usadas = sum(1 for cs in _FINAL.values() for c in cs if c["modo"] == "revisado")
+            print(f"revisiones a mano aplicadas: {usadas} de {len(revs)}")
     return _FINAL.get((pdf, pagina), [])
 
 
@@ -431,7 +505,9 @@ def renderizar(c):
             continue
         partes = [f"{h}: {v}" for h, v in zip(enc, fila) if v]
         lineas.append("Cuadro · " + " · ".join(partes))
-    if c["modo"] not in ("verificado", "recuadro"):
+    if c["modo"] == "revisado":
+        lineas.append("Cuadro revisado a mano contra la imagen del original.")
+    elif c["modo"] not in ("verificado", "recuadro"):
         # Sin valores: solo de qué trata, para que el cuadro se encuentre y se muestre su imagen.
         cols = " · ".join(h for h in dict.fromkeys(c.get("encabezados_grilla") or []) if h)
         rot = "; ".join(c.get("rotulos_sin_verificar") or [])
@@ -475,6 +551,8 @@ if __name__ == "__main__":
         vision(base, float(sys.argv[3]), sys.argv[4] if len(sys.argv) > 4 else "anthropic/claude-haiku-5.5")
     elif cmd == "decidir":
         decidir(base)
+    elif cmd == "lecturas":
+        lecturas(base)
     elif cmd == "arbitro":
         # Tercera lectura (otra familia de modelo) solo donde la grilla y la visión no coinciden.
         dudosos = {(CE_PDF if r["pdf"] == "CE" else RT_PDF, r["pagina"]) for r in decidir(base, informar=False)}

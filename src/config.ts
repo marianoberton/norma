@@ -5,7 +5,7 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // Raiz del proyecto = carpeta que contiene /src
@@ -64,6 +64,8 @@ export const config = {
 
   // Vector store local (archivos generados por la ingesta)
   storeDir: resolve(projectRoot, process.env.STORE_DIR ?? "data"),
+  // Revisiones a mano de cuadros (panel). En producción conviene montarlo fuera del contenedor.
+  revisionesPath: resolve(projectRoot, process.env.REVISIONES_PATH ?? join(process.env.STORE_DIR ?? "data", "v2", "tablas", "revisiones.jsonl")),
   vectorIndex: process.env.VECTOR_INDEX ?? "normativa",
 
   // Recuperacion

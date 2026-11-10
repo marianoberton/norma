@@ -6,6 +6,7 @@ dist/
 # La muestra de demo/data sí se versiona; sus registros de uso no.
 demo/data/*.jsonl
 !demo/data/v2/**/*.jsonl
+demo/.local/
 *.db
 *.db-journal
 .DS_Store

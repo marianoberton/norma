@@ -14,7 +14,10 @@ import { askStream, getStore, retrieve } from "./rag.js";
 import { jurisdiccion } from "./jurisdiccion.js";
 import type { ChatMessage } from "./lib/generate.js";
 import type { ChunkRecord, RegistroV2 } from "./lib/vector-store.js";
-import { cargarCuadros, listarCuadros, type Cuadro } from "./cuadros.js";
+import {
+  cargarCuadros, listarCuadros, cargarRevisiones, aplicarRevisiones, armarRevision,
+  type Cuadro, type Lectura, type NombreLectura,
+} from "./cuadros.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = resolve(__dirname, "..", "public");
@@ -89,13 +92,26 @@ function toSource(h: { record: ChunkRecord; score: number }, i: number) {
 }
 
 // ---- Cuadros del CE y los RT verificados en la ingesta (pestaña Cuadros del panel).
+// Tal como los dejó la ingesta; las revisiones a mano se aplican encima en cada pedido (el archivo es chico).
 let cuadros: Cuadro[] | null = null;
-function cuadrosDelIndice(): Cuadro[] {
+function cuadrosOriginales(): Cuadro[] {
   if (!cuadros) {
     cargarFiguras();
     cuadros = cargarCuadros(join(config.storeDir, "v2", "tablas"), (id) => figurasPorId.has(id));
   }
   return cuadros;
+}
+function cuadrosDelIndice(): Cuadro[] {
+  return aplicarRevisiones(cuadrosOriginales(), cargarRevisiones(config.revisionesPath));
+}
+// Lo que leyó cada fuente en los cuadros por revisar (ingest_v2/tablas_pdf.py lecturas).
+let lecturas: Record<string, Partial<Record<NombreLectura, Lectura>>> | null = null;
+function lecturasDe(id: string) {
+  if (!lecturas) {
+    const f = join(config.storeDir, "v2", "tablas", "lecturas.json");
+    lecturas = existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : {};
+  }
+  return lecturas![id];
 }
 
 /** Registro de consultas (append-only). Nunca rompe la respuesta si falla. */
@@ -189,9 +205,14 @@ function send(res: import("node:http").ServerResponse, status: number, type: str
   res.end(body);
 }
 
-async function readJson(req: import("node:http").IncomingMessage): Promise<any> {
+async function readJson(req: import("node:http").IncomingMessage, max = 1_000_000): Promise<any> {
   const chunks: Buffer[] = [];
-  for await (const c of req) chunks.push(c as Buffer);
+  let total = 0;
+  for await (const c of req) {
+    total += (c as Buffer).length;
+    if (total > max) throw new Error("El pedido es demasiado grande.");
+    chunks.push(c as Buffer);
+  }
   const raw = Buffer.concat(chunks).toString("utf8");
   return raw ? JSON.parse(raw) : {};
 }
@@ -283,6 +304,33 @@ const server = createServer(async (req, res) => {
     if (req.method === "GET" && url.pathname === "/api/cuadros") {
       if (!requireApiKey(req, res)) return;
       return send(res, 200, "application/json", JSON.stringify(listarCuadros(cuadrosDelIndice(), url.searchParams)));
+    }
+
+    // Cola de revisión: lecturas de un cuadro, guardar una revisión (o deshacerla) y bajar el registro.
+    if (req.method === "GET" && url.pathname === "/api/cuadros/lecturas") {
+      if (!requireApiKey(req, res)) return;
+      const id = url.searchParams.get("id") ?? "";
+      const c = cuadrosDelIndice().find((x) => x.id === id);
+      if (!c) return send(res, 404, "application/json", JSON.stringify({ error: "No existe ese cuadro." }));
+      return send(res, 200, "application/json", JSON.stringify({ cuadro: c, lecturas: lecturasDe(id) ?? {} }));
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/cuadros/revision") {
+      if (!requireApiKey(req, res)) return;
+      const body = await readJson(req);
+      const original = cuadrosOriginales().find((x) => x.id === body.id);
+      const r = armarRevision(body, original, original ? lecturasDe(original.id) : undefined);
+      if (typeof r === "string") return send(res, 400, "application/json", JSON.stringify({ error: r }));
+      mkdirSync(dirname(config.revisionesPath), { recursive: true });
+      appendFileSync(config.revisionesPath, JSON.stringify(r) + "\n", "utf8");
+      return send(res, 200, "application/json", JSON.stringify({ ok: true, cuadro: cuadrosDelIndice().find((x) => x.id === r.id) }));
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/cuadros/revisiones") {
+      if (!requireApiKey(req, res)) return;
+      const txt = existsSync(config.revisionesPath) ? readFileSync(config.revisionesPath, "utf8") : "";
+      res.writeHead(200, { "Content-Type": "application/x-ndjson; charset=utf-8", "Content-Disposition": 'attachment; filename="revisiones.jsonl"' });
+      return res.end(txt);
     }
 
     if (req.method === "GET" && url.pathname === "/health") {
