@@ -64,8 +64,11 @@ export const config = {
 
   // Vector store local (archivos generados por la ingesta)
   storeDir: resolve(projectRoot, process.env.STORE_DIR ?? "data"),
-  // Revisiones a mano de cuadros (panel). En producción conviene montarlo fuera del contenedor.
-  revisionesPath: resolve(projectRoot, process.env.REVISIONES_PATH ?? join(process.env.STORE_DIR ?? "data", "v2", "tablas", "revisiones.jsonl")),
+  // Lo que escribe el servicio (consultas, valoraciones, revisiones a mano de cuadros). En producción es un
+  // volumen montado (ESTADO_DIR=/app/estado en el Dockerfile): si viviera en el contenedor, se perdería en cada despliegue.
+  estadoDir: resolve(projectRoot, process.env.ESTADO_DIR ?? process.env.STORE_DIR ?? "data"),
+  revisionesPath: resolve(projectRoot, process.env.REVISIONES_PATH ??
+    (process.env.ESTADO_DIR ? join(process.env.ESTADO_DIR, "revisiones.jsonl") : join(process.env.STORE_DIR ?? "data", "v2", "tablas", "revisiones.jsonl"))),
   vectorIndex: process.env.VECTOR_INDEX ?? "normativa",
 
   // Recuperacion

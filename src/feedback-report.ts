@@ -1,13 +1,13 @@
 /**
  * Reporte del feedback de usuarios.  npm run feedback
- * Lee data/feedback.jsonl y resume valoraciones y comentarios para iterar
+ * Lee feedback.jsonl (en ESTADO_DIR; por defecto data/) y resume valoraciones y comentarios para iterar
  * sobre la calidad del agente.
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { config } from "./config.js";
 
-const path = join(config.storeDir, "feedback.jsonl");
+const path = join(config.estadoDir, "feedback.jsonl");
 
 interface Entry {
   ts: string;

@@ -21,3 +21,5 @@ data/v2/tablas/vision
 data/v2/tablas/arbitro
 data/v2/tablas/geometria.json
 data/v2/tablas/revisar.json
+# Las revisiones a mano viven en el volumen de estado, no en la imagen.
+data/v2/tablas/revisiones.jsonl

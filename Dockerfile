@@ -18,6 +18,8 @@ ENV VECTOR_INDEX=$VECTOR_INDEX
 ENV JURISDICCION=$JURISDICCION
 ENV PORT=8787
 EXPOSE 8787
+# Consultas, valoraciones y revisiones a mano: montar un volumen acá para que sobrevivan a cada despliegue.
+ENV ESTADO_DIR=/app/estado
 
 # El índice (data/<índice>.*) se copia con el contexto. /health verifica que esté cargado
 # y devuelve jurisdiccion.id; sin la carpeta de la jurisdicción, el servicio no arranca.

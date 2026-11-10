@@ -22,8 +22,8 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = resolve(__dirname, "..", "public");
 const evalDir = resolve(__dirname, "..", "eval", "resultados");
-const feedbackPath = join(config.storeDir, "feedback.jsonl");
-const consultasPath = join(config.storeDir, "consultas.jsonl");
+const feedbackPath = join(config.estadoDir, "feedback.jsonl");
+const consultasPath = join(config.estadoDir, "consultas.jsonl");
 
 // ---- Figuras (ingesta v2): PNG recortados del PDF + descripción del modelo de visión.
 const figurasDir = join(config.storeDir, "v2", "figuras");
@@ -117,7 +117,7 @@ function lecturasDe(id: string) {
 /** Registro de consultas (append-only). Nunca rompe la respuesta si falla. */
 function logConsulta(entry: Record<string, unknown>): void {
   try {
-    if (!existsSync(config.storeDir)) mkdirSync(config.storeDir, { recursive: true });
+    if (!existsSync(config.estadoDir)) mkdirSync(config.estadoDir, { recursive: true });
     appendFileSync(consultasPath, JSON.stringify({ ts: new Date().toISOString(), ...entry }) + "\n", "utf8");
   } catch (err) {
     console.error("No se pudo registrar la consulta:", err);
@@ -176,7 +176,7 @@ function modelDisplayName(slug: string): string {
 
 /** Persiste un feedback como una linea JSON (append-only). */
 function saveFeedback(entry: Record<string, unknown>): void {
-  if (!existsSync(config.storeDir)) mkdirSync(config.storeDir, { recursive: true });
+  if (!existsSync(config.estadoDir)) mkdirSync(config.estadoDir, { recursive: true });
   appendFileSync(feedbackPath, JSON.stringify(entry) + "\n", "utf8");
 }
 
