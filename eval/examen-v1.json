@@ -1,0 +1,214 @@
+{
+  "version": "v1",
+  "fecha": "2026-11-09",
+  "estado": "borrador sin revisión de el cliente",
+  "nota": "Respuestas esperadas armadas por Claude a partir del índice y de los PDF originales. 'por_revisar' marca las que necesitan un arquitecto. Un acierto es que al menos un fragmento entre los primeros K cumpla TODOS los campos de alguna de las respuestas esperadas. v1 = v0 + 4 preguntas del Código Urbanístico (todas «por revisar»).",
+  "preguntas": [
+    {
+      "id": "ce-escalera-ancho",
+      "pregunta": "¿Cuál es el ancho mínimo de una escalera principal?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "3.4.6.1"
+        }
+      ]
+    },
+    {
+      "id": "ce-pasillo-salida",
+      "pregunta": "¿Qué ancho mínimo debe tener un pasillo que sirve de medio de salida?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "3.4.7.3"
+        }
+      ]
+    },
+    {
+      "id": "ce-sanitario-pcd-cuando",
+      "pregunta": "¿Cuándo se exige un sanitario para personas con discapacidad en un local comercial?",
+      "por_revisar": "No está claro qué artículo fija la exigencia por uso. Candidato: 3.5.1 (servicio mínimo de salubridad según el uso).",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo_prefijo": "3.5.1"
+        }
+      ]
+    },
+    {
+      "id": "ce-caja-escalera-puertas",
+      "pregunta": "¿Qué resistencia al fuego deben tener las puertas de una caja de escalera, F30 o F60?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "3.4.6.3"
+        }
+      ]
+    },
+    {
+      "id": "aviso-obra-documentacion",
+      "pregunta": "¿Qué documentación hay que presentar para un Aviso de Obra?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "2.1.1"
+        },
+        {
+          "rt": "RT-020100-010200-00",
+          "articulo_prefijo": "5.1"
+        }
+      ]
+    },
+    {
+      "id": "rt-micro-obra",
+      "pregunta": "¿Qué es una micro obra y qué trabajos incluye?",
+      "por_revisar": "La definición puede estar en el Código de Edificación además del RT.",
+      "esperado": [
+        {
+          "rt": "RT-020100-010200-00",
+          "articulo_prefijo": "5.5"
+        }
+      ]
+    },
+    {
+      "id": "ce-altura-local-1ra",
+      "pregunta": "¿Cuál es la altura mínima de un local de primera clase?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo_prefijo": "3.3.1.2"
+        },
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "3.3.1.1",
+          "texto_contiene": "altura mínima de cada local"
+        }
+      ]
+    },
+    {
+      "id": "ce-articulo-2-1-2",
+      "pregunta": "¿Qué dice el artículo 2.1.2 del Código de Edificación?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "2.1.2"
+        }
+      ]
+    },
+    {
+      "id": "rt-hidrantes",
+      "pregunta": "¿Qué establece el RT-030909-020202-03 sobre el sistema de hidrantes?",
+      "esperado": [
+        {
+          "rt": "RT-030909-020202-03",
+          "texto_contiene": "hidrante"
+        }
+      ]
+    },
+    {
+      "id": "rt-matafuegos",
+      "pregunta": "¿Cuántos matafuegos se necesitan y cada cuántos metros cuadrados?",
+      "esperado": [
+        {
+          "texto_contiene": "Cantidad y ubicación de extintores"
+        }
+      ]
+    },
+    {
+      "id": "ce-dormitorio-iluminacion",
+      "pregunta": "¿Qué iluminación y ventilación natural necesita un dormitorio?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo_prefijo": "3.3.2"
+        }
+      ]
+    },
+    {
+      "id": "ascensor-obligatorio",
+      "pregunta": "¿Cuándo es obligatorio instalar un ascensor en un edificio?",
+      "por_revisar": "No se identificó el artículo que fija la obligatoriedad. Candidato: CE 3.9.10.",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo_prefijo": "3.9.10",
+          "texto_contiene": "obligatori"
+        }
+      ]
+    },
+    {
+      "id": "ce-rampa-pendiente",
+      "pregunta": "¿Cuál es la pendiente máxima de una rampa accesible?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "3.4.5.1"
+        }
+      ]
+    },
+    {
+      "id": "rt-fachadas-periodicidad",
+      "pregunta": "¿Cada cuántos años hay que verificar fachadas y balcones?",
+      "nota": "Verificado en el PDF compilado: «Conservación de Fachadas» es RT-050102-020601-01 (páginas 1233-1235).",
+      "esperado": [
+        {
+          "rt": "RT-050102-020601-01"
+        }
+      ]
+    },
+    {
+      "id": "ce-ocupacion-restaurante",
+      "pregunta": "¿Cuál es el factor de ocupación de un restaurante?",
+      "esperado": [
+        {
+          "doc": "CodigoEdificacion",
+          "articulo": "3.4.7.2"
+        }
+      ]
+    },
+    {
+      "id": "cur-articulo-3-13-1",
+      "pregunta": "¿Qué dice el artículo 3.13.1 del Código Urbanístico?",
+      "por_revisar": "Pregunta nueva sobre el CUR; esperado tomado del índice del propio PDF.",
+      "esperado": [
+        {
+          "doc": "CUR",
+          "articulo": "3.13.1"
+        }
+      ]
+    },
+    {
+      "id": "cur-mayorista-sin-deposito",
+      "pregunta": "¿En qué mixturas de usos se permite un comercio mayorista sin depósito y con qué superficie?",
+      "por_revisar": "Rubro 1.1 del Cuadro de Usos 3.3; confirmar con el cliente.",
+      "esperado": [
+        {
+          "doc": "CUR",
+          "rubro": "1.1"
+        }
+      ]
+    },
+    {
+      "id": "cur-milonga",
+      "pregunta": "¿Se puede habilitar un salón de milonga y en qué mixtura de usos?",
+      "por_revisar": "Depende del rubro exacto del Cuadro de Usos; confirmar con el cliente.",
+      "esperado": [
+        {
+          "doc": "CUR",
+          "texto_contiene": "milonga"
+        }
+      ]
+    },
+    {
+      "id": "cur-lago-regatas",
+      "pregunta": "¿Qué se prohíbe hacer en el Lago de Regatas según el Código Urbanístico?",
+      "por_revisar": "Anexo II, área EE52.",
+      "esperado": [
+        {
+          "doc": "CUR",
+          "texto_contiene": "Lago de Regatas"
+        }
+      ]
+    }
+  ]
+}

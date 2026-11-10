@@ -1,0 +1,1353 @@
+{
+ "deepseek/deepseek-v3.2": {
+  "ce-articulo-2-1-2": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-hidrantes": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-matafuegos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-sanitario-pcd-cuando": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "aviso-obra-documentacion": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-micro-obra": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-altura-local-1ra": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-caja-escalera-puertas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-articulo-3-13-1": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-dormitorio-iluminacion": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "parcial",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-mayorista-sin-deposito": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-lago-regatas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-rampa-pendiente": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-fachadas-periodicidad": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-senalizacion-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-milonga": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ascensor-obligatorio": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-perecederos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-ocupacion-restaurante": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-puerta-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-gato": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-gimnasio-locales": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-calderas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-futbol5": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-panaderia": {
+   "respaldo": 0.9,
+   "sin_respaldo": [
+    "que el solado deba ser liso e impermeable (el contexto solo exige para el solado que sea de material antideslizante)",
+    "que las piletas sean de 'acero' inoxidable (el texto normativo indica 'material inoxidable')"
+   ],
+   "error_grave": true,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-ventilacion-mecanica": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-cocina-requisitos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-bicicletas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-patio-gastronomico": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-escaleras-mecanicas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-conservacion-ascensores": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-uso-no-conforme": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-instalaciones-mal-estado": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-dos-escaleras": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-deteccion-alarma": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-corredores-altos": {
+   "respaldo": 0.8,
+   "sin_respaldo": [
+    "Esta altura máxima se mide desde la Línea Oficial (L.O.), tal como se establece en [1]"
+   ],
+   "error_grave": false,
+   "cita_mal": true,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-plano-villa20": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-oficina-comercial": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-balcones": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-fachadas-activas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-baja-mixtura": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-gimnasio-mixtura": {
+   "respaldo": 0.6,
+   "sin_respaldo": [
+    "Solo se especifica límite de superficie para la Baja Mixtura de Usos (1)",
+    "Para la Mixtura de Usos 2 (Media A) la columna indica 'SI' sin definir un límite de superficie"
+   ],
+   "error_grave": true,
+   "cita_mal": true,
+   "responde": "parcial",
+   "reconoce_limites": false,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "z-ai/glm-5.1": {
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "deepseek/deepseek-v4.1-flash": {
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "deepseek/deepseek-v4-pro": {
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "anthropic/claude-haiku-5.5": {
+  "ce-articulo-2-1-2": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-sanitario-pcd-cuando": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-altura-local-1ra": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-micro-obra": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-hidrantes": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "aviso-obra-documentacion": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-matafuegos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ascensor-obligatorio": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-rampa-pendiente": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-mayorista-sin-deposito": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-ocupacion-restaurante": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-lago-regatas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-dormitorio-iluminacion": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "parcial",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-articulo-3-13-1": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-fachadas-periodicidad": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": true,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-cocina-requisitos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-senalizacion-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-dos-escaleras": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-milonga": {
+   "respaldo": 0.85,
+   "sin_respaldo": [
+    "Afirmar que si el salón de milonga tiene espectáculos musicales en vivo debe obtener un permiso especial previo según el art. 7.2.10, cuando el mismo fragmento [3] establece expresamente que las 'milongas' están excluidas de esa normativa."
+   ],
+   "error_grave": true,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-caja-escalera-puertas": {
+   "respaldo": 0.7,
+   "sin_respaldo": [
+    "La columna de puertas de caja de escalera del Cuadro 3.1 da F60 en todas las combinaciones de riesgo y carga de fuego (el contexto no tiene una columna exclusiva para puertas de caja de escalera, sino 'CAJA DE ESCALERA (muros y puerta)', y en el cuadro figuran valores F90 para cargas de fuego mayores)",
+    "Deben tener una resistencia no menor a la de la caja (la nota 5 dice textualmente 'no menor de un rango que el exigido para la caja')"
+   ],
+   "error_grave": true,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": false,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-perecederos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-gato": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-ventilacion-mecanica": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-bicicletas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-futbol5": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-gimnasio-locales": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-panaderia": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-patio-gastronomico": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-uso-no-conforme": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-calderas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-deteccion-alarma": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-gimnasio-mixtura": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-oficina-comercial": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-puerta-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-fachadas-activas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-instalaciones-mal-estado": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-conservacion-ascensores": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-plano-villa20": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-corredores-altos": {
+   "respaldo": 0.95,
+   "sin_respaldo": [
+    "La expansión de la sigla L.I.B. como 'Línea de Edificación Basamento' no surge del contexto (el texto original solo indica 'L.I.B.')"
+   ],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-escaleras-mecanicas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-balcones": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": true,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-baja-mixtura": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "openai/gpt-6-luna": {
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-sanitario-pcd-cuando": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-altura-local-1ra": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-micro-obra": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-articulo-2-1-2": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-rampa-pendiente": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "aviso-obra-documentacion": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-dormitorio-iluminacion": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "parcial",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-hidrantes": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ascensor-obligatorio": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-matafuegos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-fachadas-periodicidad": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-ocupacion-restaurante": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-lago-regatas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-milonga": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-mayorista-sin-deposito": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-caja-escalera-puertas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-senalizacion-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-articulo-3-13-1": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-cocina-requisitos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "parcial",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-puerta-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-ventilacion-mecanica": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-bicicletas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-gimnasio-locales": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-dos-escaleras": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-perecederos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-panaderia": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-futbol5": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-oficina-comercial": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-gato": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-gimnasio-mixtura": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-calderas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-instalaciones-mal-estado": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-escaleras-mecanicas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-fachadas-activas": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-patio-gastronomico": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-balcones": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-conservacion-ascensores": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "rt-deteccion-alarma": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-corredores-altos": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-plano-villa20": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-baja-mixtura": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "cur-uso-no-conforme": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "google/gemini-3.8-flash": {
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "z-ai/glm-5.3": {
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "qwen/qwen3.7-plus": {
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-pasillo-salida": {
+   "respaldo": 0.93,
+   "sin_respaldo": [
+    "Se admiten corredores con anchos reducidos de 0,70 m como máximo (el contexto indica que tendrán un ancho no menor a dicho valor, es decir, como mínimo)"
+   ],
+   "error_grave": true,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  }
+ },
+ "anthropic/claude-sonnet-5.5": {
+  "ce-pasillo-salida": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": null,
+   "juez": "google/gemini-3.8-flash"
+  },
+  "ce-escalera-ancho": {
+   "respaldo": 1,
+   "sin_respaldo": [],
+   "error_grave": false,
+   "cita_mal": false,
+   "responde": "si",
+   "reconoce_limites": true,
+   "juez": "google/gemini-3.8-flash"
+  }
+ }
+}

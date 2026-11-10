@@ -1,0 +1,19 @@
+{
+  "id": "ejemplo",
+  "nombre": null,
+  "contexto": "normativa de edificación",
+  "documentos": { "CE": "Código de Edificación", "RT": "Reglamento Técnico", "CUR": "Código Urbanístico" },
+  "ingesta": {
+    "pdfs": {"CE": "Codigo de Edificacion.pdf", "RT": "Reglamentos Tecnicos.pdf"},
+    "de_lugar": "",
+    "de_la_ciudad": "",
+    "sello": "IF-\\d{4}-\\d+-[A-Z]+",
+    "encabezado": "\\d{0,4}\\s*C[ÓO]DIGO DE EDIFICACI[ÓO]N\\b[^\\n]{0,60}"
+  },
+  "ejemplos": [
+    "¿Qué lado y superficie mínimos tiene un baño tipo I?",
+    "¿Qué ancho mínimo debe tener una escalera principal?",
+    "¿Qué pendiente máxima puede tener una rampa?",
+    "¿Qué medidas mínimas tiene un baño para personas con discapacidad?"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "norma",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Norma: a grounded RAG agent for building and zoning regulations that cites the exact article, table row or drawing behind every claim.",
+  "scripts": {
+    "ingest": "tsx src/ingest/index-corpus.ts",
+    "ask": "tsx src/ask.ts",
+    "chat": "tsx src/chat.ts",
+    "serve": "tsx src/server.ts",
+    "demo": "tsx demo/serve.mts",
+    "dev": "tsx src/server.ts",
+    "smoke": "tsx src/smoke-test.ts",
+    "feedback": "tsx src/feedback-report.ts",
+    "typecheck": "tsc --noEmit",
+    "test:ts": "tsx --test tests/agente.test.ts tests/examen-muestra.test.ts",
+    "test:py": "python -m unittest discover -s tests",
+    "test": "npm run test:ts && npm run test:py"
+  },
+  "dependencies": {
+    "mammoth": "^1.8.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}

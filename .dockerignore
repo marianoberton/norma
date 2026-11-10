@@ -1,0 +1,23 @@
+node_modules
+.git
+.env.local
+.env
+*.log
+data/feedback.jsonl
+data/consultas.jsonl
+data/extracciones
+# Versión 2: la imagen lleva solo lo que usa el servidor (índices, figuras y sus listas).
+data/respaldo-*
+data/*.bak
+data/v2/chunks.jsonl
+data/v2/validacion.*
+data/v2/cur/chunks.jsonl
+data/v2/cur/prosa
+data/v2/cur/tablas
+data/v2/cur/planos.json
+data/v2/cur/validacion.json
+# Cuadros CE/RT: entran figuras.jsonl y cuadros.json (pestaña Cuadros del panel); las lecturas crudas, no.
+data/v2/tablas/vision
+data/v2/tablas/arbitro
+data/v2/tablas/geometria.json
+data/v2/tablas/revisar.json

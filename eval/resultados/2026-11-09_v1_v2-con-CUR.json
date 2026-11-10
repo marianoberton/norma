@@ -1,0 +1,1555 @@
+{
+ "resumen": {
+  "examen": "v1",
+  "etiqueta": "v2-con-CUR",
+  "fecha": "2026-11-09T15:11:02.435Z",
+  "k": 8,
+  "modelo_embeddings": "text-embedding-3-small",
+  "preguntas": 19,
+  "acierto_k": 0.895,
+  "mrr": 0.68,
+  "acierto_k_sin_por_revisar": 1,
+  "ms_mediana": 278
+ },
+ "filas": [
+  {
+   "id": "ce-escalera-ancho",
+   "pregunta": "¿Cuál es el ancho mínimo de una escalera principal?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 539,
+   "devueltos": [
+    {
+     "score": 0.781,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.1 Escaleras Principales - Sus Características",
+     "archivo": "CE Título 3",
+     "chunk": 170
+    },
+    {
+     "score": 0.738,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.1 Escaleras Principales - Sus Características",
+     "archivo": "CE Título 3",
+     "chunk": 169
+    },
+    {
+     "score": 0.696,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.1 Escaleras Principales - Sus Características",
+     "archivo": "CE Título 3",
+     "chunk": 167
+    },
+    {
+     "score": 0.695,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.1 Escaleras Principales - Sus Características",
+     "archivo": "CE Título 3",
+     "chunk": 171
+    },
+    {
+     "score": 0.682,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.2",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.2 Escaleras Secundarias – Características",
+     "archivo": "CE Título 3",
+     "chunk": 177
+    },
+    {
+     "score": 0.681,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.1 Escaleras Principales - Sus Características",
+     "archivo": "CE Título 3",
+     "chunk": 168
+    },
+    {
+     "score": 0.676,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.9.10.24",
+     "ubicacion": "Título 3. Proyecto › 3.9 Proyecto de las Instalaciones de Prestaciones y Suministros › 3.9.10 Medios Mecánicos de Elevación › 3.9.10.24 Escaleras Mecánicas y Caminos Rodantes",
+     "archivo": "CE Título 3",
+     "chunk": 1145
+    },
+    {
+     "score": 0.676,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.2",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.2 Escaleras Secundarias – Características",
+     "archivo": "CE Título 3",
+     "chunk": 178
+    }
+   ]
+  },
+  {
+   "id": "ce-pasillo-salida",
+   "pregunta": "¿Qué ancho mínimo debe tener un pasillo que sirve de medio de salida?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 473,
+   "devueltos": [
+    {
+     "score": 0.746,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.3",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.3 Ancho de Corredores de Piso",
+     "archivo": "Figuras CE",
+     "chunk": 52
+    },
+    {
+     "score": 0.725,
+     "doc": "RT",
+     "rt": "RT-030407-020202-04",
+     "articulo": "1",
+     "ubicacion": "RT-030407-020202-04 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO MEDIOS DE SALIDA» › 1 Medios de salida (Art. 3.4 C.E.)",
+     "archivo": "RT-030407-020202-04",
+     "chunk": 7
+    },
+    {
+     "score": 0.712,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.4",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.4 Salidas Exigidas",
+     "archivo": "CE Título 3",
+     "chunk": 211
+    },
+    {
+     "score": 0.704,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.3",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.3 Ancho de Corredores de Piso",
+     "archivo": "CE Título 3",
+     "chunk": 209
+    },
+    {
+     "score": 0.703,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.11",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.11 Rampas como Medio Exigido de Salida",
+     "archivo": "Figuras CE",
+     "chunk": 54
+    },
+    {
+     "score": 0.696,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.9",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.9 Pasos entre Escalera y Vía Pública",
+     "archivo": "CE Título 3",
+     "chunk": 231
+    },
+    {
+     "score": 0.69,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.7",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.7 Puertas de Salida",
+     "archivo": "CE Título 3",
+     "chunk": 224
+    },
+    {
+     "score": 0.678,
+     "doc": "RT",
+     "rt": "RT-030803-020303-11",
+     "articulo": "1.1",
+     "ubicacion": "RT-030803-020303-11 › DE LOS USOS «EDUCACIÓN EDIFICIOS EDUCATIVOS EXISTENTES – MEDIOS DE SALIDA» › 1 Edificios Educativos Existentes (Art.3.8.3.7 CE) › 1.1 Anchos de paso",
+     "archivo": "RT-030803-020303-11",
+     "chunk": 3
+    }
+   ]
+  },
+  {
+   "id": "ce-sanitario-pcd-cuando",
+   "pregunta": "¿Cuándo se exige un sanitario para personas con discapacidad en un local comercial?",
+   "por_revisar": "No está claro qué artículo fija la exigencia por uso. Candidato: 3.5.1 (servicio mínimo de salubridad según el uso).",
+   "puesto": null,
+   "ms": 308,
+   "devueltos": [
+    {
+     "score": 0.667,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.5.2.2",
+     "ubicacion": "Título 3. Proyecto › 3.5 Salubridad › 3.5.2 Características de los Servicios de Salubridad › 3.5.2.2 Servicios de Salubridad para Personas con Discapacidad (PcD)",
+     "archivo": "CE Título 3",
+     "chunk": 287
+    },
+    {
+     "score": 0.662,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.5.2.2",
+     "ubicacion": "Título 3. Proyecto › 3.5 Salubridad › 3.5.2 Características de los Servicios de Salubridad › 3.5.2.2 Servicios de Salubridad para Personas con Discapacidad (PcD)",
+     "archivo": "CE Título 3",
+     "chunk": 286
+    },
+    {
+     "score": 0.625,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.5.2.2",
+     "ubicacion": "Título 3. Proyecto › 3.5 Salubridad › 3.5.2 Características de los Servicios de Salubridad › 3.5.2.2 Servicios de Salubridad para Personas con Discapacidad (PcD)",
+     "archivo": "CE Título 3",
+     "chunk": 275
+    },
+    {
+     "score": 0.611,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.5.2.2",
+     "ubicacion": "Título 3. Proyecto › 3.5 Salubridad › 3.5.2 Características de los Servicios de Salubridad › 3.5.2.2 Servicios de Salubridad para Personas con Discapacidad (PcD)",
+     "archivo": "CE Título 3",
+     "chunk": 285
+    },
+    {
+     "score": 0.607,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.5.2.2",
+     "ubicacion": "Título 3. Proyecto › 3.5 Salubridad › 3.5.2 Características de los Servicios de Salubridad › 3.5.2.2 Servicios de Salubridad para Personas con Discapacidad (PcD)",
+     "archivo": "CE Título 3",
+     "chunk": 280
+    },
+    {
+     "score": 0.604,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.4",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.4 Alojamiento",
+     "archivo": "CE Título 3",
+     "chunk": 761
+    },
+    {
+     "score": 0.601,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.5.2.2",
+     "ubicacion": "Título 3. Proyecto › 3.5 Salubridad › 3.5.2 Características de los Servicios de Salubridad › 3.5.2.2 Servicios de Salubridad para Personas con Discapacidad (PcD)",
+     "archivo": "Figuras CE",
+     "chunk": 64
+    },
+    {
+     "score": 0.599,
+     "doc": "RT",
+     "rt": "RT-030401-020102-05",
+     "articulo": "1",
+     "ubicacion": "RT-030401-020102-05 › DE LOS PROYECTOS Y LAS OBRAS «HABITABILIDAD ACCESO A LOCALES EXIGIDOS» › 1 Acceso a locales exigidos",
+     "archivo": "RT-030401-020102-05",
+     "chunk": 1
+    }
+   ]
+  },
+  {
+   "id": "ce-caja-escalera-puertas",
+   "pregunta": "¿Qué resistencia al fuego deben tener las puertas de una caja de escalera, F30 o F60?",
+   "por_revisar": null,
+   "puesto": 4,
+   "ms": 290,
+   "devueltos": [
+    {
+     "score": 0.748,
+     "doc": "RT",
+     "rt": "RT-030909-020202-01",
+     "articulo": "3",
+     "ubicacion": "RT-030909-020202-01 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO DETERMINACIÓN DE LAS CONDICIONES A CUMPLIR SEGÚN LA ACTIVIDAD» › 3 Resistencia al fuego de los elementos que conforman los edificios (Art. 3.9.9 C.E)",
+     "archivo": "RT-030909-020202-01",
+     "chunk": 29
+    },
+    {
+     "score": 0.686,
+     "doc": "RT",
+     "rt": "RT-030909-020202-01",
+     "articulo": "3",
+     "ubicacion": "RT-030909-020202-01 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO DETERMINACIÓN DE LAS CONDICIONES A CUMPLIR SEGÚN LA ACTIVIDAD» › 3 Resistencia al fuego de los elementos que conforman los edificios (Art. 3.9.9 C.E)",
+     "archivo": "RT-030909-020202-01",
+     "chunk": 28
+    },
+    {
+     "score": 0.685,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.10.3.2",
+     "ubicacion": "Título 3. Proyecto › 3.10 Edificios Existentes › 3.10.3 Intervenciones en Edificios Existentes › 3.10.3.2 Criterios Generales de Adecuación",
+     "archivo": "CE Título 3",
+     "chunk": 1176
+    },
+    {
+     "score": 0.684,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.6.3",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.6 Escaleras › 3.4.6.3 Caja de Escalera",
+     "archivo": "CE Título 3",
+     "chunk": 183
+    },
+    {
+     "score": 0.673,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.9.9.3.2",
+     "ubicacion": "Título 3. Proyecto › 3.9 Proyecto de las Instalaciones de Prestaciones y Suministros › 3.9.9 Sistemas de Seguridad contra Incendios › 3.9.9.3 Condiciones Generales de Seguridad contra Incendio › 3.9.9.3.2 Condiciones Generales de Protección Pasiva",
+     "archivo": "CE Título 3",
+     "chunk": 1089
+    },
+    {
+     "score": 0.672,
+     "doc": "RT",
+     "rt": "RT-030407-020202-04",
+     "articulo": "2.3.2",
+     "ubicacion": "RT-030407-020202-04 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO MEDIOS DE SALIDA» › 2 Sistemas de evacuación de humos y gases (Art. 3.4.6.3 inc. K, C.E.) › 2.3 Protección del espacio previo a la caja de escalera › 2.3.2 Espacio previo protegido",
+     "archivo": "RT-030407-020202-04",
+     "chunk": 37
+    },
+    {
+     "score": 0.661,
+     "doc": "RT",
+     "rt": "RT-030407-020202-04",
+     "articulo": "2.1.2",
+     "ubicacion": "RT-030407-020202-04 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO MEDIOS DE SALIDA» › 2 Sistemas de evacuación de humos y gases (Art. 3.4.6.3 inc. K, C.E.) › 2.1 Protección de la caja de escalera › 2.1.2 Reja fija",
+     "archivo": "RT-030407-020202-04",
+     "chunk": 15
+    },
+    {
+     "score": 0.657,
+     "doc": "RT",
+     "rt": "RT-030407-020202-04",
+     "articulo": "2.2",
+     "ubicacion": "RT-030407-020202-04 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO MEDIOS DE SALIDA» › 2 Sistemas de evacuación de humos y gases (Art. 3.4.6.3 inc. K, C.E.) › 2.2 Presurización de caja de escalera",
+     "archivo": "RT-030407-020202-04",
+     "chunk": 18
+    }
+   ]
+  },
+  {
+   "id": "aviso-obra-documentacion",
+   "pregunta": "¿Qué documentación hay que presentar para un Aviso de Obra?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 273,
+   "devueltos": [
+    {
+     "score": 0.808,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1.2",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra › 5.1.2 Documentación Obligatoria según el caso particular",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 18
+    },
+    {
+     "score": 0.794,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 14
+    },
+    {
+     "score": 0.782,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 1
+    },
+    {
+     "score": 0.775,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1.3",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra › 5.1.3 Restricciones para la emisión de Avisos de Obra:",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 19
+    },
+    {
+     "score": 0.774,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1.2",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra › 5.1.2 Documentación Obligatoria según el caso particular",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 16
+    },
+    {
+     "score": 0.758,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1.2",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra › 5.1.2 Documentación Obligatoria según el caso particular",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 17
+    },
+    {
+     "score": 0.755,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1.3",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra › 5.1.3 Restricciones para la emisión de Avisos de Obra:",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 20
+    },
+    {
+     "score": 0.748,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.1.1",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.1 Aviso de Obra › 5.1.1 Documentación Obligatoria",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 15
+    }
+   ]
+  },
+  {
+   "id": "rt-micro-obra",
+   "pregunta": "¿Qué es una micro obra y qué trabajos incluye?",
+   "por_revisar": "La definición puede estar en el Código de Edificación además del RT.",
+   "puesto": 2,
+   "ms": 289,
+   "devueltos": [
+    {
+     "score": 0.58,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "2.1.4.1.1",
+     "ubicacion": "Título 2. Obra. Avisos, permisos y sujetos › 2.1 Avisos y Permisos › 2.1.4 Permisos de Ejecución de Obra Civil › 2.1.4.1 Clasificación de los Permisos de Ejecución de Obra Civil › 2.1.4.1.1 Permiso de Ejecución de Micro Obra",
+     "archivo": "CE Título 2",
+     "chunk": 7
+    },
+    {
+     "score": 0.543,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.5",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.5 Permiso de Micro Obra Bajo Responsabilidad Profesional",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 46
+    },
+    {
+     "score": 0.522,
+     "doc": "RT",
+     "rt": "RT-020119-010400-00",
+     "articulo": "4.1",
+     "ubicacion": "RT-020119-010400-00 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «AVISOS DE OBRA Y PERMISOS DE OBRA DECLARACIÓN DE INICIO, AVANCE Y FINALIZACIÓN DE OBRAS» › 4.1 Declaración de Inicio de Obra de una Micro Obra",
+     "archivo": "RT-020119-010400-00",
+     "chunk": 11
+    },
+    {
+     "score": 0.514,
+     "doc": "RT",
+     "rt": "RT-020119-010400-00",
+     "articulo": "4.2",
+     "ubicacion": "RT-020119-010400-00 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «AVISOS DE OBRA Y PERMISOS DE OBRA DECLARACIÓN DE INICIO, AVANCE Y FINALIZACIÓN DE OBRAS» › 4.2 Declaración de Finalización de una Micro Obra",
+     "archivo": "RT-020119-010400-00",
+     "chunk": 14
+    },
+    {
+     "score": 0.511,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.5",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.5 Permiso de Micro Obra Bajo Responsabilidad Profesional",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 47
+    },
+    {
+     "score": 0.507,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.5",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.5 Permiso de Micro Obra Bajo Responsabilidad Profesional",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 48
+    },
+    {
+     "score": 0.492,
+     "doc": "RT",
+     "rt": "RT-020102-010300-01",
+     "articulo": "2",
+     "ubicacion": "RT-020102-010300-01 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «AVISOS DE OBRA Y PERMISOS DE OBRA AVISOS Y PERMISOS» › 2 Clasificación de los Permisos de Ejecución de Obra Civil",
+     "archivo": "Figuras RT",
+     "chunk": 89
+    },
+    {
+     "score": 0.467,
+     "doc": "RT",
+     "rt": "RT-020100-010200-00",
+     "articulo": "5.5.2",
+     "ubicacion": "RT-020100-010200-00 › AVISOS DE OBRA Y PERMISOS DE OBRA «AVISOS Y PERMISOS REQUISITOS Y DOCUMENTACIÓN PARA TRÁMITES DE OBRAS CIVILES» › 5 Documentación a presentar según cada caso › 5.5 Permiso de Micro Obra Bajo Responsabilidad Profesional › 5.5.2 Documentación Obligatoria según el caso particular",
+     "archivo": "RT-020100-010200-00",
+     "chunk": 51
+    }
+   ]
+  },
+  {
+   "id": "ce-altura-local-1ra",
+   "pregunta": "¿Cuál es la altura mínima de un local de primera clase?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 271,
+   "devueltos": [
+    {
+     "score": 0.632,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.1.2.1",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.1 Locales › 3.3.1.2 Dimensiones de los Locales › 3.3.1.2.1 Altura Mínima de Locales",
+     "archivo": "CE Título 3",
+     "chunk": 55
+    },
+    {
+     "score": 0.602,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.1.2.4",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.1 Locales › 3.3.1.2 Dimensiones de los Locales › 3.3.1.2.4 Altura de Locales con Entrepiso y/o Entresuelo",
+     "archivo": "CE Título 3",
+     "chunk": 60
+    },
+    {
+     "score": 0.595,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.1.2.4",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.1 Locales › 3.3.1.2 Dimensiones de los Locales › 3.3.1.2.4 Altura de Locales con Entrepiso y/o Entresuelo",
+     "archivo": "CE Título 3",
+     "chunk": 61
+    },
+    {
+     "score": 0.593,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.1.2.4",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.1 Locales › 3.3.1.2 Dimensiones de los Locales › 3.3.1.2.4 Altura de Locales con Entrepiso y/o Entresuelo",
+     "archivo": "CE Título 3",
+     "chunk": 59
+    },
+    {
+     "score": 0.587,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.1.2.1",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.1 Locales › 3.3.1.2 Dimensiones de los Locales › 3.3.1.2.1 Altura Mínima de Locales",
+     "archivo": "CE Título 3",
+     "chunk": 56
+    },
+    {
+     "score": 0.58,
+     "doc": "RT",
+     "rt": "RT-030301-020102-01",
+     "articulo": "1.1",
+     "ubicacion": "RT-030301-020102-01 › DE LOS PROYECTOS Y LAS OBRAS «HABITABILIDAD CLASIFICACIÓN DE LOS LOCALES» › 1 Clasificación de los locales (Art. 3.3.1.1 C.E.) › 1.1 Locales de Permanencia o Primera Clase",
+     "archivo": "RT-030301-020102-01",
+     "chunk": 3
+    },
+    {
+     "score": 0.565,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.1.3",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.1 Locales › 3.3.1.3 Áreas y Lados Mínimos de Locales",
+     "archivo": "CE Título 3",
+     "chunk": 66
+    },
+    {
+     "score": 0.552,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.9.1",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.9 Residencial › 3.8.9.1 Vivienda Individual y Colectiva",
+     "archivo": "CE Título 3",
+     "chunk": 928
+    }
+   ]
+  },
+  {
+   "id": "ce-articulo-2-1-2",
+   "pregunta": "¿Qué dice el artículo 2.1.2 del Código de Edificación?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 251,
+   "devueltos": [
+    {
+     "score": 1,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "2.1.2",
+     "ubicacion": "Título 2. Obra. Avisos, permisos y sujetos › 2.1 Avisos y Permisos › 2.1.2 Permiso de Demolición",
+     "archivo": "CE Título 2",
+     "chunk": 3
+    },
+    {
+     "score": 0.751,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "1.1.2",
+     "ubicacion": "Título 1. Generalidades › 1.1 Objeto, Alcances y Otras Disposiciones › 1.1.2 Objeto",
+     "archivo": "CE Título 1",
+     "chunk": 2
+    },
+    {
+     "score": 0.743,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "1.1.8",
+     "ubicacion": "Título 1. Generalidades › 1.1 Objeto, Alcances y Otras Disposiciones › 1.1.8 Estructura Normativa del Código de Edificación",
+     "archivo": "CE Título 1",
+     "chunk": 11
+    },
+    {
+     "score": 0.729,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "1.1.5.1",
+     "ubicacion": "Título 1. Generalidades › 1.1 Objeto, Alcances y Otras Disposiciones › 1.1.5 Objetivos Básicos y Alcances › 1.1.5.1 Objetivos Básicos de la Edificación",
+     "archivo": "CE Título 1",
+     "chunk": 6
+    },
+    {
+     "score": 0.727,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "1.1",
+     "ubicacion": "Título 1. Generalidades › 1.1 Objeto, Alcances y Otras Disposiciones",
+     "archivo": "CE Título 1",
+     "chunk": 0
+    },
+    {
+     "score": 0.701,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "1.1.6",
+     "ubicacion": "Título 1. Generalidades › 1.1 Objeto, Alcances y Otras Disposiciones › 1.1.6 Obligatoriedad",
+     "archivo": "CE Título 1",
+     "chunk": 9
+    },
+    {
+     "score": 0.699,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "1.1.7",
+     "ubicacion": "Título 1. Generalidades › 1.1 Objeto, Alcances y Otras Disposiciones › 1.1.7 Carácter de Orden Público",
+     "archivo": "CE Título 1",
+     "chunk": 10
+    },
+    {
+     "score": 0.692,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "1.1.5.1",
+     "ubicacion": "Título 1. Generalidades › 1.1 Objeto, Alcances y Otras Disposiciones › 1.1.5 Objetivos Básicos y Alcances › 1.1.5.1 Objetivos Básicos de la Edificación",
+     "archivo": "CE Título 1",
+     "chunk": 8
+    }
+   ]
+  },
+  {
+   "id": "rt-hidrantes",
+   "pregunta": "¿Qué establece el RT-030909-020202-03 sobre el sistema de hidrantes?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 322,
+   "devueltos": [
+    {
+     "score": 0.78,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "2",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 2 Sistemas de Hidrantes (Art. 3.9.9.4 C.E)",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 17
+    },
+    {
+     "score": 0.769,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "2.2",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 2 Sistemas de Hidrantes (Art. 3.9.9.4 C.E) › 2.2 Clasificación de las Actividades",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 19
+    },
+    {
+     "score": 0.766,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "2.7",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 2 Sistemas de Hidrantes (Art. 3.9.9.4 C.E) › 2.7 Componentes del Sistema",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 42
+    },
+    {
+     "score": 0.76,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "2.3",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 2 Sistemas de Hidrantes (Art. 3.9.9.4 C.E) › 2.3 Determinación de los Parámetros hidráulicos de la instalación",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 23
+    },
+    {
+     "score": 0.752,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "2.8",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 2 Sistemas de Hidrantes (Art. 3.9.9.4 C.E) › 2.8 Mantenimiento",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 50
+    },
+    {
+     "score": 0.744,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": null,
+     "ubicacion": "RT-030909-020202-03 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO DE LAS INSTALACIONES»",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 1
+    },
+    {
+     "score": 0.743,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "2.5",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 2 Sistemas de Hidrantes (Art. 3.9.9.4 C.E) › 2.5 Reserva de Agua",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 36
+    },
+    {
+     "score": 0.738,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "2.1",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 2 Sistemas de Hidrantes (Art. 3.9.9.4 C.E) › 2.1 Objetivos",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 18
+    }
+   ]
+  },
+  {
+   "id": "rt-matafuegos",
+   "pregunta": "¿Cuántos matafuegos se necesitan y cada cuántos metros cuadrados?",
+   "por_revisar": null,
+   "puesto": 6,
+   "ms": 278,
+   "devueltos": [
+    {
+     "score": 0.583,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.8.3.1",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.8 Depósitos, Almacenamiento y Logística › 3.8.8.3 Condiciones Específicas para Depósitos › 3.8.8.3.1 Tanques y Depósitos de Combustibles e Inflamables",
+     "archivo": "CE Título 3",
+     "chunk": 925
+    },
+    {
+     "score": 0.582,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.8.3.1",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.8 Depósitos, Almacenamiento y Logística › 3.8.8.3 Condiciones Específicas para Depósitos › 3.8.8.3.1 Tanques y Depósitos de Combustibles e Inflamables",
+     "archivo": "CE Título 3",
+     "chunk": 923
+    },
+    {
+     "score": 0.558,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.8.3.1",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.8 Depósitos, Almacenamiento y Logística › 3.8.8.3 Condiciones Específicas para Depósitos › 3.8.8.3.1 Tanques y Depósitos de Combustibles e Inflamables",
+     "archivo": "CE Título 3",
+     "chunk": 922
+    },
+    {
+     "score": 0.557,
+     "doc": "RT",
+     "rt": "RT-030909-020202-02",
+     "articulo": "2.2.2",
+     "ubicacion": "RT-030909-020202-02 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN PASIVA» › 2 Condiciones contra propagación de incendio interior y exterior (3.9.9.3.2 C.E) › 2.2 Propagación exterior de incendio › 2.2.2 Cubiertas",
+     "archivo": "RT-030909-020202-02",
+     "chunk": 20
+    },
+    {
+     "score": 0.545,
+     "doc": "RT",
+     "rt": "RT-030909-020202-02",
+     "articulo": "2.2.1",
+     "ubicacion": "RT-030909-020202-02 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN PASIVA» › 2 Condiciones contra propagación de incendio interior y exterior (3.9.9.3.2 C.E) › 2.2 Propagación exterior de incendio › 2.2.1 Muros exteriores",
+     "archivo": "RT-030909-020202-02",
+     "chunk": 17
+    },
+    {
+     "score": 0.544,
+     "doc": "RT",
+     "rt": "RT-030909-020202-03",
+     "articulo": "4.5.2",
+     "ubicacion": "RT-030909-020202-03 › DE LAS INSTALACIONES «INSTALACIONES CONTRA INCENDIO CONDICIONES ESPECÍFICAS DE PROTECCIÓN ACTIVA» › 4 Extintores (Art. 3.9.9.3.3, Inc. a, C.E) › 4.5 Instalación de extintores › 4.5.2 Cantidad y ubicación de extintores",
+     "archivo": "RT-030909-020202-03",
+     "chunk": 64
+    },
+    {
+     "score": 0.544,
+     "doc": "RT",
+     "rt": "RT-030909-020202-02",
+     "articulo": null,
+     "ubicacion": "RT-030909-020202-02 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO DE LAS INSTALACIONES»",
+     "archivo": "RT-030909-020202-02",
+     "chunk": 1
+    },
+    {
+     "score": 0.542,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.8.3.1",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.8 Depósitos, Almacenamiento y Logística › 3.8.8.3 Condiciones Específicas para Depósitos › 3.8.8.3.1 Tanques y Depósitos de Combustibles e Inflamables",
+     "archivo": "CE Título 3",
+     "chunk": 924
+    }
+   ]
+  },
+  {
+   "id": "ce-dormitorio-iluminacion",
+   "pregunta": "¿Qué iluminación y ventilación natural necesita un dormitorio?",
+   "por_revisar": null,
+   "puesto": 3,
+   "ms": 281,
+   "devueltos": [
+    {
+     "score": 0.586,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.7.4.5.1.2.4.2",
+     "ubicacion": "Título 3. Proyecto › 3.7 Diseño Sostenible › 3.7.4 Estrategias de Compromiso Ambiental › 3.7.4.5 Eficiencia Energética y Energías Renovables › 3.7.4.5.1 Eficiencia Energética › 3.7.4.5.1.2 Estrategias de Diseño Pasivo › 3.7.4.5.1.2.4 Ventilación Natural Cruzada › 3.7.4.5.1.2.4.2 Parámetros",
+     "archivo": "CE Título 3",
+     "chunk": 410
+    },
+    {
+     "score": 0.585,
+     "doc": "RT",
+     "rt": "RT-030803-020303-05",
+     "articulo": "2.2",
+     "ubicacion": "RT-030803-020303-05 › DE LOS USOS «EDUCACIÓN CARACTERÍSTICAS DE LOS LOCALES EN EDIFICIOS EDUCATIVOS» › 2 Iluminación y ventilación › 2.2 Iluminación y ventilación natural de locales de tercera categoría",
+     "archivo": "RT-030803-020303-05",
+     "chunk": 15
+    },
+    {
+     "score": 0.58,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.2.1",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.2 Iluminación y Ventilación de Locales › 3.3.2.1 Generalidades",
+     "archivo": "CE Título 3",
+     "chunk": 109
+    },
+    {
+     "score": 0.575,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.2.6",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.2 Iluminación y Ventilación de Locales › 3.3.2.6 Iluminación y Ventilación de Locales de Transito o de Cuarta Clase",
+     "archivo": "CE Título 3",
+     "chunk": 120
+    },
+    {
+     "score": 0.572,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.3.2.8",
+     "ubicacion": "Título 3. Proyecto › 3.3 Habitabilidad › 3.3.2 Iluminación y Ventilación de Locales › 3.3.2.8 Iluminación y Ventilación Natural de Locales a Través de Partes Cubiertas",
+     "archivo": "Figuras CE",
+     "chunk": 26
+    },
+    {
+     "score": 0.571,
+     "doc": "RT",
+     "rt": "RT-030302-020207-03",
+     "articulo": "4",
+     "ubicacion": "RT-030302-020207-03 › PROYECTO - EJECUCIÓN DE OBRAS - CONSERVACIÓN «DE LAS INSTALACIONES ELECTRICAS Y MECANICAS VENTILACIÓN POR MEDIOS MECANICOS» › 4 Prescripciones generales sobre ventilaciones mecánicas (Art. 3.3.2.11 C.E.)",
+     "archivo": "RT-030302-020207-03",
+     "chunk": 5
+    },
+    {
+     "score": 0.565,
+     "doc": "RT",
+     "rt": "RT-030803-020303-10",
+     "articulo": "4.2",
+     "ubicacion": "RT-030803-020303-10 › DE LOS USOS «EDUCACIÓN EDIFICIOS EDUCATIVOS EXISTENTES - LOCALES» › 4 Iluminación y ventilación › 4.2 Espacio exterior abierto apto para cumplir iluminación natural",
+     "archivo": "RT-030803-020303-10",
+     "chunk": 15
+    },
+    {
+     "score": 0.56,
+     "doc": "RT",
+     "rt": "RT-030803-020303-10",
+     "articulo": "4",
+     "ubicacion": "RT-030803-020303-10 › DE LOS USOS «EDUCACIÓN EDIFICIOS EDUCATIVOS EXISTENTES - LOCALES» › 4 Iluminación y ventilación",
+     "archivo": "RT-030803-020303-10",
+     "chunk": 13
+    }
+   ]
+  },
+  {
+   "id": "ascensor-obligatorio",
+   "pregunta": "¿Cuándo es obligatorio instalar un ascensor en un edificio?",
+   "por_revisar": "No se identificó el artículo que fija la obligatoriedad. Candidato: CE 3.9.10.",
+   "puesto": null,
+   "ms": 243,
+   "devueltos": [
+    {
+     "score": 0.66,
+     "doc": "RT",
+     "rt": "RT-030910-020205-01",
+     "articulo": "1",
+     "ubicacion": "RT-030910-020205-01 › DE LAS INSTALACIONES «MEDIOS MECÁNICOS DE ELEVACIÓN ASCENSORES Y MONTACARGAS» › 1 Cantidad de ascensores 1 (Art. 3.9.10.1 CE)",
+     "archivo": "RT-030910-020205-01",
+     "chunk": 11
+    },
+    {
+     "score": 0.657,
+     "doc": "RT",
+     "rt": "RT-050105-020601-05",
+     "articulo": null,
+     "ubicacion": "RT-050105-020601-05 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO CONSERVACIÓN Y MANTENIMIENTO»",
+     "archivo": "RT-050105-020601-05",
+     "chunk": 3
+    },
+    {
+     "score": 0.649,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.9.10.21",
+     "ubicacion": "Título 3. Proyecto › 3.9 Proyecto de las Instalaciones de Prestaciones y Suministros › 3.9.10 Medios Mecánicos de Elevación › 3.9.10.21 Instalación Eléctrica en Ascensores y Montacargas",
+     "archivo": "CE Título 3",
+     "chunk": 1136
+    },
+    {
+     "score": 0.648,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.9.10.6",
+     "ubicacion": "Título 3. Proyecto › 3.9 Proyecto de las Instalaciones de Prestaciones y Suministros › 3.9.10 Medios Mecánicos de Elevación › 3.9.10.6 Rellanos o Descansos y Pasajes de Acceso a Ascensores",
+     "archivo": "CE Título 3",
+     "chunk": 1107
+    },
+    {
+     "score": 0.644,
+     "doc": "RT",
+     "rt": "RT-030803-020303-08",
+     "articulo": null,
+     "ubicacion": "RT-030803-020303-08 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO DE LOS USOS»",
+     "archivo": "RT-030803-020303-08",
+     "chunk": 0
+    },
+    {
+     "score": 0.643,
+     "doc": "RT",
+     "rt": "RT-050105-020601-05",
+     "articulo": null,
+     "ubicacion": "RT-050105-020601-05 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO CONSERVACIÓN Y MANTENIMIENTO»",
+     "archivo": "RT-050105-020601-05",
+     "chunk": 6
+    },
+    {
+     "score": 0.643,
+     "doc": "RT",
+     "rt": "RT-030910-020205-01",
+     "articulo": null,
+     "ubicacion": "RT-030910-020205-01 › CÓDIGO DE EDIFICACIÓN - REGLAMENTOS TÉCNICOS «PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO DE LAS INSTALACIONES»",
+     "archivo": "RT-030910-020205-01",
+     "chunk": 0
+    },
+    {
+     "score": 0.642,
+     "doc": "RT",
+     "rt": "RT-031002-020104-02",
+     "articulo": "1.3",
+     "ubicacion": "RT-031002-020104-02 › DE LOS PROYECTOS Y LAS OBRAS «EDIFICIOS EXISTENTES ADECUACIONES EN EDIFICIOS EXISTENTES SIN INTERVENCIONES» › 1.3 Medios mecánicos de elevación",
+     "archivo": "RT-031002-020104-02",
+     "chunk": 10
+    }
+   ]
+  },
+  {
+   "id": "ce-rampa-pendiente",
+   "pregunta": "¿Cuál es la pendiente máxima de una rampa accesible?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 222,
+   "devueltos": [
+    {
+     "score": 0.755,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "CE Título 3",
+     "chunk": 154
+    },
+    {
+     "score": 0.741,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "CE Título 3",
+     "chunk": 155
+    },
+    {
+     "score": 0.726,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "CE Título 3",
+     "chunk": 156
+    },
+    {
+     "score": 0.675,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "Figuras CE",
+     "chunk": 41
+    },
+    {
+     "score": 0.672,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "CE Título 3",
+     "chunk": 157
+    },
+    {
+     "score": 0.667,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "CE Título 3",
+     "chunk": 158
+    },
+    {
+     "score": 0.665,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "CE Título 3",
+     "chunk": 159
+    },
+    {
+     "score": 0.662,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.5.1",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.5 Rampas › 3.4.5.1 Rampas que no Cuenten con Medios Alternativos de Elevación",
+     "archivo": "Figuras CE",
+     "chunk": 42
+    }
+   ]
+  },
+  {
+   "id": "rt-fachadas-periodicidad",
+   "pregunta": "¿Cada cuántos años hay que verificar fachadas y balcones?",
+   "por_revisar": null,
+   "puesto": 6,
+   "ms": 247,
+   "devueltos": [
+    {
+     "score": 0.721,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "5.1.2",
+     "ubicacion": "Título 5. Conservación y mantenimiento › 5.1 Conservación y Mantenimiento de los Edificios en General › 5.1.2 Conservación de Fachadas",
+     "archivo": "CE Título 5",
+     "chunk": 5
+    },
+    {
+     "score": 0.674,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "5.1.2",
+     "ubicacion": "Título 5. Conservación y mantenimiento › 5.1 Conservación y Mantenimiento de los Edificios en General › 5.1.2 Conservación de Fachadas",
+     "archivo": "CE Título 5",
+     "chunk": 7
+    },
+    {
+     "score": 0.621,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "5.1.2",
+     "ubicacion": "Título 5. Conservación y mantenimiento › 5.1 Conservación y Mantenimiento de los Edificios en General › 5.1.2 Conservación de Fachadas",
+     "archivo": "CE Título 5",
+     "chunk": 3
+    },
+    {
+     "score": 0.617,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.1.4.3",
+     "ubicacion": "Título 3. Proyecto › 3.1 Estética Urbana › 3.1.4 Fachadas › 3.1.4.3 Barandas de Balcones",
+     "archivo": "CE Título 3",
+     "chunk": 18
+    },
+    {
+     "score": 0.613,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "5.1.2",
+     "ubicacion": "Título 5. Conservación y mantenimiento › 5.1 Conservación y Mantenimiento de los Edificios en General › 5.1.2 Conservación de Fachadas",
+     "archivo": "CE Título 5",
+     "chunk": 4
+    },
+    {
+     "score": 0.607,
+     "doc": "RT",
+     "rt": "RT-050102-020601-01",
+     "articulo": "3",
+     "ubicacion": "RT-050102-020601-01 › PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO «CONSERVACIÓN Y MANTENIMIENTO CONSERVACIÓN DE FACHADAS» › 3 Periodicidad",
+     "archivo": "RT-050102-020601-01",
+     "chunk": 3
+    },
+    {
+     "score": 0.605,
+     "doc": "RT",
+     "rt": "RT-050102-020601-01",
+     "articulo": "2",
+     "ubicacion": "RT-050102-020601-01 › PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO «CONSERVACIÓN Y MANTENIMIENTO CONSERVACIÓN DE FACHADAS» › 2 Conservación de Fachadas",
+     "archivo": "RT-050102-020601-01",
+     "chunk": 2
+    },
+    {
+     "score": 0.588,
+     "doc": "RT",
+     "rt": "RT-030704-020105-05",
+     "articulo": "2",
+     "ubicacion": "RT-030704-020105-05 › PROYECTO, EJECUCIÓN DE LAS OBRAS, CONSERVACIÓN Y MANTENIMIENTO «ARQUITECTURA CARPINTERIAS Y VIDRIOS» › 2 Requisitos de calidad:",
+     "archivo": "RT-030704-020105-05",
+     "chunk": 2
+    }
+   ]
+  },
+  {
+   "id": "ce-ocupacion-restaurante",
+   "pregunta": "¿Cuál es el factor de ocupación de un restaurante?",
+   "por_revisar": null,
+   "puesto": 1,
+   "ms": 278,
+   "devueltos": [
+    {
+     "score": 0.552,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.2",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.2 Coeficiente de Ocupación",
+     "archivo": "CE Título 3",
+     "chunk": 193
+    },
+    {
+     "score": 0.532,
+     "doc": "RT",
+     "rt": "RT-030803-020303-02",
+     "articulo": "1.2",
+     "ubicacion": "RT-030803-020303-02 › DE LOS USOS «EDUCACIÓN OCUPACIÓN» › 1 Cálculo de población en un local › 1.2 Locales sin coeficiente de ocupación máximo",
+     "archivo": "RT-030803-020303-02",
+     "chunk": 5
+    },
+    {
+     "score": 0.527,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.4.7.2",
+     "ubicacion": "Título 3. Proyecto › 3.4 Medios de Salida y Accesibilidad › 3.4.7 Medios de Salida. Evacuación › 3.4.7.2 Coeficiente de Ocupación",
+     "archivo": "CE Título 3",
+     "chunk": 192
+    },
+    {
+     "score": 0.519,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.3.2.3",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.3 Educación › 3.8.3.2 Condiciones Generales de Proyecto › 3.8.3.2.3 Ocupación",
+     "archivo": "CE Título 3",
+     "chunk": 599
+    },
+    {
+     "score": 0.517,
+     "doc": "RT",
+     "rt": "RT-030803-020303-02",
+     "articulo": "4.1.2",
+     "ubicacion": "RT-030803-020303-02 › DE LOS USOS «EDUCACIÓN OCUPACIÓN» › 4 Ejemplos › 4.1 Ejemplo de Cálculo de Ocupación de Local Educativo › 4.1.2 SUM",
+     "archivo": "RT-030803-020303-02",
+     "chunk": 16
+    },
+    {
+     "score": 0.515,
+     "doc": "RT",
+     "rt": "RT-030803-020303-02",
+     "articulo": "1.1",
+     "ubicacion": "RT-030803-020303-02 › DE LOS USOS «EDUCACIÓN OCUPACIÓN» › 1 Cálculo de población en un local › 1.1 Locales con coeficiente de ocupación máximo",
+     "archivo": "RT-030803-020303-02",
+     "chunk": 4
+    },
+    {
+     "score": 0.507,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.9.2.4",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.9 Residencial › 3.8.9.2 Residencia Comunitaria › 3.8.9.2.4 Residencial para Personas Mayores",
+     "archivo": "CE Título 3",
+     "chunk": 955
+    },
+    {
+     "score": 0.503,
+     "doc": "RT",
+     "rt": "RT-030803-020303-02",
+     "articulo": "4.1.3.1",
+     "ubicacion": "RT-030803-020303-02 › DE LOS USOS «EDUCACIÓN OCUPACIÓN» › 4 Ejemplos › 4.1 Ejemplo de Cálculo de Ocupación de Local Educativo › 4.1.3 Sala de Cuarenta y Cinco (45) días a Un (1) año › 4.1.3.1 Sala de Cuarenta y Cinco (45) días a Un (1) año",
+     "archivo": "RT-030803-020303-02",
+     "chunk": 18
+    }
+   ]
+  },
+  {
+   "id": "cur-articulo-3-13-1",
+   "pregunta": "¿Qué dice el artículo 3.13.1 del Código Urbanístico?",
+   "por_revisar": "Pregunta nueva sobre el CUR; esperado tomado del índice del propio PDF.",
+   "puesto": 1,
+   "ms": 284,
+   "devueltos": [
+    {
+     "score": 1,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "3.13.1",
+     "ubicacion": "Código Urbanístico › Título 3. Normas de uso del suelo › 3.13 Depósitos › 3.13.1 Disposiciones particulares para la localización de depósitos",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 234
+    },
+    {
+     "score": 1,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "3.13.1",
+     "ubicacion": "Código Urbanístico › Título 3. Normas de uso del suelo › 3.13 Depósitos › 3.13.1 Disposiciones particulares para la localización de depósitos",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 235
+    },
+    {
+     "score": 1,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "3.13.1",
+     "ubicacion": "Código Urbanístico › Título 3. Normas de uso del suelo › 3.13 Depósitos › 3.13.1 Disposiciones particulares para la localización de depósitos",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 236
+    },
+    {
+     "score": 1,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "3.13.1",
+     "ubicacion": "Código Urbanístico › Título 3. Normas de uso del suelo › 3.13 Depósitos › 3.13.1 Disposiciones particulares para la localización de depósitos",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 237
+    },
+    {
+     "score": 0.686,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › Anexo III › (sin área)",
+     "archivo": "CUR Anexo III",
+     "chunk": 13
+    },
+    {
+     "score": 0.686,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › Anexo III › (sin área)",
+     "archivo": "CUR Anexo III",
+     "chunk": 23
+    },
+    {
+     "score": 0.685,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "1.2.2",
+     "ubicacion": "Código Urbanístico › Título 1. Generalidades, Principios y Definiciones › 1.2 Principios › 1.2.2 Principios normativos",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 11
+    },
+    {
+     "score": 0.682,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › Anexo III › U31j) Delimitación: De conformidad al Plano N° 2.2.1.5. y los siguientes deslindes José",
+     "archivo": "CUR Anexo III",
+     "chunk": 117
+    }
+   ]
+  },
+  {
+   "id": "cur-mayorista-sin-deposito",
+   "pregunta": "¿En qué mixturas de usos se permite un comercio mayorista sin depósito y con qué superficie?",
+   "por_revisar": "Rubro 1.1 del Cuadro de Usos 3.3; confirmar con el cliente.",
+   "puesto": 2,
+   "ms": 235,
+   "devueltos": [
+    {
+     "score": 0.728,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 1.3",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 2
+    },
+    {
+     "score": 0.716,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 1.1",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 0
+    },
+    {
+     "score": 0.701,
+     "doc": "CodigoEdificacion",
+     "rt": null,
+     "articulo": "3.8.1.1",
+     "ubicacion": "Título 3. Proyecto › 3.8 Condiciones para Determinados Usos en el Proyecto › 3.8.1 Comercial › 3.8.1.1 Comercio Mayorista con o sin Depósito",
+     "archivo": "CE Título 3",
+     "chunk": 458
+    },
+    {
+     "score": 0.692,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "1.4.2",
+     "ubicacion": "Código Urbanístico › Título 1. Generalidades, Principios y Definiciones › 1.4 Glosario › 1.4.2 Conceptos relativos al Uso: Generales y Tipos de Uso",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 63
+    },
+    {
+     "score": 0.691,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 1.2",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 1
+    },
+    {
+     "score": 0.686,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "3.3.1",
+     "ubicacion": "Código Urbanístico › Título 3. Normas de uso del suelo › 3.3 Cuadro de Usos del Suelo › 3.3.1 Referencias y requerimientos",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 183
+    },
+    {
+     "score": 0.685,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 1.7",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 19
+    },
+    {
+     "score": 0.682,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 1.6",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 13
+    }
+   ]
+  },
+  {
+   "id": "cur-milonga",
+   "pregunta": "¿Se puede habilitar un salón de milonga y en qué mixtura de usos?",
+   "por_revisar": "Depende del rubro exacto del Cuadro de Usos; confirmar con el cliente.",
+   "puesto": 1,
+   "ms": 456,
+   "devueltos": [
+    {
+     "score": 0.707,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 2.4.4",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 87
+    },
+    {
+     "score": 0.666,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "7.2.10",
+     "ubicacion": "Código Urbanístico › Título 7. Lineamientos del Hábitat › 7.2 Regulación para el hábitat › 7.2.10 Disposiciones Particulares para Usos Singulares",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 477
+    },
+    {
+     "score": 0.652,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 2.1.13",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 64
+    },
+    {
+     "score": 0.637,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 2.1.14",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 65
+    },
+    {
+     "score": 0.637,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 2.4.6",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 89
+    },
+    {
+     "score": 0.624,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 6.1.16",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 205
+    },
+    {
+     "score": 0.62,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 1.5.1",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 10
+    },
+    {
+     "score": 0.617,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › 3.3.2 Cuadro de Usos del Suelo Nº 3.3 › rubro 2.4.7",
+     "archivo": "CUR Cuadro de Usos 3.3",
+     "chunk": 90
+    }
+   ]
+  },
+  {
+   "id": "cur-lago-regatas",
+   "pregunta": "¿Qué se prohíbe hacer en el Lago de Regatas según el Código Urbanístico?",
+   "por_revisar": "Anexo II, área EE52.",
+   "puesto": 1,
+   "ms": 261,
+   "devueltos": [
+    {
+     "score": 0.713,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › Anexo II › EE52) Carácter: Zona de localización del Autódromo de la Ciudad de Buenos Aires, equipa-",
+     "archivo": "CUR Anexo II",
+     "chunk": 80
+    },
+    {
+     "score": 0.654,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "7.2.6",
+     "ubicacion": "Código Urbanístico › Título 7. Lineamientos del Hábitat › 7.2 Regulación para el hábitat › 7.2.6 Áreas de Reserva Ecológica",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 435
+    },
+    {
+     "score": 0.648,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "7.2.6",
+     "ubicacion": "Código Urbanístico › Título 7. Lineamientos del Hábitat › 7.2 Regulación para el hábitat › 7.2.6 Áreas de Reserva Ecológica",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 437
+    },
+    {
+     "score": 0.636,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › Anexo II › U14) Carácter: Área destinada a la localización de actividades de esparcimiento orientadas a",
+     "archivo": "CUR Anexo II",
+     "chunk": 1197
+    },
+    {
+     "score": 0.628,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › Anexo II › U32) Carácter",
+     "archivo": "CUR Anexo II",
+     "chunk": 1363
+    },
+    {
+     "score": 0.628,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "7.2.10",
+     "ubicacion": "Código Urbanístico › Título 7. Lineamientos del Hábitat › 7.2 Regulación para el hábitat › 7.2.10 Disposiciones Particulares para Usos Singulares",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 465
+    },
+    {
+     "score": 0.626,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": "7.2.10",
+     "ubicacion": "Código Urbanístico › Título 7. Lineamientos del Hábitat › 7.2 Regulación para el hábitat › 7.2.10 Disposiciones Particulares para Usos Singulares",
+     "archivo": "CUR cuerpo principal",
+     "chunk": 470
+    },
+    {
+     "score": 0.621,
+     "doc": "CUR",
+     "rt": null,
+     "articulo": null,
+     "ubicacion": "Código Urbanístico › Anexo II › U32) Carácter",
+     "archivo": "CUR Anexo II",
+     "chunk": 1356
+    }
+   ]
+  }
+ ]
+}

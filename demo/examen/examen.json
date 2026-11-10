@@ -1,0 +1,111 @@
+{
+ "version": "v2-muestra",
+ "nota": "Preguntas de eval/examen-v2.json con respuesta en demo/data (CE 3.4, 3.5). Las marcadas «por revisar» se miden, pero el umbral del CI usa todas.",
+ "preguntas": [
+  {
+   "id": "ce-escalera-ancho",
+   "pregunta": "¿Cuál es el ancho mínimo de una escalera principal?",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.6.1"
+    }
+   ]
+  },
+  {
+   "id": "ce-pasillo-salida",
+   "pregunta": "¿Qué ancho mínimo debe tener un pasillo que sirve de medio de salida?",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.7.3"
+    }
+   ]
+  },
+  {
+   "id": "ce-sanitario-pcd-cuando",
+   "pregunta": "¿Cuándo se exige un sanitario para personas con discapacidad en un local comercial?",
+   "por_revisar": "No está claro qué artículo fija la exigencia por uso. Candidato: 3.5.1 (servicio mínimo de salubridad según el uso).",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo_prefijo": "3.5.1"
+    }
+   ]
+  },
+  {
+   "id": "ce-caja-escalera-puertas",
+   "pregunta": "¿Qué resistencia al fuego deben tener las puertas de una caja de escalera, F30 o F60?",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.6.3"
+    }
+   ]
+  },
+  {
+   "id": "ce-rampa-pendiente",
+   "pregunta": "¿Cuál es la pendiente máxima de una rampa accesible?",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.5.1"
+    }
+   ]
+  },
+  {
+   "id": "ce-ocupacion-restaurante",
+   "pregunta": "¿Cuál es el factor de ocupación de un restaurante?",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.7.2"
+    }
+   ]
+  },
+  {
+   "id": "ce-puerta-ancho",
+   "pregunta": "¿Cuál es el ancho libre mínimo de paso de una puerta?",
+   "por_revisar": "Pregunta y respuesta esperada armadas por Claude leyendo el texto del artículo; falta que un arquitecto la valide.",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.3"
+    }
+   ]
+  },
+  {
+   "id": "ce-senalizacion-salida",
+   "pregunta": "¿Cuándo hay que poner carteles que indiquen la salida en los pasillos?",
+   "por_revisar": "Pregunta y respuesta esperada armadas por Claude leyendo el texto del artículo; falta que un arquitecto la valide.",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.7.4.5"
+    }
+   ]
+  },
+  {
+   "id": "ce-dos-escaleras",
+   "pregunta": "¿A partir de qué superficie de piso un edificio necesita dos escaleras?",
+   "por_revisar": "Pregunta y respuesta esperada armadas por Claude leyendo el texto del artículo; falta que un arquitecto la valide.",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.7.6"
+    }
+   ]
+  },
+  {
+   "id": "ce-escalera-gato",
+   "pregunta": "¿Dónde se permite usar una escalera vertical o de gato?",
+   "por_revisar": "Pregunta y respuesta esperada armadas por Claude leyendo el texto del artículo; falta que un arquitecto la valide.",
+   "esperado": [
+    {
+     "doc": "CodigoEdificacion",
+     "articulo": "3.4.6.4"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Norma · Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<script>
+  // Tema antes de pintar: lo elegido a mano gana sobre el del sistema.
+  try { var t = localStorage.getItem("norma-tema"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+:root{
+  --bg:#f6f7f8; --surface:#ffffff; --sunk:#f0f2f4; --rail:#f1f2f4;
+  --line:#e3e6ea; --line-2:#cfd4da;
+  --text:#15181d; --text-2:#3d434d; --muted:#626a77;
+  --accent:#3451c7; --accent-2:#2a43a8; --accent-weak:#eef1fd; --on-accent:#ffffff;
+  --ok:#157347; --ok-weak:#e5f3ea; --warn:#9a5700; --warn-weak:#fbf0db; --bad:#b3261e; --bad-weak:#fbe8e6;
+  --paper:#ffffff;
+  --shadow:0 1px 2px rgb(16 24 40 / .05), 0 4px 12px -4px rgb(16 24 40 / .08);
+  --sans:"Geist",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --r:8px; --r-sm:6px;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0b0c0e; --surface:#121417; --sunk:#0e1013; --rail:#0e1013;
+  --line:#24272d; --line-2:#343840;
+  --text:#eceef1; --text-2:#b9bec7; --muted:#8c929c;
+  --accent:#93a6ff; --accent-2:#b2c0ff; --accent-weak:#1a1f35; --on-accent:#0b0c0e;
+  --ok:#4fc58c; --ok-weak:#0f261a; --warn:#e3a54a; --warn-weak:#2a1f0c; --bad:#ff8077; --bad-weak:#2d1513;
+  --shadow:0 1px 2px rgb(0 0 0 / .4), 0 8px 24px -8px rgb(0 0 0 / .6);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0b0c0e; --surface:#121417; --sunk:#0e1013; --rail:#0e1013;
+  --line:#24272d; --line-2:#343840;
+  --text:#eceef1; --text-2:#b9bec7; --muted:#8c929c;
+  --accent:#93a6ff; --accent-2:#b2c0ff; --accent-weak:#1a1f35; --on-accent:#0b0c0e;
+  --ok:#4fc58c; --ok-weak:#0f261a; --warn:#e3a54a; --warn-weak:#2a1f0c; --bad:#ff8077; --bad-weak:#2d1513;
+  --shadow:0 1px 2px rgb(0 0 0 / .4), 0 8px 24px -8px rgb(0 0 0 / .6);
+  color-scheme:dark;
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{height:100%}
+html,body{margin:0}
+body{min-height:100%}
+body{background:var(--bg);color:var(--text);font:14px/1.5 var(--sans);font-feature-settings:"ss01","cv11";-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:232px minmax(0,1fr)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.011em}
+h1{font-size:1.375rem;line-height:1.25}
+h2{font-size:1rem;line-height:1.35}
+code{font:12.5px/1.4 var(--mono);background:var(--sunk);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--mono);font-size:12px}
+.muted{color:var(--muted)}
+svg.i{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Barra lateral ---------- */
+.rail{position:sticky;top:0;height:100vh;background:var(--rail);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:16px 10px 12px}
+.marca{display:flex;align-items:center;gap:10px;padding:2px 8px 18px}
+.marca svg{width:26px;height:26px}
+.marca b{font-size:16px;font-weight:600;letter-spacing:-.01em;display:block;line-height:1.1}
+.marca span{font-size:12px;color:var(--muted)}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:var(--r-sm);color:var(--text-2);cursor:pointer;font-weight:500;transition:background .15s,color .15s}
+.nav button:hover{background:color-mix(in srgb,var(--text) 6%,transparent);color:var(--text)}
+.nav button[aria-current="page"]{background:var(--surface);color:var(--text);box-shadow:0 0 0 1px var(--line),0 1px 2px rgb(0 0 0 / .04)}
+.nav button[aria-current="page"] svg{color:var(--accent)}
+.nav .cnt{margin-left:auto;font:500 11.5px var(--mono);color:var(--muted)}
+.pie{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding:10px 8px 0;border-top:1px solid var(--line)}
+.pie label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted)}
+.tema{display:flex;gap:2px;background:var(--sunk);border:1px solid var(--line);border-radius:var(--r-sm);padding:2px}
+.tema button{all:unset;flex:1;text-align:center;font-size:12px;padding:4px 0;border-radius:4px;color:var(--muted);cursor:pointer}
+.tema button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:0 0 0 1px var(--line)}
+.estado-svc{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.estado-svc i{width:7px;height:7px;border-radius:50%;background:var(--line-2)}
+.estado-svc.ok i{background:var(--ok);box-shadow:0 0 0 3px var(--ok-weak)}
+
+/* ---------- Controles ---------- */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input,select{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-sm);padding:7px 10px;min-height:34px;transition:border-color .15s,box-shadow .15s}
+input::placeholder{color:var(--muted)}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-weak)}
+.btn{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 14px;border-radius:var(--r-sm);background:var(--text);color:var(--bg);font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.btn:hover{opacity:.88}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.sec{background:var(--surface);color:var(--text);box-shadow:inset 0 0 0 1px var(--line-2)}
+.btn.sec:hover{background:var(--sunk);opacity:1}
+.btn.chico{min-height:28px;padding:0 10px;font-size:12px}
+.campo{position:relative;flex:1;min-width:220px;display:flex}
+.campo svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.campo input{flex:1;padding-left:32px}
+.barra-filtros{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#cu-form .campo{flex-basis:100%}
+#cu-form select{flex:1;min-width:150px}
+
+/* ---------- Estructura ---------- */
+main{min-width:0;padding:28px 36px 72px}
+section{display:flex;flex-direction:column;gap:20px;max-width:1760px}
+.cab{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px;padding-bottom:4px}
+.cab p{margin:6px 0 0;color:var(--muted);max-width:78ch}
+.cab .lado{font-size:12px;color:var(--muted);text-align:right}
+.bloque{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.bloque-cab{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.bloque-cab h2{font-size:14px}
+
+/* Cifras: una línea de texto, no tarjetas */
+.cifras{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 22px;margin:0;font-size:13px;color:var(--muted)}
+.cifras b{font-size:16px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;margin-right:5px;letter-spacing:-.01em}
+
+/* Tablas */
+.tabla{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:9px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+th{font-size:12px;font-weight:500;color:var(--muted);background:var(--sunk);white-space:nowrap;position:sticky;top:0}
+th.n,td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.fila{cursor:pointer;transition:background .12s}
+tr.fila:hover td{background:color-mix(in srgb,var(--accent) 4%,var(--surface))}
+tr.fila[aria-selected="true"] td{background:var(--accent-weak)}
+td .id{display:block;margin-top:2px;font:12px var(--mono);color:var(--muted)}
+td .lect{display:block;margin-top:2px;font-size:12px;color:var(--muted)}
+.titulo-celda{font-weight:500;color:var(--text)}
+.corrida{white-space:nowrap}
+
+/* Etiquetas de estado: punto + texto, nada de cápsulas gritonas */
+.est{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;white-space:nowrap}
+.est::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.est.ok{color:var(--ok)} .est.ok2{color:color-mix(in srgb,var(--ok) 70%,var(--muted))} .est.warn{color:var(--warn)} .est.bad{color:var(--bad)} .est.neutro{color:var(--muted)}
+.art{display:inline-block;font:500 11.5px var(--mono);color:var(--accent);background:var(--accent-weak);border-radius:4px;padding:1px 6px;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text-2);background:var(--sunk);border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-weak);border-color:transparent}
+.pill.warn{color:var(--warn);background:var(--warn-weak);border-color:transparent}
+.pill.bad{color:var(--bad);background:var(--bad-weak);border-color:transparent}
+
+/* Barras de dato */
+.medida{display:inline-flex;align-items:center;gap:8px;justify-content:flex-end}
+.medida .pista{width:96px;height:6px;border-radius:3px;background:var(--sunk);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.medida .pista i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.medida.mrr .pista i{background:color-mix(in srgb,var(--accent) 55%,var(--surface))}
+
+/* Composición de cuadros */
+.mezcla{display:flex;height:10px;border-radius:5px;overflow:hidden;gap:2px}
+.mezcla span{display:block;height:100%}
+.c-verificado{background:var(--ok)} .c-recuadro{background:color-mix(in srgb,var(--ok) 45%,var(--surface))} .c-parcial{background:var(--warn)} .c-solo_imagen{background:color-mix(in srgb,var(--muted) 55%,var(--surface))}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--muted);margin-top:10px}
+.leyenda i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}
+.leyenda b{color:var(--text);font-weight:500;font-variant-numeric:tabular-nums}
+
+/* Flujo de las tres lecturas */
+.flujo{list-style:none;margin:0;padding:2px 0 4px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.1fr);gap:0 14px;align-items:start}
+.paso{padding:0;min-width:0}
+.flecha{padding-top:1px;color:var(--line-2)}
+.flecha svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block}
+.paso h3{font-size:14px;margin-bottom:4px}
+.paso p{margin:0;font-size:12px;color:var(--muted);line-height:1.45}
+.paso.regla{border-left:1px solid var(--line);padding-left:18px;margin-left:4px}
+.paso.regla h3{color:var(--accent)}
+.paso.regla p{color:var(--text-2)}
+
+/* Maestro y detalle */
+.md{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+@media (min-width:1280px){.md{grid-template-columns:minmax(440px,5fr) minmax(0,7fr)}}
+.paginado{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.paginado .btn{margin-left:auto}
+.paginado .btn + .btn{margin-left:0}
+.detalle{container-type:inline-size}
+.det-cab{padding:16px 18px 14px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.det-cab h2{font-size:16px}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12px;color:var(--muted)}
+.ruta{font-size:12px;color:var(--muted)}
+.ruta span + span::before{content:"/";margin:0 6px;color:var(--line-2)}
+.evidencia{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+@container (min-width:1180px){.evidencia{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.evidencia > .original{border-right:1px solid var(--line);border-bottom:0}}
+.original{padding:14px 18px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.etiqueta{font-size:12px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:6px}
+.lamina{display:block;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px}
+.lamina img{display:block;width:auto;max-width:100%;max-height:440px;margin:0 auto;object-fit:contain}
+.confirmado{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.confirmado table{font-size:13px}
+.confirmado th{white-space:normal;min-width:90px}
+.confirmado .tabla{border:1px solid var(--line);border-radius:var(--r-sm)}
+.indice{margin:0;white-space:pre-wrap;font:12px/1.6 var(--mono);color:var(--text-2);background:var(--sunk);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;max-height:15em;overflow:auto}
+.nota{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;padding:10px 12px;border-radius:var(--r-sm);background:var(--warn-weak);color:color-mix(in srgb,var(--warn) 80%,var(--text))}
+.nota svg{margin-top:2px;color:var(--warn)}
+.nota.neutro{background:var(--sunk);color:var(--text-2);border:1px solid var(--line)}
+.nota.neutro svg{color:var(--muted)}
+.nota.err{background:var(--bad-weak);color:color-mix(in srgb,var(--bad) 80%,var(--text))}
+.nota.err svg{color:var(--bad)}
+
+/* Vacíos y carga */
+.vacio{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:48px 24px;color:var(--muted)}
+.vacio svg{width:28px;height:28px;color:var(--line-2);stroke-width:1.4}
+.vacio b{color:var(--text);font-weight:500}
+.vacio p{margin:0;max-width:44ch;font-size:13px}
+.esq{height:12px;border-radius:4px;background:linear-gradient(90deg,var(--sunk),color-mix(in srgb,var(--line) 70%,var(--sunk)),var(--sunk));background-size:200% 100%;animation:esq 1.2s ease-in-out infinite}
+@keyframes esq{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.esq{animation:none}*{transition:none!important}}
+
+/* Resultados del probador y fragmentos */
+.resultados{display:flex;flex-direction:column}
+.res{padding:14px 18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.res:first-child{border-top:0}
+.res-cab{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12px;color:var(--muted)}
+.res-cab .n{font:600 12px var(--mono);color:var(--text);min-width:22px}
+.puntaje{display:inline-flex;align-items:center;gap:6px;font:12px var(--mono)}
+.puntaje .pista{width:56px;height:4px;border-radius:2px;background:var(--sunk);overflow:hidden}
+.puntaje .pista i{display:block;height:100%;background:var(--accent)}
+.res .ub{font-size:12px;color:var(--text-2)}
+.texto{margin:0;white-space:pre-wrap;font:13px/1.6 var(--sans);color:var(--text-2);background:var(--sunk);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;max-height:10.5em;overflow:auto}
+.figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.figs figure{margin:0;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--surface)}
+.figs a{display:block;background:var(--paper);padding:8px}
+.figs img{width:100%;height:150px;object-fit:contain;display:block}
+.figs figcaption{font-size:12px;color:var(--muted);padding:8px 10px;line-height:1.4}
+.figs figcaption .mono{color:var(--text-2)}
+
+@media (max-width:860px){
+  body{grid-template-columns:1fr}
+  .rail{position:static;height:auto;flex-direction:row;align-items:center;gap:8px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;border-right:0;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:3}
+  .rail::-webkit-scrollbar{display:none}
+  .marca{padding:0 6px 0 0}.marca span{display:none}
+  .nav{flex-direction:row}.nav .cnt{display:none}
+  .pie{display:none}
+  main{padding:20px 16px 56px}
+  .flujo{grid-template-columns:1fr;gap:6px}.flecha{padding:0 0 0 2px}.flecha svg{transform:rotate(90deg);width:18px;height:18px}.paso.regla{border-left:0;padding-left:0;margin-left:0;padding-top:8px;border-top:1px solid var(--line)}
+  .corrida{white-space:normal}
+}
+@media (max-width:600px){
+  table.corridas thead{display:none}
+  table.corridas tr{display:flex;flex-wrap:wrap;gap:2px 16px;padding:10px 14px;border-bottom:1px solid var(--line)}
+  table.corridas tbody tr:last-child{border-bottom:0}
+  table.corridas td{border:0;padding:0;text-align:left;background:none}
+  table.corridas tr[aria-selected="true"]{background:var(--accent-weak)}
+  table.corridas td:first-child{flex-basis:100%;margin-bottom:4px}
+  table.corridas td.n::before{content:attr(data-l) " ";color:var(--muted);font-weight:400}
+}
+</style>
+</head>
+<body>
+<!--
+THESIS: un panel de operación donde la evidencia manda; rechaza el tablero de tarjetas iguales con números grandes.
+OWN-WORLD: grises fríos, un acento índigo, Geist y Geist Mono solo para datos, filetes de 1 px, estado como punto y texto, láminas originales sobre papel blanco también en oscuro.
+STORY: el operador ve cómo quedó cada documento y cada cuadro, contrasta el original con lo que entró al índice y mide la búsqueda.
+FIRST VIEWPORT: barra lateral fija; en Cuadros, el flujo de tres lecturas, la línea de cifras con la composición y, abajo, lista a la izquierda y detalle con original y filas a la derecha.
+FORM: dirección fijada por el dueño (producto de IA sobrio, en la línea de Linear y Vercel); sin sorteo.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+-->
+<aside class="rail" aria-label="Pantallas">
+  <div class="marca">
+    <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" rx="6" fill="var(--text)"/><path d="M8 18.5V7.5l10 11V7.5" fill="none" stroke="var(--bg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div><b>Norma</b><span>Panel del creador</span></div>
+  </div>
+  <nav class="nav">
+    <button data-v="documentos" aria-current="page"><svg class="i" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Documentos<span class="cnt" id="n-documentos"></span></button>
+    <button data-v="cuadros"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10M15 10v10"/></svg>Cuadros<span class="cnt" id="n-cuadros"></span></button>
+    <button data-v="probador"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Probador</button>
+    <button data-v="examen"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.2 1.2L7 5M3.5 12l1.2 1.2L7 11"/><path d="M4 18h2"/></svg>Examen</button>
+    <button data-v="consultas"><svg class="i" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Consultas</button>
+  </nav>
+  <div class="pie">
+    <div class="estado-svc" id="svc"><i></i><span>conectando…</span></div>
+    <div class="tema" role="group" aria-label="Tema">
+      <button data-t="light">Claro</button><button data-t="auto">Sistema</button><button data-t="dark">Oscuro</button>
+    </div>
+    <label for="clave">Clave del servicio, si está configurada
+      <input id="clave" type="password" autocomplete="off" placeholder="X-API-Key">
+    </label>
+  </div>
+</aside>
+<main>
+  <section id="v-documentos">
+    <div class="cab"><div><h1>Documentos</h1><p>Cómo quedó cortado cada archivo del índice. Elegí uno para leer sus fragmentos tal como los ve la búsqueda.</p></div><div class="lado mono" id="doc-modelo"></div></div>
+    <p class="cifras" id="doc-kpis"></p>
+    <div class="bloque">
+      <div class="tabla"><table><thead><tr><th>Archivo</th><th>Documento</th><th class="n">Fragmentos</th><th class="n">Con artículo</th><th class="n" title="v1: código RT asignado por archivo. v2: páginas que heredan el código de la anterior.">RT heredado</th></tr></thead><tbody id="doc-tabla"></tbody></table></div>
+    </div>
+    <div id="doc-frag"></div>
+  </section>
+
+  <section id="v-cuadros" hidden>
+    <div class="cab"><div><h1>Cuadros</h1><p>El texto del PDF aplana los cuadros y el modelo termina adivinando qué número va en cada columna. Por eso cada cuadro se lee tres veces, y una fila entra al índice solo si dos lecturas coinciden celda por celda. Lo que no se confirma no se transcribe: se muestra el original.</p></div></div>
+    <ol class="flujo" aria-label="Cómo se confirma cada fila">
+      <li class="paso"><h3>1 · Grilla del PDF</h3><p>Celdas armadas con las líneas del propio PDF. Sin modelos: el texto exacto.</p></li><li class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h17M14 6l6 6-6 6"/></svg></li>
+      <li class="paso"><h3>2 · Visión</h3><p>Claude Haiku 5.5 transcribe la imagen de la página.</p></li><li class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h17M14 6l6 6-6 6"/></svg></li>
+      <li class="paso"><h3>3 · Árbitro</h3><p>Gemini, de otra empresa, lee solo las páginas donde las dos primeras no coinciden.</p></li><li class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h17M14 6l6 6-6 6"/></svg></li>
+      <li class="paso regla"><h3>Entra al índice: dos de tres</h3><p>Cada fila tiene que salir igual en dos lecturas. Un dígito distinto es otro dato, y no se tolera.</p></li>
+    </ol>
+    <div class="bloque" id="cu-resumen"><div style="padding:16px"><div class="esq" style="width:40%"></div></div></div>
+    <div class="md">
+      <div class="bloque">
+        <form class="barra-filtros" id="cu-form" style="padding:12px 14px;border-bottom:1px solid var(--line)">
+          <div class="campo"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="cu-q" type="search" placeholder="Artículo, título o columna: 3.5.2.1, salubridad…" aria-label="Buscar cuadros"></div>
+          <select id="cu-modo" aria-label="Estado"><option value="">Todos los estados</option><option value="verificado">Verificados</option><option value="parcial">Parciales</option><option value="solo_imagen">Solo imagen</option><option value="recuadro">Recuadros de texto</option></select>
+          <select id="cu-doc" aria-label="Documento"></select>
+          <button class="btn" type="submit">Filtrar</button>
+        </form>
+        <div id="cu-lista"></div>
+      </div>
+      <div class="bloque detalle" id="cu-detalle"></div>
+    </div>
+  </section>
+
+  <section id="v-probador" hidden>
+    <div class="cab"><div><h1>Probador</h1><p>Qué fragmentos encuentra la búsqueda para una pregunta, en orden y con su puntaje, sin redactar respuesta.</p></div></div>
+    <form class="barra-filtros" id="prob-form">
+      <div class="campo"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="prob-q" placeholder="¿Qué lado mínimo tiene un baño tipo I?" required aria-label="Pregunta"></div>
+      <select id="prob-k" aria-label="Cantidad de resultados"><option value="8">8 resultados</option><option value="15">15 resultados</option><option value="30">30 resultados</option></select>
+      <button class="btn" type="submit">Buscar</button>
+    </form>
+    <div id="prob-out"><div class="bloque"><div class="vacio"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><b>Probá una pregunta</b><p>Sirve para ver si el artículo correcto aparece primero antes de culpar al modelo que redacta.</p></div></div></div>
+  </section>
+
+  <section id="v-examen" hidden>
+    <div class="cab"><div><h1>Examen</h1><p>Cada pregunta tiene anotado el artículo donde está la respuesta. <b>Acierto@k</b> es el porcentaje de preguntas cuyo artículo aparece entre los primeros k resultados; <b>MRR</b>, qué tan arriba aparece (1 es siempre primero). Compará solo corridas del mismo examen.</p></div><div class="lado">Se corre con <code>npx tsx eval/correr-examen.mts</code></div></div>
+    <div id="ex-out"></div>
+  </section>
+
+  <section id="v-consultas" hidden>
+    <div class="cab"><div><h1>Consultas</h1><p>Las últimas 30, de la más nueva a la más vieja: cada pregunta del chat y cada búsqueda del Probador.</p></div></div>
+    <div id="con-out"></div>
+  </section>
+</main>
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const fmt = (n) => Number(n || 0).toLocaleString("es-AR");
+  const pct = (a, b) => (b ? Math.round((100 * a) / b) : 0);
+  const ICO = {
+    alerta: '<svg class="i" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>',
+    tabla: '<svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 10v10M15 10v10"/></svg>',
+    imagen: '<svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>',
+    indice: '<svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg>',
+    vacio: '<svg class="i" viewBox="0 0 24 24"><path d="M3 7h18M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7M9 7V4h6v3"/></svg>',
+    actividad: '<svg class="i" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>',
+    examen: '<svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.2 1.2L7 5M3.5 12l1.2 1.2L7 11"/></svg>',
+  };
+  const ESTADO = { verificado: ["ok", "Verificado"], recuadro: ["ok2", "Recuadro de texto"], parcial: ["warn", "Parcial"], solo_imagen: ["neutro", "Solo imagen"] };
+  const LECTURA = { grilla: "Grilla del PDF", vision: "Visión (Haiku)", arbitro: "Árbitro (Gemini)" };
+  let DOCNOM = { CE: "Código de Edificación", RT: "Reglamentos Técnicos" };
+  const VISTAS = ["documentos", "cuadros", "probador", "examen", "consultas"];
+  let actual = "documentos", cuDesde = 0, cuItems = [], cuSel = null;
+
+  // Detrás de un prefijo (producción: /norma/panel) las rutas se arman desde la base.
+  const BASE = location.pathname.replace(/\/panel\/?$/, "");
+  const abs = (u) => (u && u.charAt(0) === "/" ? BASE + u : u);
+  function api(path, body){
+    const h = { "Content-Type": "application/json" };
+    if ($("clave").value) h["X-API-Key"] = $("clave").value;
+    return fetch(abs(path), body ? { method: "POST", headers: h, body: JSON.stringify(body) } : { headers: h }).then((r) => {
+      if (r.status === 401) throw new Error("El servicio pide clave. Cargala abajo a la izquierda, en «Clave del servicio».");
+      if (!r.ok) throw new Error("El servicio respondió " + r.status + ". Revisá el registro del servidor y volvé a intentar.");
+      return r.json();
+    });
+  }
+  const nota = (txt, tipo) => '<div class="nota' + (tipo ? " " + tipo : "") + '">' + ICO.alerta + "<div>" + txt + "</div></div>";
+  const error = (el, e) => { $(el).innerHTML = nota(esc(e.message), "err"); };
+  const vacio = (ico, titulo, texto) => '<div class="vacio">' + ico + "<b>" + titulo + "</b>" + (texto ? "<p>" + texto + "</p>" : "") + "</div>";
+  const esqFilas = (n, cols) => '<div class="tabla"><table><tbody>' + Array.from({ length: n }, () => "<tr>" + Array.from({ length: cols }, (_, j) => '<td><div class="esq" style="width:' + (j ? 50 : 80) + '%"></div></td>').join("") + "</tr>").join("") + "</tbody></table></div>";
+  const est = (modo) => { const e = ESTADO[modo] || ["", modo]; return '<span class="est ' + e[0] + '">' + esc(e[1]) + "</span>"; };
+  const art = (a) => (a ? '<span class="art">art. ' + esc(a) + "</span>" : "");
+  const medida = (v, txt, cls) => '<span class="medida ' + (cls || "") + '"><span class="pista"><i style="width:' + Math.max(0, Math.min(100, v * 100)) + '%"></i></span><span class="num">' + txt + "</span></span>";
+  const figuras = (figs) => (figs && figs.length ? '<div class="figs">' + figs.map((f) => '<figure><a href="' + esc(abs(f.url)) + '" target="_blank" rel="noopener"><img src="' + esc(abs(f.url)) + '" alt="' + esc(f.descripcion || "Figura") + '" loading="lazy"></a><figcaption><span class="mono">' + esc(f.id) + "</span> · pág. " + f.pagina + (f.descripcion ? "<br>" + esc(f.descripcion) : "") + "</figcaption></figure>").join("") + "</div>" : "");
+  // Nombre legible: el título del cuadro; si no tiene, el artículo donde está («3.5.2.1 Servicios de Salubridad…»).
+  const nombreCuadro = (c) => c.titulo || (c.ubicacion ? c.ubicacion.split(" › ").pop() : "") || (c.encabezados_grilla || []).filter(Boolean).join(" · ") || c.id;
+
+  // ---------- Tema y clave ----------
+  function marcarTema(){ const t = document.documentElement.dataset.theme || "auto"; document.querySelectorAll(".tema button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.t === t))); }
+  document.querySelectorAll(".tema button").forEach((b) => b.addEventListener("click", () => {
+    if (b.dataset.t === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = b.dataset.t;
+    try { b.dataset.t === "auto" ? localStorage.removeItem("norma-tema") : localStorage.setItem("norma-tema", b.dataset.t); } catch (e) {}
+    marcarTema();
+  }));
+  marcarTema();
+  try { $("clave").value = sessionStorage.getItem("norma-clave") || ""; } catch (e) {}
+  $("clave").addEventListener("change", () => { try { sessionStorage.setItem("norma-clave", $("clave").value); } catch (e) {} cargar(actual); });
+  fetch(abs("/health")).then((r) => r.json()).then((d) => {
+    $("svc").classList.toggle("ok", !!(d.ok && d.chunks));
+    $("svc").lastElementChild.textContent = d.ok ? fmt(d.chunks) + " registros · " + (d.model ? d.model.name : "") : "sin índice";
+    if (d.jurisdiccion && d.jurisdiccion.documentos) DOCNOM = Object.assign({}, DOCNOM, d.jurisdiccion.documentos);
+    $("cu-doc").innerHTML = '<option value="">Todos los documentos</option>' + Object.keys(DOCNOM).filter((k) => k !== "CUR").map((k) => '<option value="' + k + '">' + esc(DOCNOM[k]) + "</option>").join("");
+  }).catch(() => { $("svc").lastElementChild.textContent = "servicio sin conexión"; });
+  $("cu-doc").innerHTML = '<option value="">Todos los documentos</option><option value="CE">Código de Edificación</option><option value="RT">Reglamentos Técnicos</option>';
+
+  // ---------- Navegación ----------
+  document.querySelectorAll(".nav button").forEach((b) => b.addEventListener("click", () => mostrar(b.dataset.v)));
+  function mostrar(v){
+    actual = v;
+    document.querySelectorAll(".nav button").forEach((b) => (b.dataset.v === v ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current")));
+    VISTAS.forEach((x) => { $("v-" + x).hidden = x !== v; });
+    try { history.replaceState(null, "", "#" + v); } catch (e) {}
+    cargar(v);
+  }
+  function cargar(v){
+    if (v === "documentos") documentos();
+    if (v === "cuadros") cuadros();
+    if (v === "examen") examen();
+    if (v === "consultas") consultas();
+  }
+
+  // ---------- Documentos ----------
+  function documentos(){
+    $("doc-tabla").innerHTML = Array.from({ length: 6 }, () => '<tr><td colspan="5"><div class="esq" style="width:' + (40 + Math.random() * 40) + '%"></div></td></tr>').join("");
+    api("/api/stats").then((d) => {
+      const t = d.documentos.reduce((a, x) => { a.f += x.fragmentos; a.art += x.con_articulo; a.resp += x.rt_por_respaldo; return a; }, { f: 0, art: 0, resp: 0 });
+      $("n-documentos").textContent = d.documentos.length;
+      $("doc-modelo").innerHTML = esc(d.indice) + "<br>" + esc(d.modelo_embeddings) + " · " + esc(d.modelo_respuesta) + " · k=" + d.top_k;
+      $("doc-kpis").innerHTML = "<span><b>" + fmt(d.fragmentos) + "</b>registros en el índice</span><span><b>" + d.documentos.length + "</b>archivos</span><span><b>" + pct(t.art, t.f) + " %</b>con artículo identificado</span><span><b>" + fmt(t.resp) + "</b>con código RT heredado</span><span><b>" + fmt(d.feedback.total) + "</b>opiniones recibidas</span>";
+      $("doc-tabla").innerHTML = d.documentos.map((x) => '<tr class="fila" tabindex="0" data-a="' + esc(x.archivo) + '"><td class="titulo-celda">' + esc(x.archivo) + "</td><td>" + esc(x.documento) + '</td><td class="n">' + fmt(x.fragmentos) + '</td><td class="n">' + medida(x.fragmentos ? x.con_articulo / x.fragmentos : 0, pct(x.con_articulo, x.fragmentos) + " %") + '</td><td class="n">' + (x.rt_por_respaldo ? fmt(x.rt_por_respaldo) : '<span class="muted">—</span>') + "</td></tr>").join("");
+      document.querySelectorAll("#doc-tabla tr").forEach((tr) => {
+        const abrir = () => { document.querySelectorAll("#doc-tabla tr").forEach((o) => o.removeAttribute("aria-selected")); tr.setAttribute("aria-selected", "true"); verFragmentos(tr.dataset.a, 0); };
+        tr.addEventListener("click", abrir);
+        tr.addEventListener("keydown", (e) => { if (e.key === "Enter") abrir(); });
+      });
+    }).catch((e) => { $("doc-tabla").innerHTML = ""; error("doc-frag", e); });
+  }
+  function fragmento(s){
+    const puntaje = s.score !== "" && s.score != null ? '<span class="puntaje"><span class="pista"><i style="width:' + Math.max(0, Math.min(100, Number(s.score) * 100)) + '%"></i></span>' + Number(s.score).toFixed(3) + "</span>" : "";
+    return '<div class="res"><div class="res-cab"><span class="n">' + s.n + "</span>" + puntaje + (s.articulo ? art(s.articulo) : '<span class="pill warn">sin artículo</span>') +
+      (s.es_figura ? '<span class="pill">figura</span>' : "") + (s.rt ? '<span class="mono">' + esc(s.rt) + "</span>" : "") + "<span>" + esc(s.archivo) + " · fragmento " + s.chunk + "</span>" + (s.pagina ? "<span>pág. " + s.pagina + " del PDF</span>" : "") + "</div>" +
+      (s.ubicacion ? '<div class="ub">' + esc(s.ubicacion) + "</div>" : "") + '<pre class="texto">' + esc(s.texto) + "</pre>" + figuras(s.figuras) + "</div>";
+  }
+  function verFragmentos(archivo, desde){
+    $("doc-frag").innerHTML = '<div class="bloque">' + esqFilas(4, 1) + "</div>";
+    api("/api/fragmentos?archivo=" + encodeURIComponent(archivo) + "&desde=" + desde).then((d) => {
+      const pag = (desde > 0 ? '<button class="btn sec chico" data-d="' + (desde - 40) + '">Anteriores</button>' : "") + (desde + 40 < d.total ? '<button class="btn sec chico" data-d="' + (desde + 40) + '">Siguientes</button>' : "");
+      $("doc-frag").innerHTML = '<div class="bloque"><div class="bloque-cab"><h2>' + esc(archivo) + '</h2><div class="barra-filtros"><span class="muted num">' + (desde + 1) + "–" + Math.min(desde + 40, d.total) + " de " + fmt(d.total) + "</span>" + pag + '</div></div><div class="resultados">' +
+        d.fragmentos.map((r) => fragmento({ n: r.chunk_index, score: "", articulo: r.articulo, rt: r.rt_code, archivo: r.archivo_origen, chunk: r.chunk_index, ubicacion: r.ubicacion, texto: r.text, pagina: r.pagina, figuras: r.figuras, es_figura: !!r.figura_id })).join("") + "</div></div>";
+      $("doc-frag").querySelectorAll("button[data-d]").forEach((b) => b.addEventListener("click", () => verFragmentos(archivo, Number(b.dataset.d))));
+      $("doc-frag").scrollIntoView({ behavior: "smooth", block: "start" });
+    }).catch((e) => error("doc-frag", e));
+  }
+
+  // ---------- Cuadros ----------
+  function cuadros(){
+    if (!cuItems.length) $("cu-lista").innerHTML = esqFilas(8, 3);
+    if (!cuSel) $("cu-detalle").innerHTML = vacio(ICO.tabla, "Elegí un cuadro", "Vas a ver el original junto a las filas que confirmaron dos lecturas y la línea exacta que entra al índice.");
+    const q = "/api/cuadros?modo=" + encodeURIComponent($("cu-modo").value) + "&doc=" + encodeURIComponent($("cu-doc").value) + "&q=" + encodeURIComponent($("cu-q").value) + "&desde=" + cuDesde;
+    api(q).then((d) => {
+      const r = d.resumen, pm = r.por_modo, filas = r.filas_confirmadas + r.filas_sin_verificar;
+      if (!r.total) { $("cu-resumen").hidden = true; $("cu-lista").innerHTML = vacio(ICO.tabla, "Este índice no tiene cuadros", "Se generan con <code>ingest_v2/tablas_pdf.py</code> y se publican en <code>data/v2/tablas/cuadros.json</code>."); $("cu-detalle").innerHTML = ""; return; }
+      $("n-cuadros").textContent = r.total;
+      const orden = ["verificado", "recuadro", "parcial", "solo_imagen"];
+      $("cu-resumen").hidden = false;
+      $("cu-resumen").innerHTML = '<div style="padding:14px 16px"><p class="cifras" style="margin-bottom:12px">' +
+        "<span><b>" + fmt(r.total) + "</b>cuadros encontrados</span>" +
+        "<span><b>" + fmt(pm.verificado + pm.recuadro) + "</b>verificados enteros (" + pm.verificado + " cuadros + " + pm.recuadro + " recuadros)</span>" +
+        "<span><b>" + fmt(r.filas_confirmadas) + "</b>filas confirmadas, " + pct(r.filas_confirmadas, filas) + " % de " + fmt(filas) + "</span></p>" +
+        '<div class="mezcla" role="img" aria-label="Cuadros por estado">' + orden.map((m) => '<span class="c-' + m + '" style="flex:' + pm[m] + '" title="' + esc(ESTADO[m][1]) + ": " + pm[m] + '"></span>').join("") + "</div>" +
+        '<div class="leyenda">' + orden.map((m) => '<span><i class="c-' + m + '"></i>' + esc(ESTADO[m][1]) + " <b>" + pm[m] + "</b></span>").join("") +
+        '<span style="margin-left:auto">Filas tomadas de: ' + Object.keys(r.por_lectura).map((k) => esc(LECTURA[k] || k) + " <b>" + r.por_lectura[k] + "</b>").join(" · ") + "</span></div></div>";
+      cuItems = d.cuadros;
+      if (!d.total) { $("cu-lista").innerHTML = vacio(ICO.tabla, "Ningún cuadro coincide", "Probá con el número de artículo (3.5.2.1) o con una palabra de su título o de sus columnas."); return; }
+      const pag = '<div class="paginado"><span class="num">' + fmt(d.total) + " cuadros" + (d.total > 30 ? " · " + (d.desde + 1) + "–" + Math.min(d.desde + 30, d.total) : "") + "</span>" +
+        (d.desde > 0 ? '<button class="btn sec chico" data-d="' + (d.desde - 30) + '">Anteriores</button>' : "") + (d.desde + 30 < d.total ? '<button class="btn sec chico" data-d="' + (d.desde + 30) + '">Siguientes</button>' : "") + "</div>";
+      $("cu-lista").innerHTML = '<div class="tabla"><table><thead><tr><th>Cuadro</th><th>Estado</th><th class="n">Filas</th></tr></thead><tbody>' +
+        d.cuadros.map((c, i) => '<tr class="fila" tabindex="0" data-i="' + i + '"' + (cuSel === c.id ? ' aria-selected="true"' : "") + '><td><span class="titulo-celda">' + esc(nombreCuadro(c)) + '</span><span class="id">' + esc(c.doc) + " · pág. " + c.pagina + (c.articulo ? " · art. " + esc(c.articulo) : "") + "</span></td><td>" + est(c.modo) + '<span class="lect">' + esc(LECTURA[c.lectura] || "sin lectura confirmada") + '</span></td><td class="n">' + c.filas.length + (c.sin_verificar ? ' <span class="muted">/ ' + c.sin_verificar + "</span>" : "") + "</td></tr>").join("") +
+        "</tbody></table></div>" + pag;
+      $("cu-lista").querySelectorAll("button[data-d]").forEach((b) => b.addEventListener("click", () => { cuDesde = Number(b.dataset.d); cuadros(); }));
+      $("cu-lista").querySelectorAll("tr[data-i]").forEach((tr) => {
+        const abrir = () => { $("cu-lista").querySelectorAll("tr[data-i]").forEach((o) => o.removeAttribute("aria-selected")); tr.setAttribute("aria-selected", "true"); verCuadro(cuItems[Number(tr.dataset.i)]); };
+        tr.addEventListener("click", abrir);
+        tr.addEventListener("keydown", (e) => { if (e.key === "Enter") abrir(); });
+      });
+      // Con un solo resultado, o sin nada abierto en pantalla ancha, el detalle se abre solo.
+      const unico = d.cuadros.length === 1, ancho = matchMedia("(min-width:1280px)").matches;
+      if (unico || (!cuSel && ancho)) {
+        const i = Math.max(0, d.cuadros.findIndex((c) => c.modo === "verificado"));
+        $("cu-lista").querySelector('tr[data-i="' + i + '"]').click();
+      }
+    }).catch((e) => error("cu-lista", e));
+  }
+  function verCuadro(c){
+    cuSel = c.id;
+    const enc = c.encabezados.map((h, j) => h || "columna " + (j + 1));
+    const tabla = c.filas.length && c.modo !== "recuadro" ? '<div class="tabla"><table><thead><tr>' + enc.map((h) => "<th>" + esc(h) + "</th>").join("") + "</tr></thead><tbody>" + c.filas.map((f) => "<tr>" + f.map((v) => "<td>" + esc(v) + "</td>").join("") + "</tr>").join("") + "</tbody></table></div>" : "";
+    const indice = c.modo === "recuadro" ? c.filas.map((f) => f[0]).join("\n") : c.filas.slice(0, 3).map((f) => "Cuadro · " + f.map((v, j) => (v ? enc[j] + ": " + v : "")).filter(Boolean).join(" · ")).join("\n") + (c.filas.length > 3 ? "\n…" : "");
+    const rot = (n) => esc(c.rotulos_sin_verificar.slice(0, n).join("; ")) + (c.rotulos_sin_verificar.length > n ? "…" : "");
+    const aviso = c.modo === "solo_imagen" ? nota("Ninguna fila coincidió en dos lecturas. El índice no transcribe valores de este cuadro y la respuesta remite al original." + (c.rotulos_sin_verificar.length ? " Filas: " + rot(8) + "." : ""), "neutro") :
+      c.sin_verificar ? nota(c.sin_verificar + (c.sin_verificar === 1 ? " fila sin confirmar quedó" : " filas sin confirmar quedaron") + " fuera del texto: " + rot(6) + ".") : "";
+    const ruta = c.ubicacion ? '<div class="ruta">' + c.ubicacion.split(" › ").map((p) => "<span>" + esc(p) + "</span>").join("") + "</div>" : "";
+    $("cu-detalle").innerHTML =
+      '<div class="det-cab"><h2>' + esc(nombreCuadro(c)) + '</h2><div class="meta">' + est(c.modo) + "<span>" + esc(DOCNOM[c.doc] || c.doc) + " · pág. " + c.pagina + "</span>" + art(c.articulo) + (c.lectura ? "<span>Filas tomadas de: " + esc(LECTURA[c.lectura] || c.lectura) + "</span>" : "") + '<span class="mono">' + esc(c.id) + "</span></div>" + ruta + "</div>" +
+      '<div class="evidencia"><div class="original"><span class="etiqueta">' + ICO.imagen + "Original del PDF</span>" +
+      (c.imagen ? '<a class="lamina" href="' + esc(abs(c.imagen)) + '" target="_blank" rel="noopener"><img src="' + esc(abs(c.imagen)) + '" alt="Cuadro original, ' + esc(DOCNOM[c.doc] || c.doc) + " página " + c.pagina + '"></a>' : vacio(ICO.imagen, "Sin imagen", "")) + "</div>" +
+      '<div class="confirmado">' + (tabla ? '<span class="etiqueta">' + ICO.tabla + "Filas confirmadas por dos lecturas</span>" + tabla : "") + aviso +
+      (indice.trim() ? '<span class="etiqueta">' + ICO.indice + 'Así entra al índice</span><pre class="indice">' + esc(indice) + "</pre>" : "") + "</div></div>";
+    if ($("cu-detalle").getBoundingClientRect().top < 0 || !matchMedia("(min-width:1280px)").matches) $("cu-detalle").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  $("cu-form").addEventListener("submit", (e) => { e.preventDefault(); cuDesde = 0; cuSel = null; cuadros(); });
+
+  // ---------- Probador ----------
+  $("prob-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    $("prob-out").innerHTML = '<div class="bloque">' + esqFilas(5, 1) + "</div>";
+    api("/api/retrieve", { question: $("prob-q").value, top_k: Number($("prob-k").value) }).then((d) => {
+      $("prob-out").innerHTML = '<div class="bloque"><div class="bloque-cab"><h2>' + d.sources.length + ' fragmentos</h2><span class="muted num">' + d.latencyMs + ' ms</span></div><div class="resultados">' + d.sources.map(fragmento).join("") + "</div></div>";
+    }).catch((e2) => error("prob-out", e2));
+  });
+
+  // ---------- Examen ----------
+  function examen(){
+    $("ex-out").innerHTML = '<div class="bloque">' + esqFilas(6, 4) + "</div>";
+    api("/api/examen").then((d) => {
+      if (!d.corridas.length) { $("ex-out").innerHTML = '<div class="bloque">' + vacio(ICO.examen, "Todavía no hay corridas", "Corré <code>npx tsx eval/correr-examen.mts</code>; cada corrida queda en <code>eval/resultados/</code> y aparece acá.") + "</div>"; return; }
+      const c = d.corridas, u = c[c.length - 1];
+      const mejor = (k) => Math.max.apply(null, c.map((x) => Number(x.resumen[k]) || 0));
+      const mAc = mejor("acierto_k"), mMrr = mejor("mrr"), mSin = mejor("acierto_k_sin_por_revisar");
+      const mMs = Math.min.apply(null, c.map((x) => Number(x.resumen.ms_mediana) || Infinity));
+      const val = (v, m, txt) => (Number(v) === m ? "<b>" + txt + "</b>" : txt);
+      let html = '<div class="bloque"><div class="bloque-cab"><h2>Corridas</h2><span class="muted">' + c.length + ' en total · la última, resaltada · en negrita, la mejor de cada columna</span></div><div class="tabla"><table class="corridas"><thead><tr><th>Corrida</th><th class="n">Preguntas</th><th class="n">Acierto@k</th><th class="n">MRR</th><th class="n">Sin «por revisar»</th><th class="n">ms (mediana)</th></tr></thead><tbody>' +
+        c.map((x) => { const r = x.resumen; return "<tr" + (x === u ? ' aria-selected="true" class="fila"' : "") + '><td><span class="titulo-celda corrida">' + esc(r.etiqueta) + '</span><span class="id">' + esc(r.examen) + " · " + esc(r.fecha.slice(0, 10)) + " · " + esc(r.modelo_embeddings) + ", k=" + r.k + '</span></td><td class="n" data-l="Preguntas">' + (r.preguntas || x.filas.length) + '</td><td class="n" data-l="Acierto@k">' + val(r.acierto_k, mAc, Math.round(r.acierto_k * 100) + " %") + '</td><td class="n" data-l="MRR">' + val(r.mrr, mMrr, Number(r.mrr).toFixed(3)) + '</td><td class="n" data-l="Sin «por revisar»">' + val(r.acierto_k_sin_por_revisar, mSin, Math.round(r.acierto_k_sin_por_revisar * 100) + " %") + '</td><td class="n" data-l="ms">' + val(r.ms_mediana, mMs, fmt(r.ms_mediana)) + "</td></tr>"; }).join("") + "</tbody></table></div></div>";
+      const ok = u.filas.filter((f) => f.puesto).length;
+      html += '<div class="bloque"><div class="bloque-cab"><h2>Última corrida, pregunta por pregunta</h2><span class="muted num">' + ok + " de " + u.filas.length + ' encontradas</span></div><div class="tabla"><table><thead><tr><th>Pregunta</th><th class="n">Puesto</th><th>Primer resultado</th></tr></thead><tbody>' +
+        u.filas.map((f) => { const d0 = f.devueltos[0] || {}; return '<tr><td><span class="titulo-celda">' + esc(f.pregunta) + "</span>" + (f.por_revisar ? ' <span class="pill warn">por revisar</span>' : "") + '</td><td class="n">' + (f.puesto ? '<span class="pill ' + (f.puesto === 1 ? "ok" : "") + '">' + f.puesto + "º</span>" : '<span class="pill bad">no está</span>') + '</td><td class="muted">' + art(d0.articulo) + " " + esc((d0.rt || "") + " " + (d0.ubicacion || "")) + "</td></tr>"; }).join("") + "</tbody></table></div></div>";
+      $("ex-out").innerHTML = html;
+    }).catch((e) => error("ex-out", e));
+  }
+
+  // ---------- Consultas ----------
+  function consultas(){
+    $("con-out").innerHTML = '<div class="bloque">' + esqFilas(8, 4) + "</div>";
+    api("/api/stats").then((d) => {
+      const l = d.ultimas_consultas;
+      $("con-out").innerHTML = '<div class="bloque">' + (!l.length ? vacio(ICO.actividad, "Todavía no hay consultas", "Cada pregunta del chat y cada búsqueda del Probador quedan registradas y aparecen acá.") :
+        '<div class="tabla"><table><thead><tr><th>Fecha</th><th>Tipo</th><th>Pregunta</th><th class="n">ms</th><th>Primer resultado</th></tr></thead><tbody>' +
+        l.map((x) => { const f = (x.fuentes || [])[0] || {}; return '<tr><td class="mono num" style="white-space:nowrap">' + esc((x.ts || "").replace("T", " ").slice(0, 16)) + '</td><td><span class="pill">' + esc(x.tipo) + '</span></td><td><span class="titulo-celda">' + esc(x.question) + "</span>" + (x.error ? ' <span class="pill bad">error</span>' : "") + '</td><td class="n">' + (x.latencyMs ? fmt(x.latencyMs) : "—") + '</td><td class="muted">' + art(f.articulo) + " " + esc((f.rt || "") + (f.score ? " · " + Number(f.score).toFixed(3) : "")) + "</td></tr>"; }).join("") + "</tbody></table></div>") + "</div>";
+    }).catch((e) => error("con-out", e));
+  }
+
+  const desdeHash = () => { const h = (location.hash || "").slice(1); return VISTAS.indexOf(h) >= 0 ? h : "documentos"; };
+  window.addEventListener("hashchange", () => { if (desdeHash() !== actual) mostrar(desdeHash()); });
+  mostrar(desdeHash());
+})();
+</script>
+</body>
+</html>
