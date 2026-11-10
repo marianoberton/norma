@@ -1,0 +1,3 @@
+# Ingesta (ingest_v2/) y gráficos (eval/graficos.py)
+pymupdf>=1.24
+matplotlib>=3.8

@@ -50,8 +50,9 @@ function req(name: string): string {
 export const config = {
   projectRoot,
 
-  openaiApiKey: req("OPENAI_API_KEY"),
-  openrouterApiKey: req("OPENROUTER_API_KEY"),
+  // Se piden al usarlas: sin claves arrancan igual el panel y la demo; el chat avisa qué falta.
+  get openaiApiKey() { return req("OPENAI_API_KEY"); },
+  get openrouterApiKey() { return req("OPENROUTER_API_KEY"); },
 
   // Generacion (OpenRouter). El slug es un string: cambiarlo no requiere reindexar.
   modelPrimary: process.env.MODEL_PRIMARY ?? "openai/gpt-6-luna",
@@ -64,11 +65,6 @@ export const config = {
   // Vector store local (archivos generados por la ingesta)
   storeDir: resolve(projectRoot, process.env.STORE_DIR ?? "data"),
   vectorIndex: process.env.VECTOR_INDEX ?? "normativa",
-
-  // Corpus / chunking
-  corpusDir: resolve(projectRoot, process.env.CORPUS_DIR ?? "../DIVISIÓN"),
-  chunkSize: Number(process.env.CHUNK_SIZE ?? 1100),
-  chunkOverlap: Number(process.env.CHUNK_OVERLAP ?? 150),
 
   // Recuperacion
   topK: Number(process.env.TOP_K ?? 8),

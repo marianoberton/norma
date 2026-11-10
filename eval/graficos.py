@@ -3,7 +3,7 @@
     python -I eval/graficos.py
 
 Lee eval/resultados/*.json y, si existe, data/v2/tablas/cuadros.json. Escribe docs/img/*.png.
-Los números de la comparación de modelos de respuesta están en docs/plan-v2.md (sección «Modelo de respuesta»).
+Los números de la comparación de modelos de respuesta están en docs/measurements.md (sección «Answer model»).
 """
 import json
 from pathlib import Path
@@ -104,7 +104,7 @@ def cuadros():
 
 
 def modelos():
-    """Modelo de respuesta: mismas 44 preguntas y el mismo contexto (docs/plan-v2.md)."""
+    """Modelo de respuesta: mismas 44 preguntas y el mismo contexto (docs/measurements.md)."""
     datos = [  # modelo, errores graves verificados, USD por respuesta, segundos (mediana)
         ("DeepSeek V3.2", 2, 0.00138, 26),
         ("Claude Haiku 5.5", 1, 0.00143, 8),

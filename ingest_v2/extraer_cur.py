@@ -493,7 +493,7 @@ def main():
     ap.add_argument("--tablas", type=float, default=0.0)
     ap.add_argument("--planos", type=float, default=0.0)
     ap.add_argument("--prosa", type=float, default=0.0)
-    ap.add_argument("--modelo", default="anthropic/claude-haiku-5.5")  # elegido por comparación: docs/plan-v2.md
+    ap.add_argument("--modelo", default="anthropic/claude-haiku-5.5")  # elegido por comparación: eval/comparaciones/modelos-vision.json
     a = ap.parse_args()
     base = Path(a.base)
     OUT.mkdir(parents=True, exist_ok=True)

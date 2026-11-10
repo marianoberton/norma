@@ -4,15 +4,15 @@
 
 Norma answers questions about a city's building and zoning law, in Spanish, and cites the exact article, table row or drawing behind every claim. It runs in production for an architecture and permitting firm, inside the firm's internal platform.
 
-**My role:** I built and run all of it, alone: the ingestion pipeline, the evaluation, the agent server, the creator panel and the deployment, working directly with the firm on what an answer has to look like. Every number below comes from a run committed in this repo.
+**My role:** I built and run all of it, alone: the ingestion pipeline, the evaluation, the agent server, the creator panel and the deployment, working directly with the firm on what an answer has to look like. Every number below links to the committed run or summary it comes from ([docs/measurements.md](docs/measurements.md)).
 
 ![Demo: a question in Spanish gets a cited answer; the creator panel shows the verified table behind it](docs/img/demo.gif)
 
-*The bathroom table whose columns a model once swapped in production: now read three times, 2,044 table rows confirmed by two independent readings, and 12 out of 12 re-asked answers correct. [Try it locally in two minutes](#try-it-in-two-minutes).*
+*The bathroom table whose columns a model once swapped in production: now read three times, 2,044 of 3,402 table rows confirmed by two independent readings, and the rest withheld instead of guessed. [Try it locally in two minutes](#try-it-in-two-minutes).*
 
 The hard part is not the chat. The hard part is that the law lives in about 3,800 pages of PDF full of multi-level tables, scanned plans and rotated text. A model that reads a table wrong gives a wrong permit answer. This repo is mostly about making the input trustworthy and proving it with measurements.
 
-*The law, the prompts and most code comments are in Spanish, as the users are. Versión en español: [README.es.md](README.es.md) · plan and measurements, in Spanish: [docs/plan-v2.md](docs/plan-v2.md)*
+*The law, the prompts and most code comments are in Spanish, as the users are. Versión en español: [README.es.md](README.es.md)*
 
 ## At a glance
 
@@ -20,7 +20,7 @@ The hard part is not the chat. The hard part is that the law lives in about 3,80
 |---|---|
 | **Corpus** | 3 bodies of law: the Building Code (CE, 492 pages), the Technical Regulations (RT, 1,462 pages) and the Urban Code (CUR, 10 PDFs, 1,811 pages) |
 | **Index** | 8,466 records: article chunks, 514 figures and plans, and table rows written as `column: value` |
-| **Tables** | 454 tables found by PDF geometry. 2,044 rows confirmed by two independent readings; the rest are withheld and shown as an image |
+| **Tables** | 454 tables found by PDF geometry. 2,044 of 3,402 rows (60 %) confirmed by two independent readings; the rest are withheld and shown as an image ([summary](eval/resultados/tablas-verificacion.json)) |
 | **Retrieval** | 44-question exam: right article in the top 8 for 40/44 (91 %), MRR 0.765. Questions written by me from the articles; an architect has not reviewed them yet |
 | **Answers** | Model picked on the same 44 questions with a judge from another vendor and manual review: 0 serious errors, USD 0.0007 and 6 s per answer |
 | **Cost** | The whole ingestion, experiments included, cost about USD 7 in API calls. Every paid script has a hard spending cap |
@@ -72,7 +72,7 @@ A row enters the index only if two readings match cell by cell. Normalization co
 
 ![454 tables by verification status, and table rows confirmed vs withheld](docs/img/cuadros-verificacion.png)
 
-**Result.** 2,044 rows confirmed and 98 tables left as image only. The retrieval exam did not move (40/44). The two questions that had failed were asked 3 times each to both models: the values were right in all 12 answers. Cost: USD 0.81 for the vision and arbiter passes.
+**Result.** 2,044 rows confirmed and 98 tables left as image only. The retrieval exam did not move (40/44). The two questions that had failed were asked 3 times each to both models: the values were right in all 12 answers (a manual check; those answers were not saved). Cost: USD 0.81 for the vision and arbiter passes ([summary](eval/resultados/tablas-verificacion.json)).
 
 Full write-up, from the production error to the fix: [docs/case-study-tables.md](docs/case-study-tables.md).
 
@@ -114,7 +114,7 @@ Scripts: [`eval/comparar_modelos_vision.py`](eval/comparar_modelos_vision.py) an
 
 PDF ingestion alone did not raise MRR: the gain came when the article numbers it recovered were used for exact lookup. Charts are generated from the versioned results by [`eval/graficos.py`](eval/graficos.py).
 
-The 4 remaining misses are documented one by one in [docs/plan-v2.md](docs/plan-v2.md). Two are open questions for an architect, not search failures.
+The 4 remaining misses are documented one by one in [docs/measurements.md](docs/measurements.md#the-4-misses). Two are open questions for an architect, not search failures.
 
 The exam also runs in CI, without API keys. The 10 exam questions whose answer lives in the demo sample are stored with their query vectors already computed ([`demo/examen/`](demo/examen/)), and [`tests/examen-muestra.test.ts`](tests/examen-muestra.test.ts) fails the build if hit@8 or MRR on the sample drops below today's 8/10 and 0.80. It is a regression gate on a small slice, not the headline number above.
 
@@ -130,6 +130,7 @@ The answer comes first, in one to three sentences. Then the detail, where every 
   - **Tester:** what retrieval returns for a question, without generating.
   - **Exam:** every run, and the latest one question by question.
   - **Queries:** the log of real questions.
+
 | Tables tab | Exam tab |
 |---|---|
 | ![Tables tab: 454 tables, 329 fully verified, 27 partial, 98 image only, 2,044 rows confirmed](docs/img/panel-cuadros.jpg) | ![Exam tab: every run with hit@8 and MRR, then the latest run question by question](docs/img/panel-examen.jpg) |
@@ -137,7 +138,7 @@ The answer comes first, in one to three sentences. Then the detail, where every 
 - Every query and every 👍/👎 is logged.
 - Switching the model is an environment variable. The fallback kicks in when the primary fails to start a stream, and it is tested.
 - CI runs the type check, the unit tests and the retrieval exam on the demo sample, none of which call an API.
-- The jurisdiction is configuration, not code: the city, the names of its codes, how each one is cited and the corpus block of the prompt live in [`jurisdicciones/<id>/`](jurisdicciones/README.md), chosen with `JURISDICCION`. The service refuses to start without one, `/health` reports which one is loaded, and a test holds a jurisdiction to its saved prompt so moving it to configuration changed no byte the model sees.
+- The jurisdiction is configuration, not code: the city, the names of its codes, how each one is cited and the corpus block of the prompt live in [`jurisdicciones/<id>/`](jurisdicciones/README.md), chosen with `JURISDICCION`. The service refuses to start without one, `/health` reports which one is loaded, and a test holds each jurisdiction to its saved prompt (`prompt.snapshot.txt`), so moving the production one to configuration changed no byte the model sees.
 
 ## Honest limits
 
@@ -156,36 +157,46 @@ public/           chat UI and creator panel (no framework)
 jurisdicciones/   city, code names and citation rules: configuration, not code
 eval/             exams, model comparisons, versioned results
 tests/            unit tests (no API calls)
-docs/             plan, measurements and deployment notes (Spanish)
+docs/             measurements, the tables case study, design system, images
 demo/             a sample of the real index and `npm run demo`
-scripts/          rebuild the demo sample
+scripts/          rebuild the demo sample, save a prompt snapshot
 ```
 
 ## Try it in two minutes
 
-The repo ships a small sample of the real index in [`demo/data`](demo/data): the Building Code chapters on exits and stairs (3.4) and on bathrooms (3.5). That is 282 records with their embeddings already computed, plus 15 tables and their original images. You need only an OpenAI key (to embed the question) and an OpenRouter key (for the answer) in `.env.local`:
+The repo ships a small sample of the real index in [`demo/data`](demo/data): the Building Code chapters on exits and stairs (3.4) and on bathrooms (3.5). That is 282 records with their embeddings already computed, plus 15 tables and their original images. No API key is needed to start it:
 
 ```bash
 npm install
-cp .env.example .env.local        # add OPENAI_API_KEY and OPENROUTER_API_KEY
 npm run demo                      # chat at http://localhost:8787, creator panel at /panel
 ```
 
-Ask *«¿Qué lado y superficie mínimos tiene un baño tipo I?»* and open the Tables tab. A question costs well under one cent. The sample is rebuilt from a full index with `python -I scripts/muestra.py <index>`.
+Without keys, the creator panel works in full: documents, the 15 tables with their readings, the exam runs and the query log. To ask the chat, put an OpenAI key (to embed the question) and an OpenRouter key (for the answer) in `.env.local` (copy `.env.example`), then ask *«¿Qué lado y superficie mínimos tiene un baño tipo I?»* and open the Tables tab. A question costs well under one cent. The sample is rebuilt from a full index with `python -I scripts/muestra.py <index>`.
 
 ## Run it on the full corpus
 
-Requires Node 22, Python 3.11+ with PyMuPDF, and API keys for OpenAI (embeddings) and OpenRouter (generation) in `.env.local` (see `.env.example`). The law PDFs and the generated index are not versioned.
+Requires Node 22, Python 3.11+ (`pip install -r requirements.txt`), and API keys for OpenAI (embeddings) and OpenRouter (generation) in `.env.local` (see `.env.example`). The law PDFs and the generated index are not versioned.
 
 ```bash
-npm install && pip install pymupdf
+npm install && pip install -r requirements.txt
+export JURISDICCION=jurisdicciones/ejemplo          # names of the source PDFs, citation rules
+
+# Tables: three readings, then keep rows two of them agree on (spending caps in USD)
+python -I ingest_v2/tablas_pdf.py geometria <pdf folder>
+python -I ingest_v2/tablas_pdf.py vision <pdf folder> 0.50
+python -I ingest_v2/tablas_pdf.py arbitro <pdf folder> 0.50
+python -I ingest_v2/tablas_pdf.py decidir <pdf folder>
+
+# Text and figures of the Building Code and the RT, then the Urban Code
 python -I ingest_v2/extraer_pdf.py <pdf folder> data/v2/chunks.jsonl
-npx tsx ingest_v2/indexar.mts normativa_v2
-VECTOR_INDEX=normativa_v2 JURISDICCION=jurisdicciones/ejemplo npm run serve   # chat at /, panel at /panel
+python -I ingest_v2/extraer_figuras.py <pdf folder> --describir 2.00
+python -I ingest_v2/extraer_cur.py <urban code folder> --prosa 0.30 --tablas 0.10 --planos 0.30
+
+npx tsx ingest_v2/indexar.mts normativa_v2          # a new index; never overwrites the one being served
+VECTOR_INDEX=normativa_v2 npm run serve             # chat at /, panel at /panel
+VECTOR_INDEX=normativa_v2 npx tsx eval/correr-examen.mts eval/examen-v2.json my-label 8
 npm test                                            # no API calls
 ```
-
-The full pipeline, including tables, figures and the Urban Code, is in [README.es.md](README.es.md).
 
 ## License
 

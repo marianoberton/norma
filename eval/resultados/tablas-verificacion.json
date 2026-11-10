@@ -1,0 +1,29 @@
+{
+ "fecha": "2026-11-10",
+ "fuente": "data/v2/tablas/cuadros.json (generado por ingest_v2/tablas_pdf.py; no se versiona por tamaño)",
+ "paginas_con_cuadros": 377,
+ "cuadros": 454,
+ "cuadros_por_documento": {
+  "CE": 44,
+  "RT": 410
+ },
+ "cuadros_por_estado": {
+  "verificado": 315,
+  "recuadro": 14,
+  "parcial": 27,
+  "solo_imagen": 98
+ },
+ "filas_confirmadas": 2044,
+ "filas_sin_verificar": 1358,
+ "filas_total": 3402,
+ "lectura_que_gano": {
+  "arbitro": 107,
+  "grilla": 235,
+  "vision": 14
+ },
+ "costo_usd": {
+  "vision_377_paginas": 0.38,
+  "arbitro_196_paginas": 0.43
+ },
+ "regla": "una fila entra al índice solo si dos de las tres lecturas (grilla, visión, árbitro) coinciden celda por celda"
+}

@@ -8,13 +8,14 @@ import { config } from "../config.js";
 const ENDPOINT = "https://api.openai.com/v1/embeddings";
 
 async function postEmbeddings(input: string[]): Promise<number[][]> {
+  const apiKey = config.openaiApiKey;   // si falta, falla ya: no tiene sentido reintentar
   let lastErr: unknown;
   for (let attempt = 0; attempt < 4; attempt++) {
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${config.openaiApiKey}`,
+          Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ model: config.embeddingModel, input }),
