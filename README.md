@@ -139,6 +139,10 @@ The answer comes first, in one to three sentences. Then the detail, where every 
 - Switching the model is an environment variable. The fallback kicks in when the primary fails to start a stream, and it is tested.
 - CI runs the type check, the unit tests and the retrieval exam on the demo sample, none of which call an API.
 - The jurisdiction is configuration, not code: the city, the names of its codes, how each one is cited and the corpus block of the prompt live in [`jurisdicciones/<id>/`](jurisdicciones/README.md), chosen with `JURISDICCION`. The service refuses to start without one, `/health` reports which one is loaded, and a test holds each jurisdiction to its saved prompt (`prompt.snapshot.txt`), so moving the production one to configuration changed no byte the model sees.
+- Other agents get direct lookups, with the same key and no model in between (they are exposed as tools through an MCP connector):
+  - `GET /api/articulo?doc=CE|RT|CUR&n=…` returns a whole article, every part in order with page, PDF, repeal status and figures, overlaps removed. An unlabelled sub-item comes back as its labelled parent with a note, but only if the parent's text mentions it; otherwise 404. An RT article number without `rt=` returns the candidate regulations instead of merging them.
+  - `GET /api/cuadro-usos?rubro=…` or `?q=…` returns a row of the land-use table in columns, each code decoded in its own reference table. The legend is accepted only where two of three readings agree (two vision models on the reference sheet, plus the PDF text layer). Codes with no reference come back raw and flagged, and rows where two sources of the table disagree are marked `en_revision`.
+  - `GET /api/parcela?direccion=…` or `?smp=…` is a jurisdiction module: address to street code and door number (never coordinates), then cadastre, buildability and land-use mix. Every datum carries its source and date, a failing source leaves the rest intact, and a door that belongs to a parcel with another main address (a corner) is reported as such.
 
 ## Honest limits
 
@@ -191,6 +195,7 @@ python -I ingest_v2/tablas_pdf.py decidir <pdf folder>
 python -I ingest_v2/extraer_pdf.py <pdf folder> data/v2/chunks.jsonl
 python -I ingest_v2/extraer_figuras.py <pdf folder> --describir 2.00
 python -I ingest_v2/extraer_cur.py <urban code folder> --prosa 0.30 --tablas 0.10 --planos 0.30
+python -I ingest_v2/cuadro_usos.py                  # land-use table legend and rows under review (no API)
 
 npx tsx ingest_v2/indexar.mts normativa_v2          # a new index; never overwrites the one being served
 VECTOR_INDEX=normativa_v2 npm run serve             # chat at /, panel at /panel

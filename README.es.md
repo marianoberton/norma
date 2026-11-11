@@ -139,6 +139,10 @@ Primero la respuesta, en una a tres oraciones. Después el detalle, donde cada a
 - Cambiar de modelo es una variable de entorno. El respaldo entra cuando el principal no logra empezar a transmitir, y está probado.
 - El CI corre la verificación de tipos, las pruebas unitarias y el examen de búsqueda sobre la muestra; nada de eso llama a una API.
 - La jurisdicción es configuración, no código: la ciudad, los nombres de sus códigos, cómo se cita cada uno y el bloque de corpus del prompt viven en [`jurisdicciones/<id>/`](jurisdicciones/README.md) y se eligen con `JURISDICCION`. El servicio no arranca sin una, `/health` informa cuál cargó, y una prueba compara cada jurisdicción con su prompt guardado (`prompt.snapshot.txt`): pasar la de producción a configuración no cambió ni un byte de lo que ve el modelo.
+- Otros agentes tienen consultas directas, con la misma clave y sin modelo de por medio (se exponen como herramientas en un conector MCP):
+  - `GET /api/articulo?doc=CE|RT|CUR&n=…` devuelve un artículo entero: todas sus partes en orden, con página, PDF, si está derogado y sus figuras, sin el texto repetido entre partes. Un inciso sin etiqueta vuelve como el artículo de arriba con una nota, solo si ese texto lo menciona; si no, 404. Un número de artículo RT sin `rt=` devuelve los reglamentos candidatos en vez de mezclarlos.
+  - `GET /api/cuadro-usos?rubro=…` o `?q=…` devuelve una fila del cuadro de usos en columnas, con cada código decodificado en su propia tabla de referencias. La leyenda se acepta solo donde coinciden dos de tres lecturas (dos modelos de visión sobre la planilla de referencias y la capa de texto del PDF). Un código sin referencia vuelve tal cual y marcado, y las filas en las que dos fuentes del cuadro no coinciden van con `en_revision`.
+  - `GET /api/parcela?direccion=…` o `?smp=…` es un módulo de la jurisdicción: de la dirección al código de calle y la altura (nunca coordenadas), y después catastro, edificabilidad y mixtura de usos. Cada dato lleva su fuente y su fecha, si una fuente falla vuelve el resto, y si la puerta es de una parcela con otra dirección principal (una esquina) se avisa.
 
 ## Límites, sin maquillaje
 
@@ -191,6 +195,7 @@ python -I ingest_v2/tablas_pdf.py decidir <carpeta con los PDF>
 python -I ingest_v2/extraer_pdf.py <carpeta con los PDF> data/v2/chunks.jsonl
 python -I ingest_v2/extraer_figuras.py <carpeta con los PDF> --describir 2.00
 python -I ingest_v2/extraer_cur.py <carpeta del CUR> --prosa 0.30 --tablas 0.10 --planos 0.30
+python -I ingest_v2/cuadro_usos.py                  # leyenda del cuadro de usos y filas en revisión (sin API)
 
 npx tsx ingest_v2/indexar.mts normativa_v2          # índice nuevo; nunca pisa el que se está sirviendo
 VECTOR_INDEX=normativa_v2 npm run serve             # chat en /, panel en /panel

@@ -12,6 +12,9 @@ import { timingSafeEqual } from "node:crypto";
 import { config } from "./config.js";
 import { askStream, getStore, retrieve } from "./rag.js";
 import { jurisdiccion } from "./jurisdiccion.js";
+import { buscarArticulo } from "./articulos.js";
+import { buscarUsos, cargarDatosUsos, type DatosUsos } from "./usos.js";
+import { moduloParcela } from "./parcela.js";
 import type { ChatMessage } from "./lib/generate.js";
 import type { ChunkRecord, RegistroV2 } from "./lib/vector-store.js";
 import {
@@ -104,6 +107,10 @@ function cuadrosOriginales(): Cuadro[] {
 function cuadrosDelIndice(): Cuadro[] {
   return aplicarRevisiones(cuadrosOriginales(), cargarRevisiones(config.revisionesPath));
 }
+// Leyenda y rubros en revisión del cuadro de usos (ingest_v2/cuadro_usos.py). null si la jurisdicción no lo tiene.
+let usos: DatosUsos | null | undefined;
+const datosUsos = () => (usos === undefined ? (usos = cargarDatosUsos(join(config.storeDir, "v2", "cur", "cuadro-usos.json"))) : usos);
+
 // Lo que leyó cada fuente en los cuadros por revisar (ingest_v2/tablas_pdf.py lecturas).
 let lecturas: Record<string, Partial<Record<NombreLectura, Lectura>>> | null = null;
 function lecturasDe(id: string) {
@@ -275,6 +282,43 @@ const server = createServer(async (req, res) => {
       const sources = hits.map(toSource);
       logConsulta({ tipo: "retrieve", question, top_k: topK, latencyMs, fuentes: sources.map(({ texto, ...s }) => s) });
       return send(res, 200, "application/json", JSON.stringify({ sources, latencyMs }));
+    }
+
+    // ---- Consultas directas, para otros agentes (conector MCP): sin búsqueda por significado ni modelo.
+    if (req.method === "GET" && url.pathname === "/api/articulo") {
+      if (!requireApiKey(req, res)) return;
+      const t0 = Date.now();
+      const p = { doc: url.searchParams.get("doc") ?? "", n: url.searchParams.get("n") ?? "", rt: url.searchParams.get("rt") };
+      const r = buscarArticulo(getStore().all(), p, figurasDe);
+      logConsulta({ tipo: "articulo", question: `${p.doc} ${p.n}${p.rt ? " " + p.rt : ""}`, latencyMs: Date.now() - t0,
+        ...(r.ok ? { fuentes: [{ articulo: r.articulo.articulo, rt: r.articulo.rt }] } : { error: r.fallo.error }) });
+      return r.ok ? send(res, 200, "application/json", JSON.stringify(r.articulo))
+        : send(res, r.fallo.status, "application/json", JSON.stringify((({ status, ...cuerpo }) => cuerpo)(r.fallo)));
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/cuadro-usos") {
+      if (!requireApiKey(req, res)) return;
+      const rubro = url.searchParams.get("rubro"), q = url.searchParams.get("q");
+      if (!rubro?.trim() && !q?.trim()) return send(res, 400, "application/json", JSON.stringify({ error: "falta rubro o q" }));
+      const datos = datosUsos();
+      if (!datos) return send(res, 404, "application/json", JSON.stringify({ error: "Esta jurisdicción no tiene cargado un cuadro de usos." }));
+      const t0 = Date.now();
+      const r = buscarUsos(getStore().all(), datos, { rubro, q }, figurasDe);
+      logConsulta({ tipo: "cuadro-usos", question: rubro ? `rubro ${rubro}` : q, latencyMs: Date.now() - t0, fuentes: r.filas.slice(0, 1).map((f) => ({ articulo: f.rubro })) });
+      if (!r.total) return send(res, 404, "application/json", JSON.stringify({ error: rubro ? `No hay rubro ${rubro} en el cuadro.` : `Ningún rubro contiene «${q}».`, ...r }));
+      return send(res, 200, "application/json", JSON.stringify(r));
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/parcela") {
+      if (!requireApiKey(req, res)) return;
+      const m = await moduloParcela();
+      if (!m) return send(res, 501, "application/json", JSON.stringify({ error: "Esta jurisdicción no tiene consulta de parcelas." }));
+      const t0 = Date.now();
+      const pedido = { direccion: url.searchParams.get("direccion"), smp: url.searchParams.get("smp") };
+      const r = await m.consultarParcela(pedido, { config: jurisdiccion.parcela!, raiz: config.projectRoot, fetch, ahora: () => new Date() });
+      const c = r.cuerpo as { smp?: string; error?: string };
+      logConsulta({ tipo: "parcela", question: pedido.smp ?? pedido.direccion, latencyMs: Date.now() - t0, fuentes: c.smp ? [{ articulo: c.smp }] : [], ...(c.error ? { error: c.error } : {}) });
+      return send(res, r.status, "application/json", JSON.stringify(r.cuerpo));
     }
 
     if (req.method === "GET" && url.pathname === "/api/stats") {

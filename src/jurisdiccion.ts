@@ -19,6 +19,10 @@ export interface Jurisdiccion {
   corpus: string;
   /** Reglas de cita por cuerpo normativo (citas.md). */
   citas: string;
+  /** Carpeta de la jurisdicción (ruta absoluta): de acá se cargan sus módulos opcionales. */
+  dir: string;
+  /** Consulta de parcelas (opcional): qué módulo de la carpeta la resuelve y con qué fuentes. */
+  parcela?: { modulo: string; [k: string]: unknown };
 }
 
 /** Texto de un archivo sin \r ni saltos finales: el prompt no cambia con el checkout de Windows. */
@@ -32,7 +36,7 @@ export function cargarJurisdiccion(dir: string = process.env.JURISDICCION ?? "ju
   for (const k of ["id", "contexto", "documentos", "ingesta"]) {
     if (j[k] == null) throw new Error(`${json}: falta «${k}».`);
   }
-  return { nombre: null, ejemplos: [], ...j, corpus: leer(resolve(d, "corpus.md")), citas: leer(resolve(d, "citas.md")) };
+  return { nombre: null, ejemplos: [], ...j, corpus: leer(resolve(d, "corpus.md")), citas: leer(resolve(d, "citas.md")), dir: d };
 }
 
 export const jurisdiccion = cargarJurisdiccion();

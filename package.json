@@ -13,7 +13,7 @@
     "smoke": "tsx src/smoke-test.ts",
     "feedback": "tsx src/feedback-report.ts",
     "typecheck": "tsc --noEmit",
-    "test:ts": "tsx --test tests/agente.test.ts tests/revision.test.ts tests/examen-muestra.test.ts",
+    "test:ts": "tsx --test tests/agente.test.ts tests/revision.test.ts tests/consultas.test.ts tests/examen-muestra.test.ts \"jurisdicciones/*/*.test.mts\"",
     "test:py": "python -m unittest discover -s tests",
     "test": "npm run test:ts && npm run test:py"
   },

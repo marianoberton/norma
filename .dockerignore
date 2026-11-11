@@ -23,3 +23,5 @@ data/v2/tablas/geometria.json
 data/v2/tablas/revisar.json
 # Las revisiones a mano viven en el volumen de estado, no en la imagen.
 data/v2/tablas/revisiones.jsonl
+# Datos abiertos de la jurisdicción: el CSV completo no entra; entra el extracto (mixtura.tsv) que arma su módulo.
+data/externos/codigo-urbanistico/codigo-urbanistico.csv
