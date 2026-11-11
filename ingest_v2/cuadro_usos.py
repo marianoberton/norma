@@ -7,7 +7,7 @@ En el índice solo estaba como prosa del artículo de referencias, partida en fr
 Hay tres lecturas de cada referencia: dos modelos de visión sobre la planilla «Usos y referencias»
 (guardadas en data/extracciones) y la capa de texto del artículo de referencias del cuerpo principal.
 Como en los cuadros del CE, un significado entra si dos de las tres lo leen igual: la capa de texto tiene
-que contenerlo, letra por letra, y se prefiere la lectura en la que coinciden los dos modelos.
+que contener el par código y significado, letra por letra, y se prefiere la lectura en la que coinciden los dos modelos.
 Si no, queda con significado null y las lecturas a la vista: un significado equivocado es peor que ninguno.
 Un significado que termina en «:» anuncia una tabla que ninguna fuente pudo leer: se marca incompleto.
 
@@ -135,8 +135,9 @@ def main():
         for cod in list(a[grupo]) + [c for c in b[grupo] if c not in a[grupo]]:
             sa, sb = a[grupo].get(cod), b[grupo].get(cod)
             acuerdan = sa is not None and sb is not None and norm(sa) == norm(sb)
-            # Dos de tres: la capa de texto confirma una de las lecturas de la planilla.
-            confirmada = next((x for x in (sa, sb) if x is not None and norm(x) and norm(x) in texto_ref), None)
+            # Dos de tres: la capa de texto confirma una de las lecturas de la planilla. El texto dice
+            # «código | significado», así que se busca el par: un significado corto no vale suelto.
+            confirmada = next((x for x in (sa, sb) if x is not None and norm(x) and norm(cod) + norm(x) in texto_ref), None)
             e = {"significado": confirmada, "seccion": seccion, "verificada": confirmada is not None,
                  "lecturas_coinciden": acuerdan}
             if confirmada is None:

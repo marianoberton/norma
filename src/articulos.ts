@@ -8,7 +8,7 @@ import type { ChunkRecord, RegistroV2 } from "./lib/vector-store.js";
 /** Cuerpos normativos que se pueden pedir por número, con su valor de source_doc en el índice. */
 export const CUERPOS: Record<string, ChunkRecord["source_doc"]> = { CE: "CodigoEdificacion", RT: "RT", CUR: "CUR" };
 
-const NUMERO = /^\d{1,2}(?:\.\d{1,3}){0,6}$/;
+const NUMERO = /^\d{1,2}(?:\.\d{1,3}){0,12}$/; // el CE llega a diez niveles (3.7.4.5.1.2.1.4.1)
 
 /** Une partes consecutivas que se solapan: el principio de una suele repetir el final de la anterior. */
 export function unirPartes(textos: string[]): string {
@@ -27,19 +27,30 @@ export type Fallo = { status: number; error: string; [k: string]: unknown };
 
 interface Figura { id: string; url: string; pagina: number }
 
-/** Las partes de un artículo dentro de un archivo, en orden. Si el número aparece en tramos separados
- *  (el índice de un RT lista sus artículos antes del cuerpo), se queda con el tramo de más texto. */
-function tramoPrincipal(partes: ChunkRecord[]): { tramo: ChunkRecord[]; otros: number } {
+/** Una línea del índice de un reglamento («5.1 Aviso de Obra 6 5.1.1 Documentación 6», «3.- Medios ......»):
+ *  texto corto con puntos guía o con números de página entre títulos. No es el artículo. */
+const TITULO_Y_PAGINA = /[a-záéíóúñ.)]\s\d{1,3}\s+\d{1,2}(?:\.\d{1,2})*\.?-?\s/gi;
+function esIndice(t: ChunkRecord[]): boolean {
+  // Los pies de página («página 3 de 678») no cuentan: el cuerpo también los tiene.
+  const s = t.map((r) => r.text).join(" ").replace(/p[aá]gina\s+\d+\s+de\s+\d+/gi, " ").replace(/\s+/g, " ").trim();
+  if (s.length >= 600) return false;
+  return /\.{5,}/.test(s) || /^\S.{0,120}?\s\d{1,3}$/.test(s) || (s.match(TITULO_Y_PAGINA)?.length ?? 0) >= 2;
+}
+
+/** Las partes de un artículo dentro de un archivo, en tramos de fragmentos consecutivos. Un mismo número puede
+ *  estar en varios tramos: incisos sueltos, anexos que reinician la numeración o el índice del reglamento.
+ *  Se devuelven todos en orden, salvo las líneas del índice. */
+function tramos(partes: ChunkRecord[]): { tramos: ChunkRecord[][]; indice: number } {
   const orden = [...partes].sort((a, b) => a.chunk_index - b.chunk_index);
-  const tramos: ChunkRecord[][] = [];
+  const ts: ChunkRecord[][] = [];
   for (const r of orden) {
-    const ult = tramos.at(-1);
+    const ult = ts.at(-1);
     if (ult && r.chunk_index === ult.at(-1)!.chunk_index + 1) ult.push(r);
-    else tramos.push([r]);
+    else ts.push([r]);
   }
-  const largo = (t: ChunkRecord[]) => t.reduce((s, r) => s + r.text.length, 0);
-  const tramo = tramos.reduce((a, b) => (largo(b) > largo(a) ? b : a));
-  return { tramo, otros: tramos.length - 1 };
+  const cuerpo = ts.filter((t) => !esIndice(t));
+  // Si todo parece índice, mejor devolverlo que nada.
+  return cuerpo.length ? { tramos: cuerpo, indice: ts.length - cuerpo.length } : { tramos: ts, indice: 0 };
 }
 
 const escaparRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -83,13 +94,18 @@ export function buscarArticulo(
       return { ok: false, fallo: { status: 409, error: `El artículo ${elegido} existe en ${rts.length} reglamentos técnicos. Indicá cuál con rt=.`, candidatos: rts.sort() } };
     }
   }
-  // Un mismo número podría estar en dos archivos del mismo cuerpo: se toma el de más texto.
+  // Por archivo (chunk_index se reinicia en cada uno), en el orden en que aparecen en el índice.
   const porArchivo = new Map<string, ChunkRecord[]>();
   for (const r of coincidentes) porArchivo.get(r.archivo_origen)?.push(r) ?? porArchivo.set(r.archivo_origen, [r]);
-  const { tramo, otros } = [...porArchivo.values()].map(tramoPrincipal)
-    .reduce((a, b) => (b.tramo.reduce((s, r) => s + r.text.length, 0) > a.tramo.reduce((s, r) => s + r.text.length, 0) ? b : a));
-
-  const unido = unirPartes(tramo.map((r) => r.text));
+  let lineasIndice = 0;
+  const bloques: ChunkRecord[][] = [];
+  for (const ps of porArchivo.values()) {
+    const t = tramos(ps);
+    bloques.push(...t.tramos);
+    lineasIndice += t.indice;
+  }
+  const tramo = bloques.flat();
+  const unido = bloques.map((b) => unirPartes(b.map((r) => r.text))).join("\n\n");
   let nota: string | null = null;
   if (elegido !== n) {
     const menciona = new RegExp(`(^|[^\\d.])${escaparRe(n)}(?![\\d]|\\.\\d)`).test(unido);
@@ -100,18 +116,18 @@ export function buscarArticulo(
   }
 
   const primero = tramo[0] as RegistroV2;
-  const ultimo = tramo.at(-1)! as RegistroV2;
+  const paginasFin = tramo.map((r) => (r as RegistroV2).pagina_fin ?? (r as RegistroV2).pagina).filter((p): p is number => p != null);
   // Figuras: las de cada parte (por página) más las láminas descritas que el índice asocia al artículo.
   const figuras = new Map<string, Figura>();
-  const partes = tramo.map((r) => {
+  const partes = bloques.flatMap((b, i) => b.map((r) => {
     const x = r as RegistroV2 & { derogado?: boolean | null; parte?: number };
     const fs = figurasDe(r);
     for (const f of fs) figuras.set(f.id, f);
     return {
-      chunk: r.chunk_index, parte: x.parte ?? null, pagina: x.pagina ?? null, pagina_fin: x.pagina_fin ?? null,
+      tramo: i + 1, chunk: r.chunk_index, parte: x.parte ?? null, pagina: x.pagina ?? null, pagina_fin: x.pagina_fin ?? null,
       pdf: r.pdf_respaldo, derogado: x.derogado ?? null, figuras: fs.map((f) => f.id), texto: r.text,
     };
-  });
+  }));
   for (const r of delCuerpo) {
     if ((r as RegistroV2).figura_id && r.articulo === elegido && r.rt_code === primero.rt_code) {
       for (const f of figurasDe(r)) figuras.set(f.id, f);
@@ -123,13 +139,15 @@ export function buscarArticulo(
     articulo: {
       doc, pedido: n, articulo: elegido, exacto: elegido === n, nota,
       documento: primero.documento, rt: primero.rt_code, titulo: primero.titulo, ubicacion: primero.ubicacion,
-      pdf: primero.pdf_respaldo, pagina: primero.pagina ?? null, pagina_fin: ultimo.pagina_fin ?? ultimo.pagina ?? null,
+      pdf: primero.pdf_respaldo, pagina: primero.pagina ?? null, pagina_fin: paginasFin.length ? Math.max(...paginasFin) : null,
       // null: el índice no sabe (el CUR no lo marca); true/false: lo dice la ingesta para todas las partes.
       derogado: derogados.every((d) => d === true) ? true : derogados.some((d) => d === true) ? "en parte" : derogados.every((d) => d === false) ? false : null,
       partes,
       texto: unido,
       figuras: [...figuras.values()],
-      ...(otros ? { otras_menciones: otros, nota_menciones: "El número aparece también en otros tramos del archivo (por ejemplo, el índice del reglamento); se devuelve el tramo con el texto del artículo." } : {}),
+      tramos: bloques.length,
+      ...(bloques.length > 1 ? { nota_tramos: `El número ${elegido} aparece en ${bloques.length} tramos separados (incisos sueltos o anexos que reinician la numeración): se devuelven todos, en orden; el texto los separa con una línea en blanco.` } : {}),
+      ...(lineasIndice ? { lineas_de_indice_omitidas: lineasIndice } : {}),
     },
   };
 }

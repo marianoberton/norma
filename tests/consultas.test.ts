@@ -54,8 +54,20 @@ test("en los RT el número se repite: sin rt devuelve los candidatos", () => {
   assert.deepEqual(sin.fallo.candidatos, ["RT-1", "RT-2"]);
   const con = buscarArticulo(rts, { doc: "RT", n: "2", rt: "rt-1" }, sinFiguras);
   assert.ok(con.ok);
-  assert.match(String(con.articulo.texto), /solicitud completa/); // el tramo del cuerpo, no la línea del índice
-  assert.equal(con.articulo.otras_menciones, 1);
+  assert.match(String(con.articulo.texto), /solicitud completa/);
+  assert.doesNotMatch(String(con.articulo.texto), /Requisitos 3/); // la línea del índice no es el artículo
+  assert.equal(con.articulo.lineas_de_indice_omitidas, 1);
+});
+
+test("un número en varios tramos (anexos que reinician la numeración): vuelven todos, en orden", () => {
+  const rt = (chunk_index: number, text: string) => reg({ source_doc: "RT", rt_code: "RT-9", archivo_origen: "RT-9", articulo: "2", chunk_index, text });
+  const r = buscarArticulo([rt(30, "2. De las instalaciones. Las instalaciones internas se ejecutan según la norma vigente."),
+    rt(5, "2. Supresión del servicio. Se puede disponer la clausura total o parcial."), rt(6, "y se notifica al titular.")], { doc: "RT", n: "2", rt: "RT-9" }, sinFiguras);
+  assert.ok(r.ok);
+  assert.equal(r.articulo.tramos, 2);
+  assert.deepEqual((r.articulo.partes as { tramo: number; chunk: number }[]).map((p) => [p.tramo, p.chunk]), [[1, 5], [1, 6], [2, 30]]);
+  assert.match(String(r.articulo.texto), /titular\.\n\n2\. De las instalaciones/);
+  assert.match(String(r.articulo.nota_tramos), /2 tramos/);
 });
 
 test("doc y n se validan", () => {
